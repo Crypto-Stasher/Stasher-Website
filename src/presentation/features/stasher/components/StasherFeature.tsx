@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
           <img 
             src={stasherHero} 
             alt="Stasher Hardware" 
-            style={{ width: '100%', maxWidth: '540px', position: 'relative', zIndex: 1, border: '2px solid red' }} 
+            style={{ width: '100%', maxWidth: '540px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.15))' }} 
           />
         </div>
       </div>
