@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import stasherHero from '../../../../assets/stasher_hero_device.png';
 import type {
   HeroContent,
+  StatsContent,
   DifferentiatorItem,
   ComplianceContent,
   AssetsContent,
@@ -10,6 +11,11 @@ import type {
   HowItWorksContent,
   ProductsContent,
   TechStackContent,
+  AppShowcaseContent,
+  ComparisonContent,
+  OpenSourceContent,
+  FaqContent,
+  NewsletterContent,
 } from '../../../../domain/models/Content';
 import { Radar } from './Radar';
 import { useTextScramble } from '../../../../application/hooks/useTextScramble';
@@ -44,6 +50,28 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
             alt="Stasher Hardware"
             style={{ width: '100%', maxWidth: '540px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.15))' }}
           />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ─── STATS BAR ─── */
+interface StatsProps {
+  content: StatsContent;
+}
+
+export const Stats: React.FC<StatsProps> = ({ content }) => {
+  return (
+    <section className="stats-bar">
+      <div className="container">
+        <div className="stats-grid">
+          {content.items.map((item, idx) => (
+            <div key={idx} className="stat-item reveal">
+              <div className="stat-value">{item.value}</div>
+              <div className="stat-label">{item.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -85,9 +113,9 @@ export const Architecture: React.FC<ArchitectureProps> = ({ content }) => {
         <div className="arch-flow reveal">
           <div className="arch-flow-line" />
           <div className="arch-flow-labels">
-            <span style={{ color: 'var(--accent-red)' }}>INTERNET</span>
-            <span style={{ color: 'var(--accent-yellow)' }}>mTLS BRIDGE</span>
-            <span style={{ color: 'var(--accent-cyan)' }}>AIR-GAP</span>
+            <span style={{ color: 'var(--accent-cyan)' }}>OFFLINE</span>
+            <span style={{ color: 'var(--accent-yellow)' }}>BRIDGE</span>
+            <span style={{ color: 'var(--accent-blue)' }}>MOBILE</span>
           </div>
         </div>
       </div>
@@ -152,9 +180,6 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ content }) => {
                 </div>
                 <p className="ceremony-step-desc">{step.description}</p>
               </div>
-              {idx < content.steps.length - 1 && (
-                <div className="ceremony-connector" style={{ background: ZONE_COLORS[step.zone] }} />
-              )}
             </div>
           ))}
         </div>
@@ -223,6 +248,81 @@ export const Products: React.FC<ProductsProps> = ({ content }) => {
   );
 };
 
+/* ─── APP SHOWCASE ─── */
+interface AppShowcaseProps {
+  content: AppShowcaseContent;
+}
+
+export const AppShowcase: React.FC<AppShowcaseProps> = ({ content }) => {
+  return (
+    <section id="app" className="container">
+      <p className="section-title">{content.subtitle}</p>
+      <h2 className="section-heading reveal">{content.title}</h2>
+      <p className="section-description reveal">{content.description}</p>
+
+      <div className="app-grid">
+        {content.features.map((feature, idx) => (
+          <div key={idx} className="app-feature-card reveal">
+            <div className="app-feature-number">{String(idx + 1).padStart(2, '0')}</div>
+            <h3 className="app-feature-title">{feature.title}</h3>
+            <p className="app-feature-desc">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="app-download reveal">
+        <p className="app-download-label">AVAILABLE ON</p>
+        <div className="app-download-buttons">
+          {content.downloadLinks.map((link) => (
+            <a key={link.platform} href={link.url} className="app-download-btn">
+              {link.platform === 'iOS' ? 'App Store' : 'Google Play'}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ─── COMPARISON TABLE ─── */
+interface ComparisonProps {
+  content: ComparisonContent;
+}
+
+export const Comparison: React.FC<ComparisonProps> = ({ content }) => {
+  return (
+    <section id="compare" className="section-dark">
+      <div className="container">
+        <p className="section-title">{content.subtitle}</p>
+        <h2 className="section-heading reveal">{content.title}</h2>
+
+        <div className="comparison-table-wrapper reveal">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th className="comparison-highlight">Stasher</th>
+                <th>{content.competitors[0]}</th>
+                <th>{content.competitors[1]}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {content.rows.map((row, idx) => (
+                <tr key={idx}>
+                  <td className="comparison-feature">{row.feature}</td>
+                  <td className="comparison-highlight">{row.stasher}</td>
+                  <td>{row.competitor1}</td>
+                  <td>{row.competitor2}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* ─── TECH STACK ─── */
 interface TechStackProps {
   content: TechStackContent;
@@ -242,6 +342,33 @@ export const TechStack: React.FC<TechStackProps> = ({ content }) => {
             <div className="tech-detail">{item.detail}</div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+};
+
+/* ─── OPEN SOURCE ─── */
+interface OpenSourceProps {
+  content: OpenSourceContent;
+}
+
+export const OpenSource: React.FC<OpenSourceProps> = ({ content }) => {
+  return (
+    <section id="open-source" className="section-dark">
+      <div className="container">
+        <p className="section-title">{content.subtitle}</p>
+        <h2 className="section-heading reveal">{content.title}</h2>
+        <p className="section-description reveal">{content.description}</p>
+
+        <div className="opensource-grid">
+          {content.points.map((point, idx) => (
+            <div key={idx} className="opensource-card reveal">
+              <div className="opensource-number">{String(idx + 1).padStart(2, '0')}</div>
+              <h3 className="opensource-title">{point.title}</h3>
+              <p className="opensource-desc">{point.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -271,6 +398,43 @@ export const Compliance: React.FC<ComplianceProps> = ({ content }) => {
   );
 };
 
+/* ─── FAQ ─── */
+interface FaqProps {
+  content: FaqContent;
+}
+
+export const Faq: React.FC<FaqProps> = ({ content }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section id="faq" className="container">
+      <p className="section-title">{content.subtitle}</p>
+      <h2 className="section-heading reveal">{content.title}</h2>
+
+      <div className="faq-list">
+        {content.items.map((item, idx) => (
+          <div
+            key={idx}
+            className={`faq-item reveal ${openIndex === idx ? 'faq-item--open' : ''}`}
+          >
+            <button
+              className="faq-question"
+              onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+              aria-expanded={openIndex === idx}
+            >
+              <span>{item.question}</span>
+              <span className="faq-toggle">{openIndex === idx ? '\u2212' : '+'}</span>
+            </button>
+            <div className="faq-answer">
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 /* ─── ASSETS ─── */
 interface AssetsProps {
   content: AssetsContent;
@@ -278,13 +442,40 @@ interface AssetsProps {
 
 export const Assets: React.FC<AssetsProps> = ({ content }) => {
   return (
-    <section id="assets" className="container reveal" style={{ textAlign: 'center' }}>
-      <p className="section-title">Asset Deployment</p>
-      <h2 className="section-heading">{content.title}</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-        {content.items.map((asset, index) => (
-          <span key={index} className="asset-badge">{asset}</span>
-        ))}
+    <section id="assets" className="section-dark reveal" style={{ textAlign: 'center' }}>
+      <div className="container">
+        <p className="section-title">Asset Deployment</p>
+        <h2 className="section-heading">{content.title}</h2>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+          {content.items.map((asset, index) => (
+            <span key={index} className="asset-badge">{asset}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ─── NEWSLETTER ─── */
+interface NewsletterProps {
+  content: NewsletterContent;
+}
+
+export const Newsletter: React.FC<NewsletterProps> = ({ content }) => {
+  return (
+    <section id="newsletter" className="container">
+      <div className="newsletter-box reveal">
+        <h2 className="newsletter-title">{content.title}</h2>
+        <p className="newsletter-desc">{content.description}</p>
+        <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="email"
+            className="newsletter-input"
+            placeholder={content.placeholder}
+            required
+          />
+          <button type="submit" className="cta-button">{content.cta}</button>
+        </form>
       </div>
     </section>
   );

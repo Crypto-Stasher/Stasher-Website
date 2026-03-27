@@ -6,6 +6,15 @@ export type HeroContent = {
   networkLoad: string;
 };
 
+export type StatItem = {
+  value: string;
+  label: string;
+};
+
+export type StatsContent = {
+  items: StatItem[];
+};
+
 export type DifferentiatorItem = {
   id: string;
   label: string;
@@ -24,9 +33,16 @@ export type AssetsContent = {
   items: string[];
 };
 
+export type SocialLink = {
+  name: string;
+  url: string;
+  icon: string;
+};
+
 export type FooterContent = {
   transmission: string;
   copyright: string;
+  socials: SocialLink[];
 };
 
 export type ArchitectureZone = {
@@ -95,8 +111,61 @@ export type TechStackContent = {
   items: TechItem[];
 };
 
+export type AppFeature = {
+  title: string;
+  description: string;
+};
+
+export type AppShowcaseContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+  features: AppFeature[];
+  downloadLinks: { platform: string; url: string }[];
+};
+
+export type ComparisonRow = {
+  feature: string;
+  stasher: string;
+  competitor1: string;
+  competitor2: string;
+};
+
+export type ComparisonContent = {
+  title: string;
+  subtitle: string;
+  competitors: [string, string];
+  rows: ComparisonRow[];
+};
+
+export type OpenSourceContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+  points: { title: string; description: string }[];
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type FaqContent = {
+  title: string;
+  subtitle: string;
+  items: FaqItem[];
+};
+
+export type NewsletterContent = {
+  title: string;
+  description: string;
+  placeholder: string;
+  cta: string;
+};
+
 export type SiteContent = {
   hero: HeroContent;
+  stats: StatsContent;
   architecture: ArchitectureContent;
   security: SecurityContent;
   howItWorks: HowItWorksContent;
@@ -105,8 +174,13 @@ export type SiteContent = {
     items: DifferentiatorItem[];
   };
   products: ProductsContent;
+  appShowcase: AppShowcaseContent;
+  comparison: ComparisonContent;
   techStack: TechStackContent;
+  openSource: OpenSourceContent;
   compliance: ComplianceContent;
+  faq: FaqContent;
   assets: AssetsContent;
+  newsletter: NewsletterContent;
   footer: FooterContent;
 };

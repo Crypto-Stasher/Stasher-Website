@@ -9,6 +9,15 @@ export const SITE_CONTENT: SiteContent = {
     networkLoad: "0.042 MS/S"
   },
 
+  stats: {
+    items: [
+      { value: "56+", label: "Supported Cryptocurrencies" },
+      { value: "0", label: "Security Breaches" },
+      { value: "100%", label: "Air-Gapped Signing" },
+      { value: "24", label: "Word Seed Recovery" }
+    ]
+  },
+
   architecture: {
     title: "COLD + WARM ARCHITECTURE",
     subtitle: "How Stasher Works",
@@ -170,6 +179,44 @@ export const SITE_CONTENT: SiteContent = {
     ]
   },
 
+  appShowcase: {
+    title: "THE STASHER APP",
+    subtitle: "Companion App",
+    description: "A modern mobile app that puts you in full control. Manage your portfolio, initiate transactions, and communicate securely with your hardware wallet — all from your phone.",
+    features: [
+      { title: "Portfolio Overview", description: "Track all your assets across 56+ chains in one clean dashboard with real-time balances." },
+      { title: "One-Tap Transactions", description: "Select asset, enter amount and destination — the app handles the rest with your hardware wallet." },
+      { title: "Secure BLE Pairing", description: "Encrypted Bluetooth Low Energy connection with L2CAP channels. Pair once, transact securely." },
+      { title: "Transaction History", description: "Full on-chain history for every wallet, with status tracking and confirmation alerts." },
+      { title: "Multi-Wallet Management", description: "Connect and manage multiple Stasher devices from a single app." },
+      { title: "Address Book", description: "Save trusted addresses for quick and safe repeat transactions." }
+    ],
+    downloadLinks: [
+      { platform: "iOS", url: "#" },
+      { platform: "Android", url: "#" }
+    ]
+  },
+
+  comparison: {
+    title: "STASHER VS. THE COMPETITION",
+    subtitle: "Comparison",
+    competitors: ["Ledger Nano X", "Trezor Safe 5"],
+    rows: [
+      { feature: "True Air-Gap (no USB/BT signing)", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "Dedicated Warm Wallet Bridge", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "On-Device Screen Verification", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Physical Button Confirmation", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "BIP39/BIP32/BIP44 Support", stasher: "Full", competitor1: "Full", competitor2: "Full" },
+      { feature: "Hardware RNG (FIPS 140-2)", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
+      { feature: "Encrypted Seed Storage (AES-256)", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
+      { feature: "Companion Mobile App", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Multi-Chain Support", stasher: "56+", competitor1: "5,500+", competitor2: "9,000+" },
+      { feature: "Enterprise / Institutional Tier", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
+      { feature: "Open-Source Firmware", stasher: "Yes", competitor1: "Partial", competitor2: "Yes" },
+      { feature: "Brute-Force Lockout", stasher: "Exponential", competitor1: "Wipe after 3", competitor2: "Wipe after 16" }
+    ]
+  },
+
   techStack: {
     title: "BUILT FOR MAXIMUM SECURITY",
     subtitle: "Technology",
@@ -187,6 +234,18 @@ export const SITE_CONTENT: SiteContent = {
     ]
   },
 
+  openSource: {
+    title: "OPEN & VERIFIABLE",
+    subtitle: "Transparency",
+    description: "We believe security through obscurity is no security at all. Stasher's firmware and protocol code are open source — anyone can audit, verify, and contribute.",
+    points: [
+      { title: "Open-Source Firmware", description: "The cold wallet firmware is published on GitHub. Review every line that handles your keys." },
+      { title: "Reproducible Builds", description: "Build the firmware yourself from source and verify it matches what ships on the device." },
+      { title: "Security Audits", description: "Independent third-party audits of the cryptographic implementation and hardware design." },
+      { title: "Bug Bounty Program", description: "Responsible disclosure rewarded. Help us find vulnerabilities before they become threats." }
+    ]
+  },
+
   compliance: {
     title: "COMPLIANCE & GOVERNANCE",
     description: "Designed for the most regulated environments, meeting the highest standards of financial security and operational auditability.",
@@ -200,13 +259,67 @@ export const SITE_CONTENT: SiteContent = {
     ]
   },
 
+  faq: {
+    title: "FREQUENTLY ASKED QUESTIONS",
+    subtitle: "FAQ",
+    items: [
+      {
+        question: "Why do I need a hardware wallet?",
+        answer: "Software wallets (on your phone or computer) store your private keys on internet-connected devices, making them vulnerable to malware, phishing, and remote attacks. A hardware wallet keeps your keys on a dedicated offline device, so even if your phone or computer is compromised, your crypto remains safe."
+      },
+      {
+        question: "What happens if I lose my Stasher device?",
+        answer: "Your funds are safe. During setup, Stasher generates a standard 24-word BIP39 recovery seed. As long as you have this seed backed up securely, you can restore your entire wallet on a new Stasher device — or any BIP39-compatible wallet."
+      },
+      {
+        question: "How is Stasher different from Ledger or Trezor?",
+        answer: "Stasher uses a true air-gap architecture with a separate cold wallet and warm wallet. Unlike Ledger or Trezor, the device that holds your keys has zero connectivity — no USB data, no Bluetooth, no WiFi. The warm wallet handles internet connectivity separately and never has access to your private keys."
+      },
+      {
+        question: "What cryptocurrencies does Stasher support?",
+        answer: "Stasher natively supports 56+ cryptocurrencies including Bitcoin (Legacy & SegWit), Ethereum (EIP-1559), Solana, and many more via the SLIP44 standard. We're continuously adding support for new chains."
+      },
+      {
+        question: "Is the firmware open source?",
+        answer: "Yes. The cold wallet firmware and communication protocol are published on GitHub. You can audit the code yourself, build from source to verify the binary matches your device, and contribute improvements."
+      },
+      {
+        question: "What if my phone is hacked?",
+        answer: "Your keys are never on your phone. The Stasher mobile app only initiates and displays transactions — all signing happens on the air-gapped cold wallet after you physically verify and confirm on the device screen. A compromised phone cannot steal your funds or sign unauthorized transactions."
+      },
+      {
+        question: "How does the cold wallet communicate without internet?",
+        answer: "The cold wallet communicates with the warm wallet through a secure one-way data transfer protocol. Transaction data is passed to the cold wallet for signing, and only the signed transaction (which is safe to broadcast publicly) is returned. The private keys never leave the cold device."
+      },
+      {
+        question: "What is Stasher Enterprise?",
+        answer: "Stasher Enterprise is our institutional-grade custody platform designed for organizations managing large amounts of digital assets. It features a 6-machine distributed signing architecture with quantum-resistant key fragmentation, governance workflows, and compliance-ready audit trails. Contact us for a demo."
+      }
+    ]
+  },
+
   assets: {
     title: "MULTI-CHAIN NATIVE SUPPORT",
     items: ["BTC.MAINNET", "ETH.EVM.L1", "SOL.CLUSTER", "XRP.LEDGER", "DOT.RELAY", "LTC.MAINNET", "ADA.CARDANO", "50+ MORE"]
   },
 
+  newsletter: {
+    title: "STAY IN THE LOOP",
+    description: "Get launch updates, security advisories, and early access to new features.",
+    placeholder: "your@email.com",
+    cta: "SUBSCRIBE"
+  },
+
   footer: {
     transmission: "END OF TRANSMISSION",
-    copyright: "\u00A9 2026 STASHER // HARDWARE COLD CUSTODY // ALL RIGHTS RESERVED"
+    copyright: "\u00A9 2026 STASHER // HARDWARE COLD CUSTODY // ALL RIGHTS RESERVED",
+    socials: [
+      { name: "GitHub", url: "https://github.com/Crypto-Stasher", icon: "GH" },
+      { name: "X", url: "#", icon: "X" },
+      { name: "Discord", url: "#", icon: "DC" },
+      { name: "Telegram", url: "#", icon: "TG" },
+      { name: "Reddit", url: "#", icon: "RD" },
+      { name: "YouTube", url: "#", icon: "YT" }
+    ]
   }
 };
