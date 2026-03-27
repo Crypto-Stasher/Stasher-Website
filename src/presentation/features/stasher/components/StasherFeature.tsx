@@ -26,12 +26,12 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
             </div>
           </div>
         </div>
-        <div className="hero-image reveal" style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative' }}>
+        <div className="hero-image reveal" style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative', minWidth: '300px' }}>
           <Radar />
           <img 
             src={stasherHero} 
             alt="Stasher Hardware" 
-            style={{ width: '100%', maxWidth: '540px', filter: 'drop-shadow(0 0 60px rgba(0, 242, 254, 0.25))', position: 'relative', zIndex: 1 }} 
+            style={{ width: '100%', maxWidth: '540px', position: 'relative', zIndex: 1, border: '2px solid red' }} 
           />
         </div>
       </div>
