@@ -22,7 +22,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -415,6 +415,28 @@ nav {
 
 .nav-links a:hover {
   color: var(--accent-cyan);
+}
+
+.nav-links a.nav-active {
+  color: var(--accent-cyan);
+  position: relative;
+}
+
+.nav-links a.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: nav-underline-in 0.3s ease forwards;
+}
+
+@keyframes nav-underline-in {
+  from { width: 0; left: 50%; }
+  to { width: 100%; left: 0; }
 }
 
 /* ─── HERO ─── */

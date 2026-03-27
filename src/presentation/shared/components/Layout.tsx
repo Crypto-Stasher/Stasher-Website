@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useCursorGlow } from '../../../application/hooks/useCursorGlow';
+import { useSmoothScroll } from '../../../application/hooks/useSmoothScroll';
+import { useActiveSection } from '../../../application/hooks/useActiveSection';
 import { HUD } from './HUD';
 import type { FooterContent } from '../../../domain/models/Content';
 
@@ -11,6 +13,9 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) => {
   const mousePos = useCursorGlow();
+  const scrollTo = useSmoothScroll();
+  const sectionIds = useMemo(() => navLinks.map(l => l.href), [navLinks]);
+  const activeSection = useActiveSection(sectionIds);
 
   return (
     <div className="layout-root">
@@ -30,7 +35,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
           </div>
           <div className="nav-links">
             {navLinks.map((link, idx) => (
-              <a key={idx} href={link.href}>{link.label}</a>
+              <a
+                key={idx}
+                href={link.href}
+                onClick={scrollTo}
+                className={activeSection === link.href ? 'nav-active' : ''}
+              >
+                {link.label}
+              </a>
             ))}
           </div>
         </div>
