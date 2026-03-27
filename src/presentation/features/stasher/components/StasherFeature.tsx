@@ -2,6 +2,7 @@ import React from 'react';
 import type { HeroContent, DifferentiatorItem, ComplianceContent, AssetsContent } from '../../../../domain/models/Content';
 import { Radar } from './Radar';
 import { useTextScramble } from '../../../../application/hooks/useTextScramble';
+import stasherHero from '/stasher_hero_device.png';
 
 interface HeroProps {
   content: HeroContent;
@@ -28,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
         <div className="hero-image reveal" style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative' }}>
           <Radar />
           <img 
-            src="/stasher_hero_device.png" 
+            src={stasherHero} 
             alt="Stasher Hardware" 
             style={{ width: '100%', maxWidth: '540px', filter: 'drop-shadow(0 0 60px rgba(0, 242, 254, 0.25))', position: 'relative', zIndex: 1 }} 
           />
