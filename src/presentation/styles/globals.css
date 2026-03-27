@@ -5,6 +5,8 @@
   --accent-cyan: #00f2fe;
   --accent-blue: #4facfe;
   --accent-purple: #7000ff;
+  --accent-red: #ff4d6a;
+  --accent-yellow: #ffc107;
   --text-main: #e0e6ed;
   --text-dim: #718096;
   --text-tech: #00f2fe;
@@ -16,6 +18,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -36,6 +42,12 @@ section {
   padding: 8rem 0;
 }
 
+.section-dark {
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 242, 254, 0.08);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.08);
+}
+
 .gradient-text {
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
   -webkit-background-clip: text;
@@ -43,14 +55,44 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
-/* Background Effects */
+/* ─── SHARED SECTION TYPOGRAPHY ─── */
+.section-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.section-description {
+  max-width: 750px;
+  margin: 0 auto 4rem;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ─── BACKGROUND EFFECTS ─── */
 .bg-grid {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -94,12 +136,19 @@ section {
   transition: opacity 0.3s;
 }
 
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* HUD System */
+/* ─── HUD SYSTEM ─── */
 .hud-corner {
   position: fixed;
   z-index: 1001;
@@ -134,19 +183,7 @@ section {
   50% { width: 100px; opacity: 1; }
 }
 
-/* 3D Tilt & Glare */
-.feature-card {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.feature-card:hover {
-  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
-  border-color: var(--accent-cyan);
-  background: rgba(10, 12, 18, 0.9);
-  box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
-}
-
+/* ─── 3D TILT & GLARE ─── */
 .glare {
   position: absolute;
   top: 0;
@@ -159,7 +196,7 @@ section {
   transition: transform 0.1s;
 }
 
-/* Radar Animation */
+/* ─── RADAR ANIMATION ─── */
 .radar-ring {
   position: absolute;
   border: 1px solid var(--accent-cyan);
@@ -188,7 +225,7 @@ section {
   to { transform: translateY(100vh); }
 }
 
-/* Nav */
+/* ─── NAV ─── */
 nav {
   position: fixed;
   top: 0;
@@ -223,7 +260,7 @@ nav {
 .nav-links a {
   color: var(--text-dim);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-family: var(--font-mono);
   transition: color 0.3s;
   letter-spacing: 0.1em;
@@ -233,7 +270,7 @@ nav {
   color: var(--accent-cyan);
 }
 
-/* Hero */
+/* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -262,21 +299,239 @@ nav {
   letter-spacing: 0.2em;
 }
 
-/* Features */
+/* ─── ARCHITECTURE ─── */
+.arch-zones {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.arch-zone {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0;
+  overflow: hidden;
+}
+
+.arch-zone-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.arch-zone-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.arch-machines {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.arch-machine {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.arch-machine-name {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.35rem;
+}
+
+.arch-machine-role {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.arch-machine-detail {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.arch-flow {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.arch-flow-line {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow) 40%, var(--accent-yellow) 60%, var(--accent-cyan));
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+.arch-flow-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  opacity: 0.8;
+}
+
+/* ─── SECURITY ─── */
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.security-card {
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 242, 254, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.security-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.security-card:hover::before {
+  opacity: 1;
+}
+
+.security-card:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 242, 254, 0.08);
+}
+
+.security-icon {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+}
+
+.security-id {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.security-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.security-desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ─── HOW IT WORKS / SIGNING CEREMONY ─── */
+.ceremony-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.ceremony-step {
+  position: relative;
+  text-align: center;
+}
+
+.ceremony-step-number {
+  width: 48px;
+  height: 48px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.ceremony-step-content {
+  padding: 0 0.5rem;
+}
+
+.ceremony-step-label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.ceremony-zone-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  border: 1px solid;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.ceremony-step-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.ceremony-connector {
+  display: none;
+}
+
+/* ─── FEATURES / DIFFERENTIATORS ─── */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 4rem;
 }
 
 .feature-card {
-  padding: 3rem;
+  padding: 2.5rem;
   background: var(--bg-card);
   border: 1px solid var(--border-neon);
   position: relative;
   transition: all 0.33s ease;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .feature-card:hover {
@@ -322,7 +577,129 @@ nav {
   box-shadow: 0 0 40px var(--accent-cyan);
 }
 
-/* Compliance Section */
+/* ─── PRODUCTS ─── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 242, 254, 0.2);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.product-card--highlight {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 60px rgba(0, 242, 254, 0.08);
+}
+
+.product-card--highlight .product-header {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.08), rgba(79, 172, 254, 0.05));
+  border-bottom-color: var(--accent-cyan);
+}
+
+.product-header {
+  padding: 2.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.product-name {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.product-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.product-features {
+  list-style: none;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.product-feature {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.4;
+}
+
+.product-check {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+/* ─── TECH STACK ─── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.tech-item {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.tech-item:hover {
+  border-color: rgba(0, 242, 254, 0.2);
+  background: rgba(10, 12, 18, 0.9);
+}
+
+.tech-category {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.tech-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.tech-detail {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* ─── COMPLIANCE ─── */
 .compliance-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -338,23 +715,7 @@ nav {
   font-size: 0.85rem;
 }
 
-.section-title {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5em;
-  color: var(--text-dim);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-footer {
-  padding: 6rem 0 3rem;
-  border-top: 1px solid var(--border-neon);
-  text-align: left;
-}
-
-/* Asset badges */
+/* ─── ASSET BADGES ─── */
 .asset-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
@@ -370,9 +731,75 @@ footer {
   background: rgba(0, 242, 254, 0.05);
 }
 
+/* ─── FOOTER ─── */
+footer {
+  padding: 6rem 0 3rem;
+  border-top: 1px solid var(--border-neon);
+  text-align: left;
+}
+
+/* ─── RESPONSIVE ─── */
 @media (max-width: 992px) {
   .hero .container {
     flex-direction: column;
     text-align: center;
+  }
+
+  .hero-content {
+    order: 2;
+  }
+
+  .hero-image {
+    order: 1;
+  }
+
+  .arch-zones {
+    flex-direction: column;
+  }
+
+  .ceremony-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hud-corner {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 5rem 0;
+  }
+
+  .ceremony-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .security-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
   }
 }
