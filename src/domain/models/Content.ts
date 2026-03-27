@@ -1,35 +1,35 @@
-export interface HeroContent {
+export type HeroContent = {
   tag: string;
   title: string;
   description: string;
   cta: string;
   networkLoad: string;
-}
+};
 
-export interface DifferentiatorItem {
+export type DifferentiatorItem = {
   id: string;
   label: string;
   title: string;
   description: string;
-}
+};
 
-export interface ComplianceContent {
+export type ComplianceContent = {
   title: string;
   description: string;
   points: string[];
-}
+};
 
-export interface AssetsContent {
+export type AssetsContent = {
   title: string;
   items: string[];
-}
+};
 
-export interface FooterContent {
+export type FooterContent = {
   transmission: string;
   copyright: string;
-}
+};
 
-export interface SiteContent {
+export type SiteContent = {
   hero: HeroContent;
   differentiators: {
     title: string;
@@ -38,4 +38,4 @@ export interface SiteContent {
   compliance: ComplianceContent;
   assets: AssetsContent;
   footer: FooterContent;
-}
+};
