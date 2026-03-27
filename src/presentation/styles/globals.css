@@ -137,17 +137,163 @@ section {
   transition: opacity 0.3s;
 }
 
-/* ─── REVEAL ANIMATION ─── */
+/* ─── REVEAL ANIMATIONS ─── */
+
+/* Default: fade up */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Slide from left */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Blur in */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-blur.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* Stagger container — children animate in sequence */
+.stagger {
+  opacity: 1;
+}
+
+.stagger .stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger .stagger-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── SECTION DIVIDERS ─── */
+.divider-animated {
+  position: relative;
+  height: 1px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+  overflow: visible;
+}
+
+.divider-animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1), left 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.divider-animated.active::before {
+  width: 100%;
+  left: 0;
+}
+
+.divider-animated::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--accent-cyan);
+  transform: rotate(45deg) translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.6s;
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.divider-animated.active::after {
+  opacity: 1;
+}
+
+/* Variant: pulse glow divider */
+.divider-glow::before {
+  background: linear-gradient(90deg, transparent, var(--accent-cyan) 30%, var(--accent-blue) 70%, transparent);
+  height: 2px;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+/* Variant: dot divider */
+.divider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 0;
+}
+
+.divider-dots .dot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.divider-dots.active .dot {
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.divider-dots.active .dot:nth-child(1) { transition-delay: 0.1s; }
+.divider-dots.active .dot:nth-child(2) { transition-delay: 0.25s; }
+.divider-dots.active .dot:nth-child(3) { transition-delay: 0.4s; }
 
 /* ─── HUD SYSTEM ─── */
 .hud-corner {
