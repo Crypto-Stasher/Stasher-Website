@@ -1,4 +1,6 @@
-export const SITE_CONTENT = {
+import type { SiteContent } from './models/Content';
+
+export const SITE_CONTENT: SiteContent = {
   hero: {
     tag: "STATUS: INSTITUTIONAL DEPLOYMENT",
     title: "THE FUTURE OF COLD CUSTODY",
