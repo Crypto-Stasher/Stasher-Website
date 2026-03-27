@@ -1,5 +1,5 @@
 import React from 'react';
-import stasherHero from '../../../assets/stasher_hero_device.png';
+import stasherHero from '../../../../assets/stasher_hero_device.png';
 import type { HeroContent, DifferentiatorItem, ComplianceContent, AssetsContent } from '../../../../domain/models/Content';
 import { Radar } from './Radar';
 import { useTextScramble } from '../../../../application/hooks/useTextScramble';
