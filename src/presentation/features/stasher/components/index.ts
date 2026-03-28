@@ -1,16 +1,2 @@
-export { AppShowcase } from './AppShowcase';
-export { Architecture } from './Architecture';
-export { Assets } from './Assets';
-export { Comparison } from './Comparison';
-export { Compliance } from './Compliance';
-export { Differentiators } from './Differentiators';
 export { Divider } from './Divider';
-export { Faq } from './Faq';
-export { Hero } from './Hero';
-export { HowItWorks } from './HowItWorks';
-export { Newsletter } from './Newsletter';
-export { OpenSource } from './OpenSource';
-export { Products } from './Products';
-export { Security } from './Security';
-export { Stats } from './Stats';
-export { TechStack } from './TechStack';
+export { Radar } from './Radar';

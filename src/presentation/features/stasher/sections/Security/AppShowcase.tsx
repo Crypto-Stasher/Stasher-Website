@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AppShowcaseContent } from '../../../../domain/models/sections';
+import type { AppShowcaseContent } from '../../../../../domain/models/sections';
 
 interface AppShowcaseProps {
   content: AppShowcaseContent;

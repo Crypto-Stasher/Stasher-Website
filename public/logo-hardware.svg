@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <!-- Background styling representing a sleek dark device screen -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121820" />
+      <stop offset="100%" stop-color="#050508" />
+    </linearGradient>
+    
+    <!-- Cyberpunk cyan for the shield and 'S' to represent Stasher -->
+    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="100%" stop-color="#4facfe" />
+    </linearGradient>
+
+    <!-- Metal hardware circuit pin colors -->
+    <linearGradient id="circuit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a3240" />
+      <stop offset="100%" stop-color="#1b202a" />
+    </linearGradient>
+  </defs>
+
+  <rect width="120" height="120" rx="30" fill="url(#bg)"/>
+  
+  <!-- Outer hardware microchip casing -->
+  <rect x="25" y="25" width="70" height="70" rx="12" fill="none" stroke="url(#circuit)" stroke-width="4"/>
+  
+  <!-- Chip pins -->
+  <g stroke="url(#circuit)" stroke-width="4" stroke-linecap="round">
+    <path d="M 40,25 L 40,15 M 60,25 L 60,15 M 80,25 L 80,15
+             M 40,95 L 40,105 M 60,95 L 60,105 M 80,95 L 80,105
+             M 25,40 L 15,40 M 25,60 L 15,60 M 25,80 L 15,80
+             M 95,40 L 105,40 M 95,60 L 105,60 M 95,80 L 105,80" />
+  </g>
+
+  <!-- The Cryptographic Shield Core -->
+  <path d="M 60,35 
+           L 80,45 
+           L 80,65 
+           C 80,82 65,92 60,95 
+           C 55,92 40,82 40,65 
+           L 40,45 Z" 
+        fill="#080c12" stroke="url(#neon)" stroke-width="5" stroke-linejoin="round"/>
+        
+  <!-- The 'S' composed of two perfectly rounded stokes representing the Air-Gap -->
+  <!-- Top Half -->
+  <path d="M 67,51 
+           A 7,7 0 0,0 53,51 
+           C 53,54 55,55 57,56" 
+        fill="none" stroke="url(#neon)" stroke-width="5" stroke-linecap="round"/>
+        
+  <!-- Bottom Half -->
+  <path d="M 63,64 
+           C 65,65 67,66 67,69 
+           A 7,7 0 0,1 53,69" 
+        fill="none" stroke="url(#neon)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- The cold vault seed indicator -->
+  <circle cx="60" cy="84" r="2.5" fill="#00f2fe"/>
+</svg>

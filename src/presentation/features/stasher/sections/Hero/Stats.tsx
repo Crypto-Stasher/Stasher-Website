@@ -1,5 +1,5 @@
 import React from 'react';
-import type { StatsContent } from '../../../../domain/models/sections';
+import type { StatsContent } from '../../../../../domain/models/sections';
 
 interface StatsProps {
   content: StatsContent;

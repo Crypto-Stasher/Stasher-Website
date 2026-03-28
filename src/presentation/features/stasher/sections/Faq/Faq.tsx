@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FaqContent } from '../../../../domain/models/sections';
+import type { FaqContent } from '../../../../../domain/models/sections';
 
 interface FaqProps {
   content: FaqContent;

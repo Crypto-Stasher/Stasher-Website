@@ -1,8 +1,8 @@
 import React from 'react';
-import stasherHero from '../../../../assets/stasher_hero_device.png';
-import type { HeroContent } from '../../../../domain/models/sections';
-import { useTextScramble } from '../../../../application/hooks/useTextScramble';
-import { Radar } from './Radar';
+import stasherHero from '../../../../../assets/stasher_hero_device.png';
+import type { HeroContent } from '../../../../../domain/models/sections';
+import { useTextScramble } from '../../../../../application/hooks/useTextScramble';
+import { Radar } from '../../components/Radar';
 
 interface HeroProps {
   content: HeroContent;

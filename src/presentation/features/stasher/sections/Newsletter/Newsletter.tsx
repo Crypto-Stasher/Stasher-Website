@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NewsletterContent } from '../../../../domain/models/sections';
+import type { NewsletterContent } from '../../../../../domain/models/sections';
 
 interface NewsletterProps {
   content: NewsletterContent;

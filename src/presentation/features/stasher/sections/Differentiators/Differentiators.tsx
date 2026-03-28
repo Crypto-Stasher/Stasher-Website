@@ -1,5 +1,5 @@
 import React from 'react';
-import type { DifferentiatorItem } from '../../../../domain/models/sections';
+import type { DifferentiatorItem } from '../../../../../domain/models/sections';
 
 interface DifferentiatorsProps {
   title: string;

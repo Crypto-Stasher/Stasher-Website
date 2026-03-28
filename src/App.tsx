@@ -7,7 +7,6 @@ import {
   Comparison,
   Compliance,
   Differentiators,
-  Divider,
   Faq,
   Hero,
   HowItWorks,
@@ -17,7 +16,8 @@ import {
   Security,
   Stats,
   TechStack,
-} from './presentation/features/stasher/components';
+} from './presentation/features/stasher/sections';
+import { Divider } from './presentation/features/stasher/components';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { useScrollReveal } from './application/hooks/useScrollReveal';
 
