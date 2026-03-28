@@ -35,14 +35,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
       <nav>
         <div className="container nav-content">
           <div className="logo nav-logo-container">
-            <svg viewBox="0 0 200 40" width="120" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
-              <path d="M10,30 L20,10 L30,30" />
-              <path d="M15,20 L25,20" />
-              <rect x="40" y="10" width="20" height="20" />
-              <path d="M70,30 L70,10 L90,10 L90,18 L70,18 L90,30" />
-              <path d="M100,10 L120,10 L110,10 L110,30" />
-              <path d="M130,30 L130,10 L150,10 L150,18 L130,18 L150,18 L150,22 L130,22" />
-              <path d="M160,30 L160,10 C180,10 180,20 160,20 L180,30" />
+            <svg viewBox="0 0 220 40" width="132" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
+              <path d="M30,10 L10,10 L10,20 L30,20 L30,30 L10,30" />
+              <path d="M40,10 L60,10 M50,10 L50,30" />
+              <path d="M70,30 L80,10 L90,30 M75,20 L85,20" />
+              <path d="M120,10 L100,10 L100,20 L120,20 L120,30 L100,30" />
+              <path d="M130,10 L130,30 M150,10 L150,30 M130,20 L150,20" />
+              <path d="M180,10 L160,10 L160,30 L180,30 M160,20 L175,20" />
+              <path d="M190,30 L190,10 L210,10 L210,20 L190,20 L210,30" />
             </svg>
             <span className="tech-tag nav-tech-tag">V2.1</span>
           </div>
@@ -78,14 +78,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
           <div className="footer-top">
             <div className="footer-brand">
               <div className="logo footer-logo-container">
-                <svg viewBox="0 0 200 40" width="120" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
-                  <path d="M10,30 L20,10 L30,30" />
-                  <path d="M15,20 L25,20" />
-                  <rect x="40" y="10" width="20" height="20" />
-                  <path d="M70,30 L70,10 L90,10 L90,18 L70,18 L90,30" />
-                  <path d="M100,10 L120,10 L110,10 L110,30" />
-                  <path d="M130,30 L130,10 L150,10 L150,18 L130,18 L150,18 L150,22 L130,22" />
-                  <path d="M160,30 L160,10 C180,10 180,20 160,20 L180,30" />
+                <svg viewBox="0 0 220 40" width="132" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
+                  <path d="M30,10 L10,10 L10,20 L30,20 L30,30 L10,30" />
+                  <path d="M40,10 L60,10 M50,10 L50,30" />
+                  <path d="M70,30 L80,10 L90,30 M75,20 L85,20" />
+                  <path d="M120,10 L100,10 L100,20 L120,20 L120,30 L100,30" />
+                  <path d="M130,10 L130,30 M150,10 L150,30 M130,20 L150,20" />
+                  <path d="M180,10 L160,10 L160,30 L180,30 M160,20 L175,20" />
+                  <path d="M190,30 L190,10 L210,10 L210,20 L190,20 L210,30" />
                 </svg>
               </div>
               <div className="node-label">{footer.transmission}</div>
