@@ -21,8 +21,12 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: auto;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -30,7 +34,6 @@ body {
   color: var(--text-main);
   font-family: var(--font-sans);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 .container {
@@ -462,12 +465,19 @@ nav {
   to { width: 100%; left: 0; }
 }
 
+.layout-root {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 /* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .hero-layout {
