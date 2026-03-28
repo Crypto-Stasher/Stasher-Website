@@ -30,7 +30,7 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useScrollReveal();
+  useScrollReveal(!loading);
 
   const content = ContentRepository.getContent();
 

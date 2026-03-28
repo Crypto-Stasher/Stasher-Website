@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
-export const useScrollReveal = () => {
+export const useScrollReveal = (ready: boolean = true) => {
   useEffect(() => {
+    if (!ready) return;
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -22,10 +24,16 @@ export const useScrollReveal = () => {
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    const selectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .stagger, .divider-animated';
-    const elements = document.querySelectorAll(selectors);
-    elements.forEach(el => observer.observe(el));
+    // Use a tiny timeout to ensure React has fully committed the real DOM nodes
+    const timer = setTimeout(() => {
+      const selectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .stagger, .divider-animated';
+      const elements = document.querySelectorAll(selectors);
+      elements.forEach(el => observer.observe(el));
+    }, 50);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [ready]);
 };
