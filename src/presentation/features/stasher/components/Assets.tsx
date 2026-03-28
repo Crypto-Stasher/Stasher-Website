@@ -7,11 +7,11 @@ interface AssetsProps {
 
 export const Assets: React.FC<AssetsProps> = ({ content }) => {
   return (
-    <section id="assets" className="section-dark" style={{ textAlign: 'center' }}>
+    <section id="assets" className="section-dark assets-section">
       <div className="container">
         <p className="section-title">Asset Deployment</p>
         <h2 className="section-heading reveal-blur">{content.title}</h2>
-        <div className="stagger" style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+        <div className="stagger assets-grid">
           {content.items.map((asset, index) => (
             <span key={index} className="asset-badge stagger-item">{asset}</span>
           ))}

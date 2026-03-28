@@ -16,16 +16,16 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
       <div className="container hero-layout">
         <div className="hero-content reveal-left">
           <span className="tech-tag">{content.tag}</span>
-          <h1 style={{ position: 'relative' }}>
-            <span style={{ visibility: 'hidden' }}>{content.title}</span>
-            <span style={{ position: 'absolute', left: 0, top: 0, width: '100%' }}>{scrambledTitle}</span>
+          <h1 className="hero-title-container">
+            <span className="hero-title-hidden">{content.title}</span>
+            <span className="hero-title-scrambled">{scrambledTitle}</span>
           </h1>
           <p className="hero-desc">{content.description}</p>
           <div className="hero-cta-row">
             <button className="cta-button">{content.cta}</button>
             <div className="hero-network-stat">
               <div className="node-label">SUPPORTED CHAINS</div>
-              <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)', fontWeight: 700 }}>56+</div>
+              <div className="hero-network-value">56+</div>
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ export const Differentiators: React.FC<DifferentiatorsProps> = ({ title, items }
             <div className="glare" />
             <div className="node-label">{item.id} // {item.label}</div>
             <h3>{item.title}</h3>
-            <p style={{ color: 'var(--text-dim)', position: 'relative', zIndex: 1 }}>{item.description}</p>
+            <p className="diff-description">{item.description}</p>
           </div>
         ))}
       </div>

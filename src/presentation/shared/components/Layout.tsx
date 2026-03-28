@@ -34,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
 
       <nav>
         <div className="container nav-content">
-          <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="logo nav-logo-container">
             <svg viewBox="0 0 200 40" width="120" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
               <path d="M10,30 L20,10 L30,30" />
               <path d="M15,20 L25,20" />
@@ -44,7 +44,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
               <path d="M130,30 L130,10 L150,10 L150,18 L130,18 L150,18 L150,22 L130,22" />
               <path d="M160,30 L160,10 C180,10 180,20 160,20 L180,30" />
             </svg>
-            <span className="tech-tag" style={{ marginLeft: '0.5rem', verticalAlign: 'middle', marginBottom: 0 }}>V2.1</span>
+            <span className="tech-tag nav-tech-tag">V2.1</span>
           </div>
           <button
             className={`nav-hamburger ${menuOpen ? 'nav-hamburger--open' : ''}`}
@@ -77,7 +77,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
         <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <div className="logo" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+              <div className="logo footer-logo-container">
                 <svg viewBox="0 0 200 40" width="120" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
                   <path d="M10,30 L20,10 L30,30" />
                   <path d="M15,20 L25,20" />
@@ -107,7 +107,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             </div>
           </div>
           <div className="footer-bottom">
-            <p style={{ fontSize: '0.75rem', opacity: 0.5 }}>{footer.copyright}</p>
+            <p className="footer-copyright">{footer.copyright}</p>
           </div>
         </div>
       </footer>

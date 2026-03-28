@@ -3,7 +3,7 @@ import React, { useEffect, useRef, memo } from 'react';
 const HUDLine: React.FC<{ label: string; value?: string; valueRef?: React.RefObject<HTMLSpanElement | null> }> = ({ label, value, valueRef }) => (
   <div className="hud-line">
     <span>{label}</span>
-    <span style={{ color: '#fff' }} ref={valueRef}>[{value ?? ''}]</span>
+    <span className="hud-value-text" ref={valueRef}>[{value ?? ''}]</span>
   </div>
 );
 
@@ -39,7 +39,7 @@ export const HUD: React.FC = memo(() => {
       <div className="hud-corner hud-top-right">
         <HUDLine label="UPTIME" valueRef={uptimeRef} value="00:00:00" />
         <HUDLine label="CORE_LOAD" valueRef={loadRef} value="0.00%" />
-        <div className="hud-bar" style={{ marginLeft: 'auto' }} />
+        <div className="hud-bar hud-bar--right" />
       </div>
       <div className="hud-corner hud-bottom-left">
         <HUDLine label="LOC_LAT" value="48.8566 N" />
