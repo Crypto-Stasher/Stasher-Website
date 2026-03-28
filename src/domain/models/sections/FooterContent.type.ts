@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react';
+
 export type SocialLink = {
   name: string;
   url: string;
-  icon: string;
+  icon: ReactNode;
 };
 
 export type FooterContent = {
