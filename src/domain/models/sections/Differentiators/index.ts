@@ -1,0 +1,1 @@
+export * from './DifferentiatorsContent.type';
