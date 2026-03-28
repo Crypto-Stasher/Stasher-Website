@@ -79,6 +79,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
                   target="_blank"
                   rel="noopener noreferrer"
                   title={social.name}
+                  aria-label={social.name}
                 >
                   {social.icon}
                 </a>
