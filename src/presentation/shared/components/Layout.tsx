@@ -25,6 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
 
   return (
     <div className="layout-root">
+      <a href="#main-content" className="skip-to-content">Skip to content</a>
       <div className="bg-grid" aria-hidden="true"></div>
       <div className="scanline" aria-hidden="true"></div>
       <div className="cursor-glow" aria-hidden="true"></div>
@@ -61,7 +62,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
         </div>
       </nav>
 
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
 
       <footer>
         <div className="container">
