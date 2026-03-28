@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 
-const HUDLine: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+const HUDLine: React.FC<{ label: string; value?: string; valueRef?: React.RefObject<HTMLSpanElement | null> }> = ({ label, value, valueRef }) => (
   <div className="hud-line">
     <span>{label}</span>
-    <span style={{ color: '#fff' }}>[{value}]</span>
+    <span style={{ color: '#fff' }} ref={valueRef}>[{value ?? ''}]</span>
   </div>
 );
 
-export const HUD: React.FC = () => {
-  const [uptime, setUptime] = useState('00:00:00');
-  const [load, setLoad] = useState('0.00%');
+export const HUD: React.FC = memo(() => {
+  const uptimeRef = useRef<HTMLSpanElement>(null);
+  const loadRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const start = Date.now();
@@ -18,8 +18,13 @@ export const HUD: React.FC = () => {
       const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
       const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
       const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-      setUptime(`${h}:${m}:${s}`);
-      setLoad(`${(Math.random() * 2 + 0.1).toFixed(2)}%`);
+
+      if (uptimeRef.current) {
+        uptimeRef.current.textContent = `[${h}:${m}:${s}]`;
+      }
+      if (loadRef.current) {
+        loadRef.current.textContent = `[${(Math.random() * 2 + 0.1).toFixed(2)}%]`;
+      }
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -32,8 +37,8 @@ export const HUD: React.FC = () => {
         <div className="hud-bar" />
       </div>
       <div className="hud-corner hud-top-right">
-        <HUDLine label="UPTIME" value={uptime} />
-        <HUDLine label="CORE_LOAD" value={load} />
+        <HUDLine label="UPTIME" valueRef={uptimeRef} value="00:00:00" />
+        <HUDLine label="CORE_LOAD" valueRef={loadRef} value="0.00%" />
         <div className="hud-bar" style={{ marginLeft: 'auto' }} />
       </div>
       <div className="hud-corner hud-bottom-left">
@@ -46,4 +51,5 @@ export const HUD: React.FC = () => {
       </div>
     </>
   );
-};
+});
+
