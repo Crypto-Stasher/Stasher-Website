@@ -25,9 +25,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
 
   return (
     <div className="layout-root">
-      <div className="bg-grid"></div>
-      <div className="scanline"></div>
-      <div className="cursor-glow"></div>
+      <div className="bg-grid" aria-hidden="true"></div>
+      <div className="scanline" aria-hidden="true"></div>
+      <div className="cursor-glow" aria-hidden="true"></div>
 
       <HUD />
 
