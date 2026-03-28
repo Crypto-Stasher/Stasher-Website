@@ -16,19 +16,26 @@ export const Faq: React.FC<FaqProps> = ({ content }) => {
       <div className="faq-list stagger">
         {content.items.map((item, idx) => (
           <div
-            key={idx}
+            key={item.question}
             className="stagger-item"
           >
             <div className={`faq-item ${openIndex === idx ? 'faq-item--open' : ''}`}>
               <button
+                id={`faq-q-${idx}`}
                 className="faq-question"
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 aria-expanded={openIndex === idx}
+                aria-controls={`faq-a-${idx}`}
               >
                 <span>{item.question}</span>
                 <span className="faq-toggle">{openIndex === idx ? '\u2212' : '+'}</span>
               </button>
-              <div className="faq-answer">
+              <div
+                id={`faq-a-${idx}`}
+                className="faq-answer"
+                role="region"
+                aria-labelledby={`faq-q-${idx}`}
+              >
                 <p>{item.answer}</p>
               </div>
             </div>
