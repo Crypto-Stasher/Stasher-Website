@@ -24,8 +24,8 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
           <div className="hero-cta-row">
             <button className="cta-button">{content.cta}</button>
             <div className="hero-network-stat">
-              <div className="node-label">NETWORK LOAD</div>
-              <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)', fontWeight: 700 }}>{content.networkLoad}</div>
+              <div className="node-label">SUPPORTED CHAINS</div>
+              <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)', fontWeight: 700 }}>56+</div>
             </div>
           </div>
         </div>
@@ -33,6 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
           <Radar />
           <img
             src={stasherHero}
+            srcSet={`${stasherHero} 1x, ${stasherHero} 2x`}
             alt="Stasher Hardware Wallet — air-gapped cold storage device"
             className="hero-device-img"
             width={540}
