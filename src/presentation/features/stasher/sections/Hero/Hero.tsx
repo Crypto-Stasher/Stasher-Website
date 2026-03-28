@@ -1,5 +1,5 @@
 import React from 'react';
-import stasherHero from '@assets/stasher_hero_device.png';
+import stasherHero from '@assets/stasher_hero_image_no_back.png';
 import type { HeroContent } from '@models/sections';
 import { useTextScramble } from '@hooks';
 import { Radar } from '@features/stasher/components/Radar';

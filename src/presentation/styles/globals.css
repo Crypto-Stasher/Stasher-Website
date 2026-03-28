@@ -533,6 +533,24 @@ nav {
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 0 30px rgba(0, 242, 254, 0.15));
+  -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 45%, black 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 80% at 50% 45%, black 50%, transparent 100%);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .tech-tag {
