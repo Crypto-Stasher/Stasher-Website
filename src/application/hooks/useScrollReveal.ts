@@ -15,6 +15,9 @@ export const useScrollReveal = () => {
               child.classList.add('active');
             });
           }
+
+          // One-shot reveal — stop observing once activated
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
