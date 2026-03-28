@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ArchitectureContent } from '../../../../../domain/models/sections';
+import type { ArchitectureContent } from '@models/sections';
 
 interface ArchitectureProps {
   content: ArchitectureContent;

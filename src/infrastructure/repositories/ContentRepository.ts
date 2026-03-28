@@ -1,5 +1,5 @@
-import type { SiteContent } from '../../domain/models/SiteContent.type';
-import { SITE_CONTENT } from '../../domain/constants';
+import type { SiteContent } from '@models/SiteContent.type';
+import { SITE_CONTENT } from '@constants';
 
 export class ContentRepository {
   public static getContent(): SiteContent {

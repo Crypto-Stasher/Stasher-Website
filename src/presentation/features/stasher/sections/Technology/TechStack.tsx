@@ -1,5 +1,5 @@
 import React from 'react';
-import type { TechStackContent } from '../../../../../domain/models/sections';
+import type { TechStackContent } from '@models/sections';
 
 interface TechStackProps {
   content: TechStackContent;

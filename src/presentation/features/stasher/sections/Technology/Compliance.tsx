@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ComplianceContent } from '../../../../../domain/models/sections';
+import type { ComplianceContent } from '@models/sections';
 
 interface ComplianceProps {
   content: ComplianceContent;

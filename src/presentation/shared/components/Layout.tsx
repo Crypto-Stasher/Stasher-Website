@@ -1,9 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { useCursorGlow } from '../../../application/hooks/useCursorGlow';
-import { useSmoothScroll } from '../../../application/hooks/useSmoothScroll';
-import { useActiveSection } from '../../../application/hooks/useActiveSection';
+import { useActiveSection, useCursorGlow, useSmoothScroll } from '@hooks';
 import { HUD } from './HUD';
-import type { FooterContent } from '../../../domain/models/sections';
+import type { FooterContent } from '@models/sections';
 
 interface LayoutProps {
   children: React.ReactNode;

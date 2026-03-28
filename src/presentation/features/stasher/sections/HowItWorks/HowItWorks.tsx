@@ -1,5 +1,5 @@
 import React from 'react';
-import type { HowItWorksContent } from '../../../../../domain/models/sections';
+import type { HowItWorksContent } from '@models/sections';
 
 interface HowItWorksProps {
   content: HowItWorksContent;

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AssetsContent } from '../../../../../domain/models/sections';
+import type { AssetsContent } from '@models/sections';
 
 interface AssetsProps {
   content: AssetsContent;

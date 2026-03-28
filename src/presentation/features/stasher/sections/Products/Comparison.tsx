@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ComparisonContent } from '../../../../../domain/models/sections';
+import type { ComparisonContent } from '@models/sections';
 
 interface ComparisonProps {
   content: ComparisonContent;

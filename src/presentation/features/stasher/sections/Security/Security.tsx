@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SecurityContent } from '../../../../../domain/models/sections';
+import type { SecurityContent } from '@models/sections';
 
 interface SecurityProps {
   content: SecurityContent;

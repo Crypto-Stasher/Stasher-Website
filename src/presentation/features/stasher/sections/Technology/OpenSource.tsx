@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OpenSourceContent } from '../../../../../domain/models/sections';
+import type { OpenSourceContent } from '@models/sections';
 
 interface OpenSourceProps {
   content: OpenSourceContent;

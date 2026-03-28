@@ -1,25 +1,8 @@
 import React from 'react';
 import { Layout } from './presentation/shared/components/Layout';
-import {
-  AppShowcase,
-  Architecture,
-  Assets,
-  Comparison,
-  Compliance,
-  Differentiators,
-  Faq,
-  Hero,
-  HowItWorks,
-  Newsletter,
-  OpenSource,
-  Products,
-  Security,
-  Stats,
-  TechStack,
-} from './presentation/features/stasher/sections';
-import { Divider } from './presentation/features/stasher/components';
+import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
-import { useScrollReveal } from './application/hooks/useScrollReveal';
+import { useScrollReveal } from '@hooks';
 
 const App: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
@@ -54,39 +37,7 @@ const App: React.FC = () => {
 
   return (
     <Layout footer={content.footer} navLinks={navLinks}>
-      <Hero content={content.hero} />
-      <Stats content={content.stats} />
-
-      <Divider variant="glow" />
-      <Differentiators title={content.differentiators.title} items={content.differentiators.items} />
-
-      <Architecture content={content.architecture} />
-      <Divider variant="dots" />
-      <HowItWorks content={content.howItWorks} />
-
-      <Divider variant="glow" />
-      <Security content={content.security} />
-
-      <Divider variant="dots" />
-      <AppShowcase content={content.appShowcase} />
-
-      <Products content={content.products} />
-      <Divider variant="glow" />
-      <Comparison content={content.comparison} />
-
-      <Divider variant="dots" />
-      <TechStack content={content.techStack} />
-
-      <OpenSource content={content.openSource} />
-      <Divider variant="glow" />
-      <Compliance content={content.compliance} />
-
-      <Assets content={content.assets} />
-      <Divider variant="dots" />
-      <Faq content={content.faq} />
-
-      <Divider variant="glow" />
-      <Newsletter content={content.newsletter} />
+      <StasherPage content={content} />
     </Layout>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ProductsContent } from '../../../../../domain/models/sections';
+import type { ProductsContent } from '@models/sections';
 
 interface ProductsProps {
   content: ProductsContent;
