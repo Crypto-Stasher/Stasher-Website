@@ -1,14 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const CHARS = '!<>-_\\/[]{}—=+*^?#________';
 
 export const useTextScramble = (text: string, active: boolean = true) => {
   const [displayText, setDisplayText] = useState('');
-  
-  const scramble = useCallback(async () => {
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    // Clear any previous interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
     let iteration = 0;
-    const interval = setInterval(() => {
-      setDisplayText(_prev => 
+    intervalRef.current = setInterval(() => {
+      setDisplayText(
         text.split('')
           .map((_char, index) => {
             if (index < iteration) {
@@ -18,20 +26,24 @@ export const useTextScramble = (text: string, active: boolean = true) => {
           })
           .join('')
       );
-      
+
       if (iteration >= text.length) {
-        clearInterval(interval);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
       }
-      
+
       iteration += 1 / 3;
     }, 30);
-  }, [text]);
 
-  useEffect(() => {
-    if (active) {
-      scramble();
-    }
-  }, [active, scramble]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [text, active]);
 
   return displayText;
 };
