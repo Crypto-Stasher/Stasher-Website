@@ -1,4 +1,4 @@
-import type { SiteContent } from '../../domain/models/Content';
+import type { SiteContent } from '../../domain/models/SiteContent.type';
 import { SITE_CONTENT } from '../../domain/constants';
 
 export class ContentRepository {

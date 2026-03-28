@@ -1,23 +1,23 @@
 import React from 'react';
 import { Layout } from './presentation/shared/components/Layout';
 import {
-  Hero,
-  Stats,
-  Divider,
-  Architecture,
-  Security,
-  HowItWorks,
-  Differentiators,
-  Products,
   AppShowcase,
-  Comparison,
-  TechStack,
-  OpenSource,
-  Compliance,
-  Faq,
+  Architecture,
   Assets,
+  Comparison,
+  Compliance,
+  Differentiators,
+  Divider,
+  Faq,
+  Hero,
+  HowItWorks,
   Newsletter,
-} from './presentation/features/stasher/components/StasherFeature';
+  OpenSource,
+  Products,
+  Security,
+  Stats,
+  TechStack,
+} from './presentation/features/stasher/components';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { useScrollReveal } from './application/hooks/useScrollReveal';
 

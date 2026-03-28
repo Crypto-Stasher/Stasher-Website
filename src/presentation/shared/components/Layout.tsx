@@ -3,7 +3,7 @@ import { useCursorGlow } from '../../../application/hooks/useCursorGlow';
 import { useSmoothScroll } from '../../../application/hooks/useSmoothScroll';
 import { useActiveSection } from '../../../application/hooks/useActiveSection';
 import { HUD } from './HUD';
-import type { FooterContent } from '../../../domain/models/Content';
+import type { FooterContent } from '../../../domain/models/sections';
 
 interface LayoutProps {
   children: React.ReactNode;

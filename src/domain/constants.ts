@@ -1,4 +1,4 @@
-import type { SiteContent } from './models/Content';
+import type { SiteContent } from './models/SiteContent.type';
 
 export const SITE_CONTENT: SiteContent = {
   hero: {
