@@ -27,5 +27,59 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Stasher",
+      "url": "https://crypto-stasher.github.io/Stasher-Website/",
+      "logo": "https://crypto-stasher.github.io/Stasher-Website/favicon.svg",
+      "sameAs": ["https://github.com/Crypto-Stasher"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Stasher Hardware Wallet",
+      "description": "Air-gapped hardware cryptocurrency wallet. Your keys never touch the internet.",
+      "brand": { "@type": "Brand", "name": "Stasher" },
+      "category": "Hardware Wallet",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/PreOrder",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do I need a hardware wallet?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Software wallets store your private keys on internet-connected devices, making them vulnerable. A hardware wallet keeps your keys on a dedicated offline device." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I lose my Stasher device?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Your funds are safe. During setup, Stasher generates a standard 24-word BIP39 recovery seed. You can restore your wallet on a new device or any BIP39-compatible wallet." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Stasher different from Ledger or Trezor?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Stasher uses a true air-gap architecture with a separate cold wallet and warm wallet. The device that holds your keys has zero connectivity." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the firmware open source?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The cold wallet firmware and communication protocol are published on GitHub. You can audit the code yourself and build from source." }
+        }
+      ]
+    }
+    </script>
   </body>
 </html>
