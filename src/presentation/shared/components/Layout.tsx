@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useCursorGlow } from '../../../application/hooks/useCursorGlow';
 import { useSmoothScroll } from '../../../application/hooks/useSmoothScroll';
 import { useActiveSection } from '../../../application/hooks/useActiveSection';
@@ -12,19 +12,22 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) => {
-  const mousePos = useCursorGlow();
+  useCursorGlow();
   const scrollTo = useSmoothScroll();
   const sectionIds = useMemo(() => navLinks.map(l => l.href), [navLinks]);
   const activeSection = useActiveSection(sectionIds);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setMenuOpen(false);
+    scrollTo(e);
+  };
 
   return (
     <div className="layout-root">
       <div className="bg-grid"></div>
       <div className="scanline"></div>
-      <div
-        className="cursor-glow"
-        style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }}
-      ></div>
+      <div className="cursor-glow"></div>
 
       <HUD />
 
@@ -33,12 +36,22 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
           <div className="logo">
             STASHER<span className="tech-tag" style={{ marginLeft: '1rem', verticalAlign: 'middle' }}>V2.1</span>
           </div>
-          <div className="nav-links">
+          <button
+            className={`nav-hamburger ${menuOpen ? 'nav-hamburger--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <div className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
             {navLinks.map((link, idx) => (
               <a
                 key={idx}
                 href={link.href}
-                onClick={scrollTo}
+                onClick={handleNavClick}
                 className={activeSection === link.href ? 'nav-active' : ''}
               >
                 {link.label}

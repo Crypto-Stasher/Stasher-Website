@@ -13,25 +13,28 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
 
   return (
     <section className="hero">
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4rem' }}>
+      <div className="container hero-layout">
         <div className="hero-content reveal-left">
           <span className="tech-tag">{content.tag}</span>
-          <h1 style={{ minHeight: '1.2em' }}>{scrambledTitle}</h1>
-          <p style={{ maxWidth: '600px', fontSize: '1.1rem', marginBottom: '3rem' }}>{content.description}</p>
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+          <h1 style={{ position: 'relative' }}>
+            <span style={{ visibility: 'hidden' }}>{content.title}</span>
+            <span style={{ position: 'absolute', left: 0, top: 0, width: '100%' }}>{scrambledTitle}</span>
+          </h1>
+          <p className="hero-desc">{content.description}</p>
+          <div className="hero-cta-row">
             <button className="cta-button">{content.cta}</button>
-            <div style={{ borderLeft: '1px solid var(--border-neon)', paddingLeft: '1.5rem' }}>
+            <div className="hero-network-stat">
               <div className="node-label">NETWORK LOAD</div>
               <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)', fontWeight: 700 }}>{content.networkLoad}</div>
             </div>
           </div>
         </div>
-        <div className="hero-image reveal-right" style={{ flex: 1, display: 'flex', justifyContent: 'center', position: 'relative', minWidth: '300px' }}>
+        <div className="hero-image reveal-right">
           <Radar />
           <img
             src={stasherHero}
             alt="Stasher Hardware"
-            style={{ width: '100%', maxWidth: '540px', position: 'relative', zIndex: 1, filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.15))' }}
+            className="hero-device-img"
           />
         </div>
       </div>
