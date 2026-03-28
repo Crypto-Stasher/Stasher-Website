@@ -57,9 +57,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             <span />
           </button>
           <div className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
-            {navLinks.map((link, idx) => (
+            {navLinks.map((link) => (
               <a
-                key={idx}
+                key={link.href}
                 href={link.href}
                 onClick={handleNavClick}
                 className={activeSection === link.href ? 'nav-active' : ''}

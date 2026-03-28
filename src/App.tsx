@@ -22,6 +22,14 @@ import { ContentRepository } from './infrastructure/repositories/ContentReposito
 import { useScrollReveal } from './application/hooks/useScrollReveal';
 
 const App: React.FC = () => {
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate boot sequence
+    const timer = setTimeout(() => setLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   useScrollReveal();
 
   const content = ContentRepository.getContent();
@@ -34,6 +42,15 @@ const App: React.FC = () => {
     { href: "#compare", label: "COMPARE" },
     { href: "#faq", label: "FAQ" },
   ];
+
+  if (loading) {
+    return (
+      <div className="app-loading-screen">
+        <div className="loading-spinner" />
+        <div>INITIALIZING SECURE ENVIRONMENT...</div>
+      </div>
+    );
+  }
 
   return (
     <Layout footer={content.footer} navLinks={navLinks}>
