@@ -33,8 +33,12 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
           <Radar />
           <img
             src={stasherHero}
-            alt="Stasher Hardware"
+            alt="Stasher Hardware Wallet — air-gapped cold storage device"
             className="hero-device-img"
+            width={540}
+            height={540}
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
       </div>
