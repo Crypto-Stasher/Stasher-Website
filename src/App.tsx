@@ -1,8 +1,10 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Layout } from './presentation/shared/components/Layout';
 import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { useScrollReveal } from '@hooks';
+import { AuthPage } from './presentation/pages/AuthPage';
 
 const App: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
@@ -36,9 +38,17 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout footer={content.footer} navLinks={navLinks}>
-      <StasherPage content={content} />
-    </Layout>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Layout footer={content.footer} navLinks={navLinks}>
+            <StasherPage content={content} />
+          </Layout>
+        }
+      />
+      <Route path="/auth" element={<AuthPage />} />
+    </Routes>
   );
 };
 

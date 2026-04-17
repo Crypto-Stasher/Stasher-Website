@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { useActiveSection, useCursorGlow, useSmoothScroll } from '@hooks';
 import { HUD } from './HUD';
+import { useAuth } from '../../../application/context/AuthContext';
+import { Link } from 'react-router-dom';
 import type { FooterContent } from '@models/sections';
 
 interface LayoutProps {
@@ -15,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
   const sectionIds = useMemo(() => navLinks.map(l => l.href), [navLinks]);
   const activeSection = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated, userEmail, logout } = useAuth();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setMenuOpen(false);
@@ -65,6 +68,20 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
                 {link.label}
               </a>
             ))}
+            
+            {/* AUTH ACTIONS */}
+            {!isAuthenticated ? (
+              <Link to="/auth" style={{ color: 'var(--accent-cyan)' }}>
+                OPERATOR LOGIN
+              </Link>
+            ) : (
+              <>
+                <span style={{ color: 'var(--text-tech)', cursor: 'default' }}>[{userEmail?.split('@')[0].toUpperCase()}]</span>
+                <a href="#" onClick={(e) => { e.preventDefault(); logout(); }} style={{ color: 'var(--accent-red)' }}>
+                  LOGOUT
+                </a>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -112,3 +129,5 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
     </div>
   );
 };
+
+
