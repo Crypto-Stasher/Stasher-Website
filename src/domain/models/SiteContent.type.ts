@@ -14,7 +14,6 @@ import type {
 	ProductsContent,
 	SecurityContent,
 	StatsContent,
-	TechStackContent,
 } from './sections';
 
 export type SiteContent = {
@@ -27,7 +26,6 @@ export type SiteContent = {
   products: ProductsContent;
   appShowcase: AppShowcaseContent;
   comparison: ComparisonContent;
-  techStack: TechStackContent;
   openSource: OpenSourceContent;
   compliance: ComplianceContent;
   faq: FaqContent;

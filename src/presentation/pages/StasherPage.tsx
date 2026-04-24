@@ -14,16 +14,17 @@ import {
   Products,
   Security,
   Stats,
-  TechStack,
 } from '@features/stasher/sections';
 import { Divider } from '@features/stasher/components';
 import type { SiteContent } from '@models/SiteContent.type';
+import { useScrollReveal } from '@hooks';
 
 interface StasherPageProps {
   content: SiteContent;
 }
 
 export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
+  useScrollReveal(true);
   return (
     <>
       <Hero content={content.hero} />
@@ -47,8 +48,6 @@ export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
       <Comparison content={content.comparison} />
 
       <Divider variant="dots" />
-      <TechStack content={content.techStack} />
-
       <OpenSource content={content.openSource} />
       <Divider variant="glow" />
       <Compliance content={content.compliance} />

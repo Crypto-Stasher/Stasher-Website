@@ -2,108 +2,108 @@ import type { SiteContent } from '@models/SiteContent.type';
 
 export const SITE_CONTENT: SiteContent = {
   hero: {
-    tag: "HARDWARE-ISOLATED COLD STORAGE",
-    title: "YOUR KEYS. YOUR CRYPTO. OFFLINE.",
-    description: "Stasher is an air-gapped hardware wallet built for people who refuse to compromise on security. Your private keys are generated, stored, and sign transactions on a device that never touches the internet.",
+    tag: "THE OFFLINE WALLET FOR YOUR CRYPTO",
+    title: "YOUR CRYPTO, SAFE IN YOUR POCKET.",
+    description: "Stasher is a small device that keeps your crypto safe. Think of it as a vault you carry. It never goes online, so hackers cannot reach it. You press a button on the device to approve every move. Built to stay safe for decades, even against future super-computers.",
     cta: "GET STASHER",
     networkLoad: "0.042 MS/S"
   },
 
   stats: {
     items: [
-      { value: "56+", label: "Supported Cryptocurrencies" },
-      { value: "0", label: "Security Breaches" },
-      { value: "100%", label: "Air-Gapped Signing" },
-      { value: "24", label: "Word Seed Recovery" }
+      { value: "56+", label: "Coins You Can Store" },
+      { value: "0", label: "Times Hacked" },
+      { value: "100%", label: "Offline and Safe" },
+      { value: "FUTURE", label: "Proof Against New Attacks" }
     ]
   },
 
   architecture: {
-    title: "COLD + WARM ARCHITECTURE",
-    subtitle: "How Stasher Works",
-    description: "Two dedicated devices working together. The cold wallet holds your keys in complete isolation. The warm wallet bridges the gap to the blockchain — without ever accessing your secrets.",
+    title: "HOW STASHER KEEPS YOUR CRYPTO SAFE",
+    subtitle: "How It Works",
+    description: "Two small devices work together. One holds your money and stays offline. The other helps it talk to the internet, without ever seeing your secrets. Your money and the internet never share the same wire.",
     zones: [
       {
-        zone: "COLD WALLET",
+        zone: "OFFLINE DEVICE",
         color: "var(--accent-cyan)",
         machines: [
-          { name: "SECURE_CORE", role: "Key Storage & Signing", detail: "Private keys generated and stored in encrypted flash. All transaction signing happens here — fully offline." },
-          { name: "CRYPTO_ENGINE", role: "Hardware Cryptography", detail: "Dedicated hardware accelerators for AES-256, SHA-256, and true random number generation." }
+          { name: "THE VAULT", role: "Where Your Money Lives", detail: "Your crypto is created and kept here. Nothing ever leaves this device. It is completely offline — no WiFi, no Bluetooth, no internet." },
+          { name: "THE LOCK", role: "Future-Proof Protection", detail: "Locks your crypto with next-generation math that stays safe against today's hackers AND future super-computers that will break old-style locks." }
         ]
       },
       {
-        zone: "WARM WALLET",
+        zone: "BRIDGE DEVICE",
         color: "var(--accent-yellow)",
         machines: [
-          { name: "NETWORK_BRIDGE", role: "Blockchain Relay", detail: "Connects to the internet to broadcast signed transactions and fetch chain data. Never handles private keys." }
+          { name: "THE MESSENGER", role: "The Go-Between", detail: "This one talks to the internet. It sends your approved transactions and brings back balance updates. It never sees your secrets." }
         ]
       },
       {
-        zone: "MOBILE APP",
+        zone: "PHONE APP",
         color: "var(--accent-blue)",
         machines: [
-          { name: "STASHER_APP", role: "User Interface", detail: "iOS & Android app for portfolio management, transaction initiation, and secure BLE communication with your wallet." }
+          { name: "STASHER APP", role: "Your Everyday Screen", detail: "A friendly app for iPhone and Android. See your coins, start transactions, and connect to your Stasher — all in one place." }
         ]
       }
     ]
   },
 
   security: {
-    title: "DEFENSE IN DEPTH",
-    subtitle: "Security Model",
-    description: "Every layer is designed to fail safely. Your keys never leave the cold wallet. Even if the warm wallet or your phone is compromised, your funds remain untouchable.",
+    title: "BUILT LIKE A VAULT",
+    subtitle: "Why It's Safe",
+    description: "Every layer is designed so that even if something goes wrong, your crypto stays yours. Your secrets never leave the device. Even if your phone gets hacked, your crypto is fine.",
     features: [
       {
         id: "01",
-        title: "True Air-Gap Isolation",
-        description: "The cold wallet has no WiFi, no Bluetooth, no USB data. Signed transactions are transferred via a secure one-way protocol. Your keys physically cannot reach the internet.",
+        title: "Never Online",
+        description: "The part of Stasher that holds your money has no internet, no Bluetooth, no WiFi. Hackers on the other side of the world cannot reach it — because it is simply not connected to anything.",
         icon: "AIRGAP"
       },
       {
         id: "02",
-        title: "Encrypted Seed Storage",
-        description: "Your 24-word seed is encrypted with AES-256-CBC and authenticated with HMAC. Password-derived keys use PBKDF2 with 10,000 iterations. Seeds are device-bound and cannot be extracted.",
-        icon: "AES256"
+        title: "Future-Proof Protection",
+        description: "Stasher uses next-generation security that stays strong even against future super-powerful computers (called quantum computers) that experts say will break regular security in the coming years.",
+        icon: "QUANTUM"
       },
       {
         id: "03",
-        title: "Hardware Random Number Generation",
-        description: "Keys are generated using a FIPS 140-2 compliant true random number generator built into the hardware. No pseudo-random shortcuts.",
-        icon: "TRNG"
+        title: "Your Backup Is Locked",
+        description: "Your 24-word backup phrase is locked inside the device with your password. Nobody can pull it out — not thieves, not strangers, not even us at Stasher.",
+        icon: "AES256"
       },
       {
         id: "04",
-        title: "On-Screen Verification",
-        description: "Every transaction is displayed on the wallet's built-in screen. Physical button press required to confirm. No blind signing — you verify destination and amount before every transaction.",
-        icon: "VERIFY"
+        title: "Truly Unique Keys",
+        description: "Your wallet is built with truly random numbers generated by the device itself. No patterns. No shortcuts. Every Stasher wallet is one-of-a-kind and impossible to guess.",
+        icon: "TRNG"
       },
       {
         id: "05",
-        title: "Brute-Force Protection",
-        description: "Exponential lockout delays after failed password attempts — from 10 seconds up to 24 hours. Protects against physical theft and unauthorized access.",
-        icon: "LOCK"
+        title: "You See Every Move",
+        description: "Before anything sends, the Stasher screen shows you exactly what is about to happen. You press the button on the device to approve. No surprises, no tricks.",
+        icon: "VERIFY"
       },
       {
         id: "06",
-        title: "Secure Memory Management",
-        description: "Sensitive data is held in protected memory regions and securely zeroed after every operation. No key material is ever persisted beyond what's needed.",
-        icon: "MEMORY"
+        title: "Locks Out Thieves",
+        description: "If someone finds your Stasher, it locks them out after a few wrong password tries — first for seconds, then hours, then a full day. Plenty of time for you to rescue your crypto with your backup phrase.",
+        icon: "LOCK"
       }
     ]
   },
 
   howItWorks: {
-    title: "HOW A TRANSACTION WORKS",
-    subtitle: "Transaction Flow",
+    title: "SENDING CRYPTO IS JUST EIGHT STEPS",
+    subtitle: "How Sending Works",
     steps: [
-      { step: 1, label: "INITIATE", description: "Open the Stasher mobile app and create a transaction — choose asset, amount, and destination", zone: "hot" },
-      { step: 2, label: "TRANSFER", description: "Transaction details are sent to the cold wallet via secure BLE connection", zone: "dmz" },
-      { step: 3, label: "VERIFY", description: "Cold wallet displays the full transaction on its built-in screen for your review", zone: "cold" },
-      { step: 4, label: "CONFIRM", description: "Press the hardware button to authorize. The cold wallet signs the transaction offline", zone: "cold" },
-      { step: 5, label: "SIGN", description: "Private key derives the correct chain key via BIP44, signs the transaction, then wipes from memory", zone: "cold" },
-      { step: 6, label: "RELAY", description: "Signed transaction is passed to the warm wallet, which connects to the blockchain network", zone: "dmz" },
-      { step: 7, label: "BROADCAST", description: "Warm wallet broadcasts the signed transaction to the network", zone: "hot" },
-      { step: 8, label: "DONE", description: "You receive confirmation in the mobile app once the transaction is on-chain", zone: "hot" }
+      { step: 1, label: "PICK", description: "Open the Stasher app on your phone. Choose how much you want to send and who gets it.", zone: "hot" },
+      { step: 2, label: "SEND", description: "Your phone passes the details to your Stasher device — like pairing headphones, but private.", zone: "dmz" },
+      { step: 3, label: "REVIEW", description: "The Stasher screen shows the exact details so you can check them yourself.", zone: "cold" },
+      { step: 4, label: "APPROVE", description: "Press the button on the device to say yes. Nothing moves without your press.", zone: "cold" },
+      { step: 5, label: "SIGN", description: "Stasher approves the transaction inside itself using future-proof security. Your secret never leaves the device.", zone: "cold" },
+      { step: 6, label: "RELAY", description: "The approved transaction goes to the bridge device that talks to the internet.", zone: "dmz" },
+      { step: 7, label: "BROADCAST", description: "The bridge sends the transaction out to the world so your coins actually move.", zone: "hot" },
+      { step: 8, label: "DONE", description: "Your phone shows 'sent!' The money moved. Your secrets stayed safe.", zone: "hot" }
     ]
   },
 
@@ -112,68 +112,68 @@ export const SITE_CONTENT: SiteContent = {
     items: [
       {
         id: "01",
-        label: "SECURITY",
-        title: "True Air-Gap",
-        description: "Unlike wallets that connect via USB or Bluetooth for signing, Stasher's cold wallet is physically isolated. Your keys exist in a vault that has no path to the internet."
+        label: "OFFLINE",
+        title: "Always Offline",
+        description: "Other wallets plug into your phone or computer when they sign — for a moment, your crypto is close to the internet. The Stasher device holding your money never connects to anything. Hackers cannot reach what is not online. Not even Stasher can."
       },
       {
         id: "02",
-        label: "STANDARD",
-        title: "Full BIP Support",
-        description: "BIP39 seed generation, BIP32 hierarchical derivation, BIP44 multi-coin paths. Your wallet is recoverable with any standard 24-word compatible wallet if needed."
+        label: "FUTURE-PROOF",
+        title: "Quantum-Safe",
+        description: "Experts say powerful new computers (called quantum computers) will break old-style encryption within the next decade. Stasher is one of the first wallets built to survive them. Your crypto stays safe now AND later — no panic upgrade."
       },
       {
         id: "03",
-        label: "MULTI-CHAIN",
-        title: "56+ Cryptocurrencies",
-        description: "Native support for Bitcoin (Legacy & SegWit), Ethereum (EIP-1559), Solana, and 50+ more via SLIP44 registered coin types. One device, all your assets."
+        label: "TWO-PART",
+        title: "Two Devices Working As One",
+        description: "One device guards your crypto. The other talks to the internet. They pass messages, never secrets. A setup other wallets don't have — your money and the web never share the same wire."
       },
       {
         id: "04",
-        label: "MOBILE",
-        title: "Seamless Experience",
-        description: "The Stasher mobile app gives you a modern portfolio view, transaction history, and one-tap signing flow — all communicating securely with your hardware wallet."
+        label: "MANY COINS",
+        title: "56+ Coins on One Device",
+        description: "Bitcoin, Ethereum, Solana, and 50+ others — all held on one small device. Lose it? A simple 24-word backup phrase restores everything, on any compatible wallet."
       }
     ]
   },
 
   products: {
-    title: "FROM PERSONAL TO INSTITUTIONAL",
-    subtitle: "Product Lineup",
+    title: "FROM YOUR POCKET TO A COMPANY VAULT",
+    subtitle: "Two Versions",
     tiers: [
       {
         id: "consumer",
         name: "STASHER",
-        tagline: "Personal Cold Wallet",
+        tagline: "The Personal Crypto Safe",
         highlight: true,
         features: [
-          "Air-gapped cold wallet hardware device",
-          "Warm wallet bridge for blockchain connectivity",
-          "BIP39/BIP32/BIP44 full standard compliance",
-          "56+ cryptocurrencies (BTC, ETH, SOL, ...)",
-          "Mobile app for iOS & Android",
-          "Secure BLE communication",
-          "AES-256-CBC encrypted seed storage",
-          "FIPS 140-2 hardware random number generator",
-          "Built-in screen for transaction verification",
-          "Physical button confirmation for signing"
+          "Perfect for first-time buyers, long-term savers, traders, and families",
+          "Keeps your crypto offline where hackers cannot reach it",
+          "Works with 56+ popular coins: Bitcoin, Ethereum, Solana, and more",
+          "Built to stay safe against future super-computers",
+          "Free app for iPhone and Android",
+          "Simple 24-word backup — if you lose the device, you recover everything",
+          "Small screen and button so you see and approve every transaction",
+          "Password-protected and locks itself against thieves",
+          "You own your crypto — Stasher has no access to it, ever",
+          "Works the same even if Stasher the company disappeared"
         ]
       },
       {
         id: "enterprise",
         name: "STASHER ENTERPRISE",
-        tagline: "Institutional Custody Platform",
+        tagline: "For Companies, Exchanges, and Wealthy Families",
         features: [
-          "6-machine distributed signing architecture",
-          "3-of-3 heterogeneous key fragmentation",
-          "Physical air-gap with DMZ relay",
-          "Quantum-resistant lattice cryptography",
-          "Maker/Checker governance workflows",
-          "M-of-N configurable quorum rules",
-          "Hash-chained immutable audit trails",
-          "Dual auth: HMAC-SHA256 + Argon2id/FIDO2",
-          "Prometheus metrics & Kubernetes-ready",
-          "Multi-chain: BTC, ETH, SOL, XRP, DOT, ..."
+          "Six coordinated devices guard the crypto together",
+          "Future-proof, quantum-safe security",
+          "No single machine knows the whole secret — split in three parts",
+          "Offline signing with a secure bridge to the internet",
+          "Team approval: one person proposes, another confirms",
+          "Set rules like '3 of 5 people must approve'",
+          "Tamper-proof audit log of every action",
+          "Strong login with password + security key",
+          "Live dashboards and enterprise-ready deployment",
+          "Supports Bitcoin, Ethereum, Solana, XRP, Polkadot, and more"
         ]
       }
     ]
@@ -181,15 +181,15 @@ export const SITE_CONTENT: SiteContent = {
 
   appShowcase: {
     title: "THE STASHER APP",
-    subtitle: "Companion App",
-    description: "A modern mobile app that puts you in full control. Manage your portfolio, initiate transactions, and communicate securely with your hardware wallet — all from your phone.",
+    subtitle: "Your Everyday Screen",
+    description: "A friendly phone app that shows all your crypto in one place. Send money to a friend, pay someone, or move funds around — a few taps and a press on the Stasher device, and you are done. Your crypto stays safe on the device. Your phone just helps you use it.",
     features: [
-      { title: "Portfolio Overview", description: "Track all your assets across 56+ chains in one clean dashboard with real-time balances." },
-      { title: "One-Tap Transactions", description: "Select asset, enter amount and destination — the app handles the rest with your hardware wallet." },
-      { title: "Secure BLE Pairing", description: "Encrypted Bluetooth Low Energy connection with L2CAP channels. Pair once, transact securely." },
-      { title: "Transaction History", description: "Full on-chain history for every wallet, with status tracking and confirmation alerts." },
-      { title: "Multi-Wallet Management", description: "Connect and manage multiple Stasher devices from a single app." },
-      { title: "Address Book", description: "Save trusted addresses for quick and safe repeat transactions." }
+      { title: "All Your Coins in One Place", description: "See every coin you own in one clear dashboard with up-to-date balances." },
+      { title: "Send in a Few Taps", description: "Pick a coin, type how much, choose who receives it. Check on the device. Done." },
+      { title: "Pair Once, Use Forever", description: "Connect your phone to your Stasher the first time. From then on, they remember each other." },
+      { title: "Full History", description: "Every transaction you have ever made, with clear status and confirmations." },
+      { title: "Multiple Stashers", description: "Family savings? Personal trading? Manage as many Stashers as you want, all from one app." },
+      { title: "Saved Addresses", description: "Save people you send to often. No more copying and pasting long codes — and no more mistakes." }
     ],
     downloadLinks: [
       { platform: "iOS", url: "#" },
@@ -198,64 +198,48 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   comparison: {
-    title: "STASHER VS. THE COMPETITION",
-    subtitle: "Comparison",
+    title: "HOW STASHER COMPARES",
+    subtitle: "Stasher vs. Others",
     competitors: ["Ledger Nano X", "Trezor Safe 5"],
     rows: [
-      { feature: "True Air-Gap (no USB/BT signing)", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "Dedicated Warm Wallet Bridge", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "On-Device Screen Verification", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Physical Button Confirmation", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "BIP39/BIP32/BIP44 Support", stasher: "Full", competitor1: "Full", competitor2: "Full" },
-      { feature: "Hardware RNG (FIPS 140-2)", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
-      { feature: "Encrypted Seed Storage (AES-256)", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
-      { feature: "Companion Mobile App", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Multi-Chain Support", stasher: "56+", competitor1: "5,500+", competitor2: "9,000+" },
-      { feature: "Enterprise / Institutional Tier", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
-      { feature: "Open-Source Firmware", stasher: "Yes", competitor1: "Partial", competitor2: "Yes" },
-      { feature: "Brute-Force Lockout", stasher: "Exponential", competitor1: "Wipe after 3", competitor2: "Wipe after 16" }
-    ]
-  },
-
-  techStack: {
-    title: "BUILT FOR MAXIMUM SECURITY",
-    subtitle: "Technology",
-    items: [
-      { name: "C", detail: "Bare-metal cold wallet firmware", category: "FIRMWARE" },
-      { name: "C++", detail: "Warm wallet bridge firmware", category: "FIRMWARE" },
-      { name: "React Native", detail: "Mobile wallet app (iOS/Android)", category: "MOBILE" },
-      { name: "Rust", detail: "Enterprise cold signing nodes & DMZ", category: "ENTERPRISE" },
-      { name: "Go", detail: "Enterprise API & policy engine", category: "ENTERPRISE" },
-      { name: "React + TypeScript", detail: "Enterprise dashboard", category: "FRONTEND" },
-      { name: "Protocol Buffers", detail: "Inter-node communication", category: "PROTOCOL" },
-      { name: "AES-256 / SHA-256", detail: "Hardware-accelerated cryptography", category: "CRYPTO" },
-      { name: "TLS 1.3 / mTLS", detail: "All network links, pinned CA", category: "SECURITY" },
-      { name: "BLE L2CAP", detail: "Secure mobile-to-wallet comms", category: "COMMS" }
+      { feature: "Always stays offline (never touches the internet)", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "Safe against future super-computers", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "Separate bridge device for the internet", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "Shows every transaction on its own screen", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Needs a button press to approve", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Standard 24-word backup phrase", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Truly random, one-of-a-kind keys", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
+      { feature: "Backup locked behind your password", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
+      { feature: "Free phone app", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
+      { feature: "Coins supported", stasher: "56+", competitor1: "5,500+", competitor2: "9,000+" },
+      { feature: "Version for companies", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
+      { feature: "Code anyone can inspect", stasher: "Yes", competitor1: "Partial", competitor2: "Yes" },
+      { feature: "Protects against password guessing", stasher: "Locks out longer each try", competitor1: "Wipes after 3", competitor2: "Wipes after 16" }
     ]
   },
 
   openSource: {
-    title: "OPEN & VERIFIABLE",
+    title: "NOTHING TO HIDE",
     subtitle: "Transparency",
-    description: "We believe security through obscurity is no security at all. Stasher's firmware and protocol code are open source — anyone can audit, verify, and contribute.",
+    description: "We believe you should be able to check for yourself that Stasher does what it promises. That is why the code inside Stasher is public — anyone can read it, inspect it, and even improve it.",
     points: [
-      { title: "Open-Source Firmware", description: "The cold wallet firmware is published on GitHub. Review every line that handles your keys." },
-      { title: "Reproducible Builds", description: "Build the firmware yourself from source and verify it matches what ships on the device." },
-      { title: "Security Audits", description: "Independent third-party audits of the cryptographic implementation and hardware design." },
-      { title: "Bug Bounty Program", description: "Responsible disclosure rewarded. Help us find vulnerabilities before they become threats." }
+      { title: "Public Code", description: "The code that runs inside Stasher is on GitHub. Any expert can read every line that handles your money." },
+      { title: "Build It Yourself", description: "You can build the code yourself and check that it matches what is running on your device. No hidden back doors." },
+      { title: "Independent Experts Check It", description: "We pay outside security experts to inspect our code and hardware — including the future-proof protection." },
+      { title: "Reward for Finding Problems", description: "We pay security researchers who find and report issues responsibly. Your safety is a team effort." }
     ]
   },
 
   compliance: {
-    title: "COMPLIANCE & GOVERNANCE",
-    description: "Designed for the most regulated environments, meeting the highest standards of financial security and operational auditability.",
+    title: "READY FOR SERIOUS BUSINESS",
+    description: "Stasher Enterprise meets the strict rules that banks, exchanges, and large investors need. Every action is logged. Every permission is set. Nothing happens without proof.",
     points: [
-      "SOC2 Type II Ready Architecture",
-      "FIPS 140-2 Hardware Security",
-      "Full Deterministic Audit Trails",
-      "Quantum-Resistant Commitment Paths",
-      "RBAC with Granular Permissions",
-      "Instant Session Revocation"
+      "Ready for financial audits and regulator review",
+      "Certified-grade hardware security",
+      "Every action permanently logged — no deletions",
+      "Future-proof security for long-term holdings",
+      "Fine-grained permissions for teams and roles",
+      "Instantly revoke access if someone leaves"
     ]
   },
 
@@ -264,55 +248,71 @@ export const SITE_CONTENT: SiteContent = {
     subtitle: "FAQ",
     items: [
       {
-        question: "Why do I need a hardware wallet?",
-        answer: "Software wallets (on your phone or computer) store your private keys on internet-connected devices, making them vulnerable to malware, phishing, and remote attacks. A hardware wallet keeps your keys on a dedicated offline device, so even if your phone or computer is compromised, your crypto remains safe."
+        question: "I'm new to crypto — what exactly is Stasher?",
+        answer: "Stasher is a small device — about the size of a thick credit card — that keeps your crypto safe. Think of it like a tiny safe you can carry. Your crypto lives inside the device, not on the internet, so hackers cannot steal it. You use a friendly phone app to see your balances and send money, and press a button on the device whenever you approve a move."
       },
       {
-        question: "What happens if I lose my Stasher device?",
-        answer: "Your funds are safe. During setup, Stasher generates a standard 24-word BIP39 recovery seed. As long as you have this seed backed up securely, you can restore your entire wallet on a new Stasher device — or any BIP39-compatible wallet."
+        question: "Why do I need a device? Can't I just keep my crypto in an app?",
+        answer: "You can, but apps on phones and computers are connected to the internet — which means hackers, viruses, or a stolen phone can steal your crypto. A device like Stasher stays offline, so there is no way for anyone on the internet to reach your money. It's the difference between leaving cash on your desk and locking it in a safe."
+      },
+      {
+        question: "Is Stasher hard to use if I've never done this before?",
+        answer: "Not at all. If you can use a banking app, you can use Stasher. The phone app walks you through every step. To send crypto: you pick what to send, check the details on the device screen, press the button, done. No commands, no code, no complicated words."
+      },
+      {
+        question: "What does 'quantum-safe' mean? Should I worry?",
+        answer: "Most crypto wallets today rely on math that a powerful new kind of computer — called a quantum computer — will be able to break. Experts say this could happen in the next decade. Stasher uses a new kind of math that stays safe even against those future computers. You don't need to upgrade later. Your crypto is safe now AND years from now."
+      },
+      {
+        question: "Who is Stasher for?",
+        answer: "Anyone who owns crypto and wants it safe. Someone buying their first Bitcoin. Someone saving for retirement. A trader who wants safety without slowing down. A parent setting money aside for their kids' future. If you hold crypto and care about keeping it, Stasher is for you."
+      },
+      {
+        question: "What if I lose the device?",
+        answer: "Your money is completely safe. When you first set up Stasher, you write down 24 special words (your 'backup phrase'). As long as you keep those 24 words somewhere safe — ideally on paper in a drawer or a safe, not on your computer — you can restore all your crypto onto a new Stasher in minutes."
       },
       {
         question: "How is Stasher different from Ledger or Trezor?",
-        answer: "Stasher uses a true air-gap architecture with a separate cold wallet and warm wallet. Unlike Ledger or Trezor, the device that holds your keys has zero connectivity — no USB data, no Bluetooth, no WiFi. The warm wallet handles internet connectivity separately and never has access to your private keys."
+        answer: "Ledger and Trezor need to plug into your phone or computer when they approve a transaction — so for a moment, your crypto is close to the internet. Stasher splits this into two devices: one always stays offline with your crypto, another handles the internet. They never mix. Stasher is also built to survive future quantum computers, which Ledger and Trezor are not."
       },
       {
-        question: "What cryptocurrencies does Stasher support?",
-        answer: "Stasher natively supports 56+ cryptocurrencies including Bitcoin (Legacy & SegWit), Ethereum (EIP-1559), Solana, and many more via the SLIP44 standard. We're continuously adding support for new chains."
+        question: "Which coins can I store on Stasher?",
+        answer: "Over 56 popular coins, including Bitcoin, Ethereum, Solana, XRP, Litecoin, Cardano, and Polkadot. We add new ones regularly."
       },
       {
-        question: "Is the firmware open source?",
-        answer: "Yes. The cold wallet firmware and communication protocol are published on GitHub. You can audit the code yourself, build from source to verify the binary matches your device, and contribute improvements."
+        question: "Can Stasher the company see or touch my money?",
+        answer: "No. We make the device, but your crypto belongs only to you. You are the only one with the password and backup phrase. Nobody at Stasher can access, freeze, or move your money. Even if our company vanished tomorrow, your crypto would still be safe and usable."
       },
       {
-        question: "What if my phone is hacked?",
-        answer: "Your keys are never on your phone. The Stasher mobile app only initiates and displays transactions — all signing happens on the air-gapped cold wallet after you physically verify and confirm on the device screen. A compromised phone cannot steal your funds or sign unauthorized transactions."
+        question: "What if my phone gets hacked or stolen?",
+        answer: "Your crypto is still safe. The secret code that controls your money is only on the Stasher device — never on your phone. Your phone is just a screen that helps you use Stasher. A stolen or hacked phone cannot move a single coin, because nothing happens without you pressing the button on the Stasher itself."
       },
       {
-        question: "How does the cold wallet communicate without internet?",
-        answer: "The cold wallet communicates with the warm wallet through a secure one-way data transfer protocol. Transaction data is passed to the cold wallet for signing, and only the signed transaction (which is safe to broadcast publicly) is returned. The private keys never leave the cold device."
+        question: "How do I know the device is really trustworthy?",
+        answer: "You don't have to take our word for it. The code that runs inside Stasher is public — anyone can read it on GitHub and confirm it does exactly what we promise. Independent security experts also check it for us. Nothing is hidden."
       },
       {
         question: "What is Stasher Enterprise?",
-        answer: "Stasher Enterprise is our institutional-grade custody platform designed for organizations managing large amounts of digital assets. It features a 6-machine distributed signing architecture with quantum-resistant key fragmentation, governance workflows, and compliance-ready audit trails. Contact us for a demo."
+        answer: "A bigger version of Stasher for companies, exchanges, and wealthy families that manage large amounts of crypto. It uses six coordinated devices, team approval rules (for example: 'any three people must agree'), and full audit history so every action is traceable."
       }
     ]
   },
 
   assets: {
-    title: "MULTI-CHAIN NATIVE SUPPORT",
-    items: ["BTC.MAINNET", "ETH.EVM.L1", "SOL.CLUSTER", "XRP.LEDGER", "DOT.RELAY", "LTC.MAINNET", "ADA.CARDANO", "50+ MORE"]
+    title: "COINS YOU CAN STORE",
+    items: ["BITCOIN", "ETHEREUM", "SOLANA", "XRP", "POLKADOT", "LITECOIN", "CARDANO", "50+ MORE"]
   },
 
   newsletter: {
     title: "STAY IN THE LOOP",
-    description: "Get launch updates, security advisories, and early access to new features.",
+    description: "Launch news, helpful tips, and early access — no spam, ever.",
     placeholder: "your@email.com",
     cta: "SUBSCRIBE"
   },
 
   footer: {
     transmission: "END OF TRANSMISSION",
-    copyright: "\u00A9 2026 STASHER // HARDWARE COLD CUSTODY // ALL RIGHTS RESERVED",
+    copyright: "\u00A9 2026 STASHER // OFFLINE, QUANTUM-RESILIENT CRYPTO CUSTODY // ALL RIGHTS RESERVED",
     socials: [
       { name: "GitHub", url: "https://github.com/Crypto-Stasher", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg> },
       { name: "X", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg> },

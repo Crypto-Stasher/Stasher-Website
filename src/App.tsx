@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Layout } from './presentation/shared/components/Layout';
 import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
-import { useScrollReveal } from '@hooks';
 import { AuthPage } from './presentation/pages/AuthPage';
 
 const App: React.FC = () => {
@@ -14,8 +13,6 @@ const App: React.FC = () => {
     const timer = setTimeout(() => setLoading(false), 600);
     return () => clearTimeout(timer);
   }, []);
-
-  useScrollReveal(!loading);
 
   const content = ContentRepository.getContent();
 
