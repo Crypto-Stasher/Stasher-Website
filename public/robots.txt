@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://crypto-stasher.github.io/Stasher-Website/sitemap.xml
+Sitemap: https://crypto-stasher.github.io/sitemap.xml

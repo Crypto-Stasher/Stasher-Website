@@ -9,7 +9,7 @@ import { AuthProvider } from './application/context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Stasher-Website/">
+    <BrowserRouter>
       <AuthProvider>
         <ErrorBoundary>
           <App />
