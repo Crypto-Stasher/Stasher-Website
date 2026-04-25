@@ -21,7 +21,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   overflow-x: hidden;
   position: relative;
@@ -111,12 +112,10 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 242, 254, 0.02) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(0, 242, 254, 0.02) 50%,
+      transparent 100%);
   background-size: 100% 4px;
   z-index: 100;
   pointer-events: none;
@@ -125,8 +124,13 @@ section {
 }
 
 @keyframes scanline {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(100%); }
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
 }
 
 .cursor-glow {
@@ -243,7 +247,7 @@ section {
   height: 1px;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 2rem;
+  padding: 2rem 2rem;
   overflow: visible;
 }
 
@@ -293,7 +297,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  padding: 2rem 0;
+  padding: 2rem 2rem;
 }
 
 .divider-dots .dot {
@@ -311,9 +315,17 @@ section {
   transform: scale(1);
 }
 
-.divider-dots.active .dot:nth-child(1) { transition-delay: 0.1s; }
-.divider-dots.active .dot:nth-child(2) { transition-delay: 0.25s; }
-.divider-dots.active .dot:nth-child(3) { transition-delay: 0.4s; }
+.divider-dots.active .dot:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.divider-dots.active .dot:nth-child(2) {
+  transition-delay: 0.25s;
+}
+
+.divider-dots.active .dot:nth-child(3) {
+  transition-delay: 0.4s;
+}
 
 /* ─── HUD SYSTEM ─── */
 .hud-corner {
@@ -327,10 +339,27 @@ section {
   opacity: 0.7;
 }
 
-.hud-top-left { top: 90px; left: 2rem; }
-.hud-top-right { top: 90px; right: 2rem; text-align: right; }
-.hud-bottom-left { bottom: 2rem; left: 2rem; }
-.hud-bottom-right { bottom: 2rem; right: 2rem; text-align: right; }
+.hud-top-left {
+  top: 90px;
+  left: 2rem;
+}
+
+.hud-top-right {
+  top: 90px;
+  right: 2rem;
+  text-align: right;
+}
+
+.hud-bottom-left {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.hud-bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+  text-align: right;
+}
 
 @media (max-width: 1200px) {
   .hud-corner {
@@ -352,8 +381,17 @@ section {
 }
 
 @keyframes pulse-width {
-  0%, 100% { width: 50px; opacity: 0.5; }
-  50% { width: 100px; opacity: 1; }
+
+  0%,
+  100% {
+    width: 50px;
+    opacity: 0.5;
+  }
+
+  50% {
+    width: 100px;
+    opacity: 1;
+  }
 }
 
 /* ─── 3D TILT & GLARE ─── */
@@ -379,9 +417,19 @@ section {
 }
 
 @keyframes radar-ping {
-  0% { transform: scale(0.8); opacity: 0; }
-  20% { opacity: 0.4; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 .data-stream {
@@ -394,8 +442,13 @@ section {
 }
 
 @keyframes data-fall {
-  from { transform: translateY(-200px); }
-  to { transform: translateY(100vh); }
+  from {
+    transform: translateY(-200px);
+  }
+
+  to {
+    transform: translateY(100vh);
+  }
 }
 
 /* ─── NAV ─── */
@@ -461,8 +514,15 @@ nav {
 }
 
 @keyframes nav-underline-in {
-  from { width: 0; left: 50%; }
-  to { width: 100%; left: 0; }
+  from {
+    width: 0;
+    left: 50%;
+  }
+
+  to {
+    width: 100%;
+    left: 0;
+  }
 }
 
 .layout-root {
@@ -1047,7 +1107,7 @@ nav {
   overflow-x: auto;
   margin-top: 3rem;
   border: 1px solid rgba(0, 242, 254, 0.15);
-  background: linear-gradient(to right, var(--bg-deep) 30%, rgba(255,255,255,0)), linear-gradient(to right, rgba(255,255,255,0), var(--bg-deep) 70%) 100% 0, radial-gradient(farthest-side at 0 50%, rgba(0,242,254,0.2), rgba(0,0,0,0)), radial-gradient(farthest-side at 100% 50%, rgba(0,242,254,0.2), rgba(0,0,0,0)) 100% 0;
+  background: linear-gradient(to right, var(--bg-deep) 30%, rgba(255, 255, 255, 0)), linear-gradient(to right, rgba(255, 255, 255, 0), var(--bg-deep) 70%) 100% 0, radial-gradient(farthest-side at 0 50%, rgba(0, 242, 254, 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 100% 50%, rgba(0, 242, 254, 0.2), rgba(0, 0, 0, 0)) 100% 0;
   background-repeat: no-repeat;
   background-color: var(--bg-card);
   background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
@@ -1694,7 +1754,9 @@ footer {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 600px) {
@@ -1727,4 +1789,3 @@ footer {
   outline: 2px solid var(--accent-cyan);
   outline-offset: 2px;
 }
-
