@@ -600,6 +600,16 @@ nav {
   pointer-events: none;
 }
 
+.hero-canvas {
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  z-index: 1;
+  touch-action: pan-y;
+  filter: drop-shadow(0 0 30px rgba(0, 242, 254, 0.15));
+}
+
 .hero-image::before {
   content: '';
   position: absolute;
