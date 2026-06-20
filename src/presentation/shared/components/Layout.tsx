@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useActiveSection, useCursorGlow, useSmoothScroll } from '@hooks';
-import { HUD } from './HUD';
 import { useAuth } from '../../../application/context/AuthContext';
+import { ThemeToggle } from './ThemeToggle';
 import { Link } from 'react-router-dom';
 import type { FooterContent } from '@models/sections';
 
@@ -28,10 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
     <div className="layout-root">
       <a href="#main-content" className="skip-to-content">Skip to content</a>
       <div className="bg-grid" aria-hidden="true"></div>
-      <div className="scanline" aria-hidden="true"></div>
       <div className="cursor-glow" aria-hidden="true"></div>
-
-      <HUD />
 
       <nav>
         <div className="container nav-content">
@@ -45,7 +42,6 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
               <path d="M180,10 L160,10 L160,30 L180,30 M160,20 L175,20" />
               <path d="M190,30 L190,10 L210,10 L210,20 L190,20 L210,30" />
             </svg>
-            <span className="tech-tag nav-tech-tag">V2.1</span>
           </div>
           <button
             className={`nav-hamburger ${menuOpen ? 'nav-hamburger--open' : ''}`}
@@ -72,16 +68,17 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             {/* AUTH ACTIONS */}
             {!isAuthenticated ? (
               <Link to="/auth" style={{ color: 'var(--accent-cyan)' }}>
-                OPERATOR LOGIN
+                Log in
               </Link>
             ) : (
               <>
-                <span style={{ color: 'var(--text-tech)', cursor: 'default' }}>[{userEmail?.split('@')[0].toUpperCase()}]</span>
+                <span style={{ color: 'var(--text-tech)', cursor: 'default' }}>{userEmail?.split('@')[0]}</span>
                 <a href="#" onClick={(e) => { e.preventDefault(); logout(); }} style={{ color: 'var(--accent-red)' }}>
-                  LOGOUT
+                  Log out
                 </a>
               </>
             )}
+            <ThemeToggle />
           </div>
         </div>
       </nav>

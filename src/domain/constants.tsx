@@ -3,9 +3,9 @@ import type { SiteContent } from '@models/SiteContent.type';
 export const SITE_CONTENT: SiteContent = {
   hero: {
     tag: "THE OFFLINE WALLET FOR YOUR CRYPTO",
-    title: "YOUR CRYPTO, SAFE IN YOUR POCKET.",
+    title: "Your crypto, safe in your pocket.",
     description: "Stasher is a small device that keeps your crypto safe. Think of it as a vault you carry. It never goes online, so hackers cannot reach it. You press a button on the device to approve every move. Built to stay safe for decades, even against future super-computers.",
-    cta: "GET STASHER",
+    cta: "Get Stasher",
     networkLoad: "0.042 MS/S"
   },
 
@@ -19,7 +19,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   architecture: {
-    title: "HOW STASHER KEEPS YOUR CRYPTO SAFE",
+    title: "How Stasher keeps your crypto safe",
     subtitle: "How It Works",
     description: "Two small devices work together. One holds your money and stays offline. The other helps it talk to the internet, without ever seeing your secrets. Your money and the internet never share the same wire.",
     zones: [
@@ -49,7 +49,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   security: {
-    title: "BUILT LIKE A VAULT",
+    title: "Built like a vault",
     subtitle: "Why It's Safe",
     description: "Every layer is designed so that even if something goes wrong, your crypto stays yours. Your secrets never leave the device. Even if your phone gets hacked, your crypto is fine.",
     features: [
@@ -93,7 +93,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   howItWorks: {
-    title: "SENDING CRYPTO IS JUST EIGHT STEPS",
+    title: "Sending crypto is just eight steps",
     subtitle: "How Sending Works",
     steps: [
       { step: 1, label: "PICK", description: "Open the Stasher app on your phone. Choose how much you want to send and who gets it.", zone: "hot" },
@@ -108,7 +108,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   differentiators: {
-    title: "WHY STASHER",
+    title: "Why Stasher",
     items: [
       {
         id: "01",
@@ -138,7 +138,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   products: {
-    title: "FROM YOUR POCKET TO A COMPANY VAULT",
+    title: "From your pocket to a company vault",
     subtitle: "Two Versions",
     tiers: [
       {
@@ -180,7 +180,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   appShowcase: {
-    title: "THE STASHER APP",
+    title: "The Stasher app",
     subtitle: "Your Everyday Screen",
     description: "A friendly phone app that shows all your crypto in one place. Send money to a friend, pay someone, or move funds around — a few taps and a press on the Stasher device, and you are done. Your crypto stays safe on the device. Your phone just helps you use it.",
     features: [
@@ -198,7 +198,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   comparison: {
-    title: "HOW STASHER COMPARES",
+    title: "How Stasher compares",
     subtitle: "Stasher vs. Others",
     competitors: ["Ledger Nano X", "Trezor Safe 5"],
     rows: [
@@ -219,7 +219,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   openSource: {
-    title: "NOTHING TO HIDE",
+    title: "Nothing to hide",
     subtitle: "Transparency",
     description: "We believe you should be able to check for yourself that Stasher does what it promises. That is why the code inside Stasher is public — anyone can read it, inspect it, and even improve it.",
     points: [
@@ -231,7 +231,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   compliance: {
-    title: "READY FOR SERIOUS BUSINESS",
+    title: "Ready for serious business",
     description: "Stasher Enterprise meets the strict rules that banks, exchanges, and large investors need. Every action is logged. Every permission is set. Nothing happens without proof.",
     points: [
       "Ready for financial audits and regulator review",
@@ -244,7 +244,7 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   faq: {
-    title: "FREQUENTLY ASKED QUESTIONS",
+    title: "Frequently asked questions",
     subtitle: "FAQ",
     items: [
       {
@@ -299,20 +299,20 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   assets: {
-    title: "COINS YOU CAN STORE",
+    title: "Coins you can store",
     items: ["BITCOIN", "ETHEREUM", "SOLANA", "XRP", "POLKADOT", "LITECOIN", "CARDANO", "50+ MORE"]
   },
 
   newsletter: {
-    title: "STAY IN THE LOOP",
+    title: "Stay in the loop",
     description: "Launch news, helpful tips, and early access — no spam, ever.",
     placeholder: "your@email.com",
     cta: "SUBSCRIBE"
   },
 
   footer: {
-    transmission: "END OF TRANSMISSION",
-    copyright: "\u00A9 2026 STASHER // OFFLINE, QUANTUM-RESILIENT CRYPTO CUSTODY // ALL RIGHTS RESERVED",
+    transmission: "Offline security, made simple.",
+    copyright: "\u00A9 2026 Stasher \u00B7 Keep your crypto safe, offline \u00B7 All rights reserved",
     socials: [
       { name: "GitHub", url: "https://github.com/Crypto-Stasher", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg> },
       { name: "X", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg> },

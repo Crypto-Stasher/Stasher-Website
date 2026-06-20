@@ -1,35 +1,12 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
+// Soft concentric glow behind the hero product render. Kept subtle and calm —
+// no "radar sweep" or data-stream effects (those read as hacker-cosplay).
 export const Radar: React.FC = () => {
-  const streams = useMemo(() =>
-    Array.from({ length: 10 }, () => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: `${3 + Math.random() * 4}s`,
-    })),
-  []);
-
   return (
-    <div className="radar-container">
+    <div className="radar-container" aria-hidden="true">
       <div className="radar-ring" style={{ width: '300px', height: '300px', animationDelay: '0s' }} />
-      <div className="radar-ring" style={{ width: '400px', height: '400px', animationDelay: '1s' }} />
-      <div className="radar-ring" style={{ width: '500px', height: '500px', animationDelay: '2s' }} />
-      
-      {/* Data Streams */}
-      {streams.map((stream, i) => (
-        <div 
-          key={i} 
-          className="data-stream" 
-          style={{ 
-            left: stream.left, 
-            top: stream.top,
-            animationDelay: stream.animationDelay,
-            animationDuration: stream.animationDuration
-          }} 
-        />
-      ))}
+      <div className="radar-ring" style={{ width: '440px', height: '440px', animationDelay: '1.5s' }} />
     </div>
   );
 };
-

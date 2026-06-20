@@ -58,7 +58,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
     <div className="hero-canvas" role="img" aria-label={alt}>
       <Canvas
         shadows
-        camera={{ position: [0, 0, 5], fov: 32 }}
+        camera={{ position: [0, 0, 7.5], fov: 32 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
       >
@@ -70,7 +70,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
         <pointLight position={[-4, -1, 3]} intensity={1.2} color="#00f2fe" />
 
         <Suspense fallback={null}>
-          <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.3}>
+          <Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.15}>
             <StasherModel />
           </Float>
 

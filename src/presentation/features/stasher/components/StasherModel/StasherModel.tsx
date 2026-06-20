@@ -27,23 +27,28 @@ export const StasherModel: React.FC = () => {
     const dt = Math.min(delta, 1 / 30); // guard against tab-switch jumps
     const t = state.clock.elapsedTime;
 
-    const range = window.innerHeight * 1.1;
+    // The hero pins for one viewport of scroll (.hero-scroll is 200vh, .hero is
+    // sticky 100vh). Map that pinned viewport to exactly one full turn.
+    const range = window.innerHeight;
     const target = THREE.MathUtils.clamp(window.scrollY / range, 0, 1);
     progress.current = THREE.MathUtils.damp(progress.current, target, 6, dt);
     const p = progress.current;
 
-    if (group.current) {
-      group.current.rotation.y = p * Math.PI * 2 + t * 0.16;
-      group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, -0.08 + p * 0.28, 6, dt);
-    }
+    // Pointer position over the canvas, normalized to -1..1.
+    const px = state.pointer.x;
+    const py = state.pointer.y;
 
-    // Exploded view: layers separate as you scroll down.
-    if (screen.current) screen.current.position.z = 0.1 + p * 0.5;
-    if (buttons.current) {
-      buttons.current.position.z = 0.08 + p * 0.3;
-      buttons.current.position.y = -0.82 - p * 0.25;
+    if (group.current) {
+      // Scroll drives a full turn (0 -> 2π over the pin); a slow idle spin keeps
+      // it alive at rest. Pointer adds a gentle lean so the device tilts toward
+      // the cursor. Eased so it follows smoothly, not jittery.
+      // Pointer tilt only applies at rest; it fades out as you scroll (lean -> 0 by
+      // the time p = 1) so the pinned full-cycle rotation stays clean and on-axis.
+      const lean = 1 - p;
+      const spinY = p * Math.PI * 2 + t * 0.25;
+      group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, spinY + px * 1.8 * lean, 10, dt);
+      group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, -0.08 + p * 0.1 - py * 1.2 * lean, 8, dt);
     }
-    if (body.current) body.current.position.z = -p * 0.12;
   });
 
   return (
