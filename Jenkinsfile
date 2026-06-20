@@ -23,6 +23,7 @@ pipeline {
     DEPLOY_BASE = '/var/www/stasher'
     SITE_URL    = 'https://stasherwallet.com'
     SSH_OPTS    = '-o StrictHostKeyChecking=accept-new'
+    NOTIFY_EMAIL = 'nir.kalmanovitz@gmail.com'
   }
 
   stages {
@@ -92,6 +93,20 @@ pipeline {
           echo 'build failed before deploy — prod untouched, no rollback needed'
         }
       }
+      // Alert on any failure (build or deploy). Requires SMTP configured in
+      // Manage Jenkins -> System -> E-mail Notification + a System Admin e-mail (the From).
+      mail to: env.NOTIFY_EMAIL,
+           subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+           body: """Deploy pipeline failed.
+Job:     ${env.JOB_NAME} #${env.BUILD_NUMBER}
+Rollback: ${env.DEPLOYED == '1' ? 'attempted (prod was already swapped)' : 'not needed (build failed before deploy)'}
+Logs:    ${env.BUILD_URL}console"""
+    }
+    fixed {
+      // First green build after a failure — let people know prod recovered.
+      mail to: env.NOTIFY_EMAIL,
+           subject: "RECOVERED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+           body: "Pipeline is green again. ${env.SITE_URL} deployed OK.\n${env.BUILD_URL}"
     }
   }
 }

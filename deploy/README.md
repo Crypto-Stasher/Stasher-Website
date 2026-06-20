@@ -32,7 +32,21 @@ See [`nginx/stasher.conf`](nginx/stasher.conf) for the tracked copy of the serve
 4. **On failure** — run `bin/rollback.sh` on the box.
 
 Build runs on the Jenkins host (on-prem), not third-party cloud. Prod only receives the
-built artifact over a scoped SSH connection as the unprivileged `deploy` user.
+built artifact over a scoped SSH connection as the unprivileged `deploy2` user.
+
+## Triggering
+
+The job builds the `main` branch. Today it's started manually (**Build Now**) or by
+**Poll SCM**. A real **GitHub webhook → Jenkins** (push to `main` auto-deploys) is deferred
+until Jenkins moves to a public Hetzner VM — the local lab Jenkins isn't reachable from
+GitHub without a tunnel (ngrok). See `jenkins-host.md` (TODO) for the webhook setup on the VM.
+
+## Notifications
+
+On failure the pipeline e-mails `NOTIFY_EMAIL` (set in the Jenkinsfile) and, if prod was
+already swapped, auto-rolls-back. A recovery e-mail is sent on the first green build after
+a failure. Requires SMTP configured in **Manage Jenkins → System → E-mail Notification**
+plus a **System Admin e-mail address** (used as the From).
 
 ## One-time prod setup
 
