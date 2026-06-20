@@ -3,6 +3,7 @@ import stasherHero from '@assets/stasher_hero_image_no_back.png';
 import type { HeroContent } from '@models/sections';
 import { useTextScramble } from '@hooks';
 import { Radar } from '@features/stasher/components/Radar';
+import { StasherScene } from '@features/stasher/components/StasherModel';
 
 interface HeroProps {
   content: HeroContent;
@@ -31,15 +32,9 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
         </div>
         <div className="hero-image reveal-right">
           <Radar />
-          <img
-            src={stasherHero}
-            srcSet={`${stasherHero} 1x, ${stasherHero} 2x`}
+          <StasherScene
+            fallbackSrc={stasherHero}
             alt="Stasher Hardware Wallet — air-gapped cold storage device"
-            className="hero-device-img"
-            width={540}
-            height={540}
-            fetchPriority="high"
-            decoding="async"
           />
         </div>
       </div>
