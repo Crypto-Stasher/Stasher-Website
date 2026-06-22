@@ -58,7 +58,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
     <div className="hero-canvas" role="img" aria-label={alt}>
       <Canvas
         shadows
-        camera={{ position: [0, 0, 7.5], fov: 32 }}
+        camera={{ position: [0, 0, 8], fov: 32 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
       >
@@ -67,7 +67,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
         <hemisphereLight intensity={0.6} groundColor="#202833" color="#cfeeff" />
         <spotLight position={[4, 6, 6]} angle={0.5} penumbra={1} intensity={3} castShadow />
         <directionalLight position={[-2, 3, 4]} intensity={1.2} />
-        <pointLight position={[-4, -1, 3]} intensity={1.2} color="#00f2fe" />
+        <pointLight position={[-4, -1, 3]} intensity={1.2} color="#8fb6f2" />
 
         <Suspense fallback={null}>
           <Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.15}>
@@ -87,7 +87,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
           <Environment resolution={256}>
             <Lightformer intensity={3} position={[0, 2, 4]} scale={[6, 3, 1]} color="#bfe9ff" />
             <Lightformer intensity={2} position={[-4, 1, 2]} scale={[3, 6, 1]} color="#ffffff" />
-            <Lightformer intensity={1.5} position={[4, -1, 2]} scale={[3, 6, 1]} color="#00f2fe" />
+            <Lightformer intensity={1.5} position={[4, -1, 2]} scale={[3, 6, 1]} color="#f78fb3" />
             <Lightformer intensity={2} position={[0, -3, -3]} scale={[8, 4, 1]} color="#1a2230" />
           </Environment>
         </Suspense>

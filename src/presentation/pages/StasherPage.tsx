@@ -4,7 +4,6 @@ import {
   Architecture,
   Assets,
   Comparison,
-  Compliance,
   Differentiators,
   Faq,
   Hero,
@@ -49,8 +48,6 @@ export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
 
       <Divider variant="dots" />
       <OpenSource content={content.openSource} />
-      <Divider variant="glow" />
-      <Compliance content={content.compliance} />
 
       <Assets content={content.assets} />
       <Divider variant="dots" />
