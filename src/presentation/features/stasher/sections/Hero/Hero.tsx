@@ -3,12 +3,14 @@ import stasherHero from '@assets/stasher_hero_image_no_back.png';
 import type { HeroContent } from '@models/sections';
 import { Radar } from '@features/stasher/components/Radar';
 import { StasherScene } from '@features/stasher/components/StasherModel';
+import { useSmoothScroll } from '@hooks';
 
 interface HeroProps {
   content: HeroContent;
 }
 
 export const Hero: React.FC<HeroProps> = ({ content }) => {
+  const scrollTo = useSmoothScroll();
   return (
     // Tall outer track: the inner hero pins (sticky) while the 3D model spins a full
     // turn, then the page scrolls on. See StasherModel for the scroll->rotation mapping.
@@ -20,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
           <h1 className="hero-title-container">{content.title}</h1>
           <p className="hero-desc">{content.description}</p>
           <div className="hero-cta-row">
-            <button className="cta-button">{content.cta}</button>
+            <a href="#products" className="cta-button" onClick={scrollTo}>{content.cta}</a>
             <div className="hero-network-stat">
               <div className="node-label">Supported chains</div>
               <div className="hero-network-value">56+</div>

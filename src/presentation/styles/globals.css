@@ -996,6 +996,8 @@ nav {
 }
 
 .cta-button {
+  display: inline-block;
+  text-decoration: none;
   background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
   border: 1px solid transparent;
   color: #fff;
