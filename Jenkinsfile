@@ -82,7 +82,7 @@ pipeline {
         // Only roll back if we already swapped prod (deploy succeeded but a later stage failed).
         // A build failure leaves prod untouched — don't revert a healthy release.
         if (env.DEPLOYED == '1') {
-          sshagent(['stasher-deploy-key']) {
+          sshagent(['yuval-stasher-deploy-key']) {
             sh '''
               set +e
               echo "post-deploy failure — rolling prod back"
