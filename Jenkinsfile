@@ -18,7 +18,7 @@ pipeline {
   }
 
   environment {
-    DEPLOY_HOST = '204.168.246.198'
+    DEPLOY_HOST = '116.203.44.17'
     DEPLOY_USER = 'deploy2'
     DEPLOY_BASE = '/var/www/stasher'
     SITE_URL    = 'https://stasherwallet.com'
