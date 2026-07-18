@@ -45,7 +45,7 @@ pipeline {
           def sha = (env.GIT_COMMIT ?: '').take(7)
           env.RELEASE = "${env.BUILD_NUMBER}-${sha ?: 'manual'}"
         }
-        sshagent(['stasher-deploy-key']) {
+        sshagent(['yuval-stasher-deploy-key']) {
           sh '''
             set -eu
             REL="$DEPLOY_BASE/releases/$RELEASE"
