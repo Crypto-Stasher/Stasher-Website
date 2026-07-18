@@ -4,6 +4,7 @@ import { useAuth } from '../../../application/context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
 import { Link } from 'react-router-dom';
 import type { FooterContent } from '@models/sections';
+import { StasherBrand } from './StasherBrand';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -32,17 +33,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
 
       <nav>
         <div className="container nav-content">
-          <div className="logo nav-logo-container">
-            <svg viewBox="0 0 220 40" width="132" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
-              <path d="M30,10 L10,10 L10,20 L30,20 L30,30 L10,30" />
-              <path d="M40,10 L60,10 M50,10 L50,30" />
-              <path d="M70,30 L80,10 L90,30 M75,20 L85,20" />
-              <path d="M120,10 L100,10 L100,20 L120,20 L120,30 L100,30" />
-              <path d="M130,10 L130,30 M150,10 L150,30 M130,20 L150,20" />
-              <path d="M180,10 L160,10 L160,30 L180,30 M160,20 L175,20" />
-              <path d="M190,30 L190,10 L210,10 L210,20 L190,20 L210,30" />
-            </svg>
-          </div>
+          <a href="#overview" className="nav-brand" onClick={handleNavClick} aria-label="Stasher home">
+            <StasherBrand />
+          </a>
           <button
             className={`nav-hamburger ${menuOpen ? 'nav-hamburger--open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -59,21 +52,24 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
                 key={link.href}
                 href={link.href}
                 onClick={handleNavClick}
-                className={activeSection === link.href ? 'nav-active' : ''}
+                className={[
+                  'nav-link',
+                  activeSection === link.href ? 'nav-active' : '',
+                  link.href === '#products' ? 'nav-link--cta' : '',
+                ].filter(Boolean).join(' ')}
               >
                 {link.label}
               </a>
             ))}
-            
-            {/* AUTH ACTIONS */}
+
             {!isAuthenticated ? (
-              <Link to="/auth" style={{ color: 'var(--accent-cyan)' }}>
+              <Link to="/auth" className="nav-account-link">
                 Log in
               </Link>
             ) : (
               <>
-                <span style={{ color: 'var(--text-tech)', cursor: 'default' }}>{userEmail?.split('@')[0]}</span>
-                <a href="#" onClick={(e) => { e.preventDefault(); logout(); }} style={{ color: 'var(--accent-red)' }}>
+                <span className="nav-user">{userEmail?.split('@')[0]}</span>
+                <a className="nav-account-link" href="#" onClick={(e) => { e.preventDefault(); logout(); }}>
                   Log out
                 </a>
               </>
@@ -89,18 +85,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
         <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <div className="logo footer-logo-container">
-                <svg viewBox="0 0 220 40" width="132" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
-                  <path d="M30,10 L10,10 L10,20 L30,20 L30,30 L10,30" />
-                  <path d="M40,10 L60,10 M50,10 L50,30" />
-                  <path d="M70,30 L80,10 L90,30 M75,20 L85,20" />
-                  <path d="M120,10 L100,10 L100,20 L120,20 L120,30 L100,30" />
-                  <path d="M130,10 L130,30 M150,10 L150,30 M130,20 L150,20" />
-                  <path d="M180,10 L160,10 L160,30 L180,30 M160,20 L175,20" />
-                  <path d="M190,30 L190,10 L210,10 L210,20 L190,20 L210,30" />
-                </svg>
-              </div>
-              <div className="node-label">{footer.transmission}</div>
+              <StasherBrand />
+              <p className="footer-transmission">{footer.transmission}</p>
+            </div>
+            <div className="footer-nav" aria-label="Footer navigation">
+              {navLinks.slice(0, 4).map((link) => (
+                <a key={link.href} href={link.href} onClick={scrollTo}>
+                  {link.label}
+                </a>
+              ))}
             </div>
             <div className="footer-socials">
               {footer.socials.map((social) => (
@@ -126,5 +119,3 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
     </div>
   );
 };
-
-

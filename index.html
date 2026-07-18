@@ -2,23 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="preload" as="image" href="/screens/stasher-firmware-progress.png" />
+    <link rel="preload" as="image" href="/screens/stasher-home.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Self-custody hardware wallet for Bitcoin, Ethereum and 56+ chains. Your keys stay offline, always — built to stay safe even against future quantum computers." />
-    <meta name="theme-color" content="#050508" />
+    <meta name="description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
+    <meta name="theme-color" content="#050606" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (() => {
+        let theme = 'dark';
+        try {
+          const saved = localStorage.getItem('theme');
+          theme = saved === 'light' || saved === 'dark'
+            ? saved
+            : matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+        } catch {
+          theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'light' ? '#f1efe7' : '#050606');
+      })();
+    </script>
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Stasher — Your Keys. Your Crypto. Offline." />
-    <meta property="og:description" content="Self-custody hardware wallet for Bitcoin, Ethereum and 56+ chains. Your keys stay offline, always." />
+    <meta property="og:title" content="Stasher — Your Crypto, Truly Yours." />
+    <meta property="og:description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
     <meta property="og:image" content="https://stasherwallet.com/favicon.svg" />
     <meta property="og:url" content="https://stasherwallet.com/" />
     <meta property="og:site_name" content="Stasher" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Stasher — Your Keys. Your Crypto. Offline." />
-    <meta name="twitter:description" content="Self-custody hardware wallet for Bitcoin, Ethereum and 56+ chains. Your keys stay offline, always." />
+    <meta name="twitter:title" content="Stasher — Your Crypto, Truly Yours." />
+    <meta name="twitter:description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
     <meta name="twitter:image" content="https://stasherwallet.com/favicon.svg" />
-    <title>Stasher — Your Keys. Your Crypto. Offline.</title>
+    <title>Stasher — Your Crypto, Truly Yours.</title>
     <link rel="canonical" href="https://stasherwallet.com/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

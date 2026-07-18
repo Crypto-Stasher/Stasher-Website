@@ -9,7 +9,7 @@ interface DifferentiatorsProps {
 export const Differentiators: React.FC<DifferentiatorsProps> = ({ title, items }) => {
   return (
     <section id="differentiators" className="container">
-      <p className="section-title">Institutional Core</p>
+      <p className="section-title">Why Stasher</p>
       <h2 className="section-heading reveal-blur">{title}</h2>
       <div className="features-grid stagger">
         {items.map((item) => (

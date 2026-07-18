@@ -4,17 +4,17 @@ import { Layout } from './presentation/shared/components/Layout';
 import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { AuthPage } from './presentation/pages/AuthPage';
+import { ErrorPage } from './presentation/pages/ErrorPage';
 
 const App: React.FC = () => {
   const content = ContentRepository.getContent();
 
   const navLinks = [
-    { href: "#differentiators", label: "Why Stasher" },
+    { href: "#device", label: "Device" },
     { href: "#architecture", label: "How it works" },
     { href: "#security", label: "Security" },
-    { href: "#products", label: "Products" },
-    { href: "#compare", label: "Compare" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#app", label: "App" },
+    { href: "#products", label: "Get Stasher" },
   ];
 
   return (
@@ -28,6 +28,9 @@ const App: React.FC = () => {
         }
       />
       <Route path="/auth" element={<AuthPage />} />
+      {/* Prod nginx serves index.html for any unknown URL — without this
+          catch-all, those URLs render a blank page. */}
+      <Route path="*" element={<ErrorPage is404 />} />
     </Routes>
   );
 };

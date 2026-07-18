@@ -1,153 +1,138 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../application/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import '../shared/components/LoginModal.css'; // We can reuse the styling from the modal
+import { ThemeToggle } from '../shared/components/ThemeToggle';
+import { StasherBrand } from '../shared/components/StasherBrand';
+
+type Mode = 'LOGIN' | 'SIGNUP';
 
 export const AuthPage: React.FC = () => {
   const { login, signup } = useAuth();
   const navigate = useNavigate();
 
-  const [mode, setMode] = useState<'LOGIN' | 'SIGNUP'>('LOGIN');
-
+  const [mode, setMode] = useState<Mode>('LOGIN');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [org, setOrg] = useState('');
-  const [token, setToken] = useState('');
+  const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const isLogin = mode === 'LOGIN';
+
+  const switchMode = () => {
+    setMode(isLogin ? 'SIGNUP' : 'LOGIN');
+    setError('');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
+    if (!isLogin && password !== confirmPassword) {
+      setError('The passwords do not match.');
+      return;
+    }
+
     setIsSubmitting(true);
-    if (mode === 'LOGIN') {
+    if (isLogin) {
       await login(email);
     } else {
-      await signup?.(email); // added signup to auth context
+      await signup?.(email);
     }
     setIsSubmitting(false);
-    navigate('/'); // Redirect to the main site
+    navigate('/');
   };
 
   return (
-    <div className="layout-root" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: 'var(--bg-deep)' }}>
+    <div className="layout-root auth-page">
       <div className="bg-grid" aria-hidden="true"></div>
-      <div className="scanline" aria-hidden="true"></div>
 
-      <div className="modal-container" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="modal-glare"></div>
-        <button className="modal-close" onClick={() => navigate('/')} aria-label="Close">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+      {/* Theme init normally lives in the site nav; this page has no nav. */}
+      <div className="auth-theme-toggle">
+        <ThemeToggle />
+      </div>
 
-        <div className="modal-header">
-          <div className="modal-tech-tag">SECURE_LINK_PROT</div>
-          <h2 className="modal-title">{mode === 'LOGIN' ? 'OPERATOR AUTHENTICATION' : 'NEW OPERATOR REGISTRATION'}</h2>
-          <div className="modal-scanline"></div>
-        </div>
+      <main className="auth-card">
+        <Link to="/" className="auth-logo" aria-label="Back to the Stasher homepage">
+          <StasherBrand />
+        </Link>
 
-        <form onSubmit={handleSubmit} className="modal-form">
-          <div className="form-group">
-            <label htmlFor="email">CLIENT_ID [EMAIL]</label>
+        <h1 className="auth-title">{isLogin ? 'Welcome back' : 'Create your account'}</h1>
+        <p className="auth-desc">
+          {isLogin
+            ? 'Log in to manage your Stasher.'
+            : 'A free account to register your device and get updates.'}
+        </p>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="auth-field">
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
+              autoComplete="email"
               required
-              placeholder="operator@stasher.io"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isSubmitting}
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">ACCESS_PHRASE</label>
+          <div className="auth-field">
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
+              autoComplete={isLogin ? 'current-password' : 'new-password'}
               required
-              placeholder="••••••••••••"
+              minLength={8}
+              placeholder={isLogin ? 'Your password' : 'At least 8 characters'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isSubmitting}
             />
           </div>
 
-          {mode === 'SIGNUP' && (
-            <>
-              <div className="form-group">
-                <label htmlFor="confirm-password">CONFIRM_ACCESS_PHRASE</label>
-                <input
-                  id="confirm-password"
-                  type="password"
-                  required
-                  placeholder="••••••••••••"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  disabled={isSubmitting}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="org">ORGANIZATION_NAME</label>
-                <input
-                  id="org"
-                  type="text"
-                  required
-                  placeholder="Stasher Corp"
-                  value={org}
-                  onChange={(e) => setOrg(e.target.value)}
-                  disabled={isSubmitting}
-                />
-              </div>
-            </>
-          )}
-
-          {mode === 'LOGIN' && (
-            <div className="form-group">
-              <label htmlFor="token">2FA_TOKEN [TOTP/FIDO2]</label>
+          {!isLogin && (
+            <div className="auth-field">
+              <label htmlFor="confirm-password">Confirm password</label>
               <input
-                id="token"
-                type="text"
+                id="confirm-password"
+                type="password"
+                autoComplete="new-password"
                 required
-                placeholder="000000"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
+                minLength={8}
+                placeholder="Same password again"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isSubmitting}
               />
-              <div className="input-decorator">AWAITING_INPUT</div>
             </div>
           )}
 
-          <button type="submit" className="modal-submit" disabled={isSubmitting}>
-            {isSubmitting ? 'VERIFYING...' : (mode === 'LOGIN' ? 'INITIALIZE UPLINK' : 'REGISTER CLEARANCE')}
+          {error && (
+            <p className="auth-error" role="alert">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" className="cta-button auth-submit" disabled={isSubmitting}>
+            {isSubmitting ? 'One moment…' : isLogin ? 'Log in' : 'Create account'}
           </button>
         </form>
 
-        <div style={{ marginTop: '2rem', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
-          <span style={{ color: 'var(--text-dim)' }}>
-            {mode === 'LOGIN' ? 'NO CLEARANCE?' : 'ALREADY CLEARED?'}
-          </span>
-          {' '}
-          <button
-            type="button"
-            onClick={() => setMode(mode === 'LOGIN' ? 'SIGNUP' : 'LOGIN')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--accent-cyan)',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              textDecoration: 'underline',
-              padding: 0
-            }}
-          >
-            {mode === 'LOGIN' ? 'REQUEST ACCESS' : 'AUTHENTICATE'}
+        <p className="auth-switch">
+          {isLogin ? 'New to Stasher?' : 'Already have an account?'}{' '}
+          <button type="button" className="auth-switch-link" onClick={switchMode}>
+            {isLogin ? 'Create an account' : 'Log in'}
           </button>
-        </div>
-      </div>
+        </p>
+
+        <Link to="/" className="auth-back">
+          ← Back to the homepage
+        </Link>
+      </main>
     </div>
   );
 };

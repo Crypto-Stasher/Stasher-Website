@@ -33,7 +33,22 @@ export const Architecture: React.FC<ArchitectureProps> = ({ content }) => {
         </div>
 
         <div className="arch-flow reveal">
-          <div className="arch-flow-line" />
+          <div className="arch-flow-line" aria-hidden="true">
+            <span className="arch-boundary">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="arch-packet arch-packet--one" />
+            <span className="arch-packet arch-packet--two" />
+            <span className="arch-packet arch-packet--three" />
+            <span className="arch-packet-burst">
+              <i />
+              <i />
+              <i />
+              <i />
+            </span>
+          </div>
           <div className="arch-flow-labels">
             <span style={{ color: 'var(--accent-cyan)' }}>OFFLINE</span>
             <span style={{ color: 'var(--accent-yellow)' }}>BRIDGE</span>

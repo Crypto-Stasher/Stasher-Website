@@ -1727,7 +1727,7 @@ footer {
 }
 
 .hud-value-text {
-  color: #fff;
+  color: var(--text-main);
 }
 
 .hud-bar--right {

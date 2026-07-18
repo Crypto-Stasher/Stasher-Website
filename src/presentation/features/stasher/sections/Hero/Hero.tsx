@@ -1,9 +1,12 @@
-import React from 'react';
-import stasherHero from '@assets/stasher_hero_image_no_back.png';
+import React, { lazy, Suspense } from 'react';
+import stasherHero from '@assets/stasher-model-fallback.png';
 import type { HeroContent } from '@models/sections';
-import { Radar } from '@features/stasher/components/Radar';
-import { StasherScene } from '@features/stasher/components/StasherModel';
 import { useSmoothScroll } from '@hooks';
+
+const StasherScene = lazy(
+  () => import('@features/stasher/components/StasherModel/StasherScene')
+    .then((module) => ({ default: module.StasherScene })),
+);
 
 interface HeroProps {
   content: HeroContent;
@@ -11,32 +14,75 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ content }) => {
   const scrollTo = useSmoothScroll();
+
   return (
-    // Tall outer track: the inner hero pins (sticky) while the 3D model spins a full
-    // turn, then the page scrolls on. See StasherModel for the scroll->rotation mapping.
-    <section className="hero-scroll">
+    <section id="overview" className="hero-scroll">
       <div className="hero">
-      <div className="container hero-layout">
-        <div className="hero-content">
-          <span className="tech-tag">{content.tag}</span>
-          <h1 className="hero-title-container">{content.title}</h1>
-          <p className="hero-desc">{content.description}</p>
-          <div className="hero-cta-row">
-            <a href="#products" className="cta-button" onClick={scrollTo}>{content.cta}</a>
-            <div className="hero-network-stat">
-              <div className="node-label">Supported chains</div>
-              <div className="hero-network-value">56+</div>
+        <div className="hero-aurora hero-aurora--one" aria-hidden="true" />
+        <div className="hero-aurora hero-aurora--two" aria-hidden="true" />
+
+        <div className="container hero-layout">
+          <div className="hero-content">
+            <div className="hero-eyebrow">
+              <span className="status-dot" aria-hidden="true" />
+              {content.tag}
+            </div>
+            <h1 className="hero-title-container">{content.title}</h1>
+            <p className="hero-desc">{content.description}</p>
+
+            <div className="hero-cta-row">
+              <a href="#products" className="cta-button" onClick={scrollTo}>
+                <span>{content.cta}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a href="#architecture" className="hero-text-link" onClick={scrollTo}>
+                See how it stays offline
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+
+            <div className="hero-assurance" aria-label="Connectivity protections">
+              <span>No Wi-Fi</span>
+              <span>No Bluetooth</span>
+              <span>Keys never leave</span>
+            </div>
+          </div>
+
+          <div className="hero-image">
+            <div className="hero-stage-grid" aria-hidden="true" />
+            <div className="hero-stage-label hero-stage-label--top">
+              <span>PRODUCT MODEL</span>
+              <span>STASHER / V0.8</span>
+            </div>
+            <Suspense
+              fallback={(
+                <img
+                  src={stasherHero}
+                  alt="Black Stasher hardware wallet"
+                  className="hero-device-img"
+                  width={540}
+                  height={640}
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              )}
+            >
+              <StasherScene
+                fallbackSrc={stasherHero}
+                alt="Interactive black Stasher hardware wallet. Drag in any direction to rotate it 360 degrees."
+              />
+            </Suspense>
+            <div className="hero-stage-label hero-stage-label--bottom">
+              <span>40 × 62 × 9 MM</span>
+              <span>SCREEN / LIVE</span>
             </div>
           </div>
         </div>
-        <div className="hero-image">
-          <Radar />
-          <StasherScene
-            fallbackSrc={stasherHero}
-            alt="Stasher Hardware Wallet — air-gapped cold storage device"
-          />
+
+        <div className="hero-scroll-cue" aria-hidden="true">
+          <span>Drag to spin 360°</span>
+          <span className="hero-scroll-line" />
         </div>
-      </div>
       </div>
     </section>
   );

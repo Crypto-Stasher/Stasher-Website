@@ -4,6 +4,6 @@ import type { Config } from 'vike/types'
 export default {
   extends: vikeReact,
   prerender: true,
-  title: 'Stasher — Your Keys. Your Crypto. Offline.',
-  description: 'Hardware-isolated multi-chain custody.',
+  title: 'Stasher — Your Crypto, Truly Yours.',
+  description: 'An air-gapped hardware wallet that keeps your keys offline and every approval in your hands.',
 } satisfies Config

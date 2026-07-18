@@ -1,32 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <defs>
-    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe" />
-      <stop offset="100%" stop-color="#4facfe" />
-    </linearGradient>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#121820" />
-      <stop offset="100%" stop-color="#050508" />
-    </linearGradient>
-  </defs>
-
-  <rect width="120" height="120" rx="30" fill="url(#bg)"/>
-  <rect x="2" y="2" width="116" height="116" rx="28" fill="none" stroke="#252b36" stroke-width="2"/>
-  
-  <!-- Outer subtle tech-ring for depth -->
-  <circle cx="60" cy="60" r="42" fill="none" stroke="#00f2fe" stroke-width="1.5" opacity="0.1"/>
-  
-  <!-- The 'S' composed of two perfectly separated pathways forming the Air Gap -->
-  <g fill="none" stroke="url(#neon)" stroke-width="16" stroke-linecap="round">
-    <path d="M 80,40 
-             A 20,20 0 0,0 40,40 
-             C 40,44 45,47 51,50" />
-             
-    <path d="M 69,70 
-             C 75,73 80,76 80,80 
-             A 20,20 0 0,1 40,80" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <rect width="64" height="64" rx="14" fill="#050606"/>
+  <g transform="translate(10 10) scale(1.62962963)">
+    <path
+      fill="#ffffff"
+      d="M3 0h21l3 3v4H7v4H0V3L3 0Zm-3 11h27v6H0v-6Zm21 6h6v7l-3 3H3l-3-3v-4h21v-3Z"
+    />
   </g>
-  
-  <!-- The glowing airgap seed / data transfer node right in the center gap -->
-  <circle cx="60" cy="60" r="1.5" fill="#00f2fe"/>
 </svg>

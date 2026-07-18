@@ -1,4 +1,5 @@
 export * from './Differentiators';
+export * from './Exploded';
 export * from './Faq';
 export * from './Hero';
 export * from './HowItWorks';

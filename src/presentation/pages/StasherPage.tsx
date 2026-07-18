@@ -5,6 +5,7 @@ import {
   Assets,
   Comparison,
   Differentiators,
+  Exploded,
   Faq,
   Hero,
   HowItWorks,
@@ -14,9 +15,9 @@ import {
   Security,
   Stats,
 } from '@features/stasher/sections';
-import { Divider } from '@features/stasher/components';
 import type { SiteContent } from '@models/SiteContent.type';
 import { useScrollReveal } from '@hooks';
+import { SectionTransition } from '@features/stasher/components';
 
 interface StasherPageProps {
   content: SiteContent;
@@ -28,32 +29,27 @@ export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
     <>
       <Hero content={content.hero} />
       <Stats content={content.stats} />
-
-      <Divider variant="glow" />
+      <Exploded />
       <Differentiators title={content.differentiators.title} items={content.differentiators.items} />
+      <SectionTransition variant="airgap" />
 
       <Architecture content={content.architecture} />
-      <Divider variant="dots" />
       <HowItWorks content={content.howItWorks} />
+      <SectionTransition variant="verify" />
 
-      <Divider variant="glow" />
       <Security content={content.security} />
 
-      <Divider variant="dots" />
       <AppShowcase content={content.appShowcase} />
+      <SectionTransition variant="pair" />
 
       <Products content={content.products} />
-      <Divider variant="glow" />
       <Comparison content={content.comparison} />
 
-      <Divider variant="dots" />
       <OpenSource content={content.openSource} />
 
       <Assets content={content.assets} />
-      <Divider variant="dots" />
       <Faq content={content.faq} />
 
-      <Divider variant="glow" />
       <Newsletter content={content.newsletter} />
     </>
   );

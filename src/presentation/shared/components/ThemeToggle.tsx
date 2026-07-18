@@ -1,39 +1,19 @@
-import React, { useEffect, useState } from 'react';
-
-type Theme = 'dark' | 'light';
+import React from 'react';
+import { useTheme } from '../../../application/context/ThemeContext';
 
 /**
- * Dark/light theme switch. Sets data-theme on <html>; the CSS token overrides
- * in globals.css do the rest. Persists to localStorage.
- *
- * SSR/prerender note: starts as 'dark' (matches the prerendered HTML), then reads
- * the saved/system preference on the client in an effect — no window access during
- * the server render.
+ * Dark/light theme switch. Theme initialization and persistence live in the
+ * shared provider so every route and visual system observes the same value.
  */
 export const ThemeToggle: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>('dark');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') {
-      setTheme(saved);
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      setTheme('light');
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
+  const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+      onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       title="Toggle light / dark"
     >

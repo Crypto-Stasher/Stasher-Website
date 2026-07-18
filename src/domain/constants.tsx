@@ -2,19 +2,19 @@ import type { SiteContent } from '@models/SiteContent.type';
 
 export const SITE_CONTENT: SiteContent = {
   hero: {
-    tag: "THE OFFLINE WALLET FOR YOUR CRYPTO",
-    title: "Your crypto, safe in your pocket.",
-    description: "Stasher is a small device that keeps your crypto safe. Think of it as a vault you carry. It never goes online, so hackers cannot reach it. You press a button on the device to approve every move. Built to stay safe for decades, even against future super-computers.",
+    tag: "THE AIR-GAPPED HARDWARE WALLET",
+    title: "Your crypto, truly yours.",
+    description: "Stasher keeps your keys on a device that never goes online. Check every transaction on its screen, approve it in your hand, and keep control for the long term.",
     cta: "Get Stasher",
     networkLoad: "0.042 MS/S"
   },
 
   stats: {
     items: [
-      { value: "56+", label: "Coins You Can Store" },
-      { value: "0", label: "Times Hacked" },
-      { value: "100%", label: "Offline and Safe" },
-      { value: "FUTURE", label: "Proof Against New Attacks" }
+      { value: "100%", label: "Offline by design" },
+      { value: "56+", label: "Supported assets" },
+      { value: "2", label: "Devices, one air gap" },
+      { value: "OPEN", label: "Auditable firmware" }
     ]
   },
 

@@ -1,75 +1,214 @@
 import * as THREE from 'three';
 
-/**
- * Draws a wallet-style UI onto a canvas and returns it as a texture.
- * Done procedurally (no external fonts/images) so it works offline and in SSR builds.
- */
-export const createScreenTexture = (): THREE.CanvasTexture => {
-  const w = 512;
-  const h = 720;
-  const c = document.createElement('canvas');
-  c.width = w;
-  c.height = h;
-  const ctx = c.getContext('2d')!;
+const SCREEN_WIDTH = 958;
+const SCREEN_HEIGHT = 538;
+const BOOT_DURATION = 4;
+const BOOT_HOLD = 0.65;
+const LOGO_FADE_DURATION = 0.8;
 
-  // Background gradient
-  const bg = ctx.createLinearGradient(0, 0, 0, h);
-  bg.addColorStop(0, '#05181f');
-  bg.addColorStop(1, '#020a0e');
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, w, h);
+const GLYPHS: Record<string, string[]> = {
+  '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],
+  '1': ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
+  '2': ['01110', '10001', '00001', '00010', '00100', '01000', '11111'],
+  '3': ['11110', '00001', '00001', '01110', '00001', '00001', '11110'],
+  '4': ['00010', '00110', '01010', '10010', '11111', '00010', '00010'],
+  '5': ['11111', '10000', '10000', '11110', '00001', '00001', '11110'],
+  '6': ['01110', '10000', '10000', '11110', '10001', '10001', '01110'],
+  '7': ['11111', '00001', '00010', '00100', '01000', '01000', '01000'],
+  '8': ['01110', '10001', '10001', '01110', '10001', '10001', '01110'],
+  '9': ['01110', '10001', '10001', '01111', '00001', '00001', '01110'],
+  '%': ['11001', '11010', '00100', '00100', '01000', '10110', '00110'],
+};
 
-  // Top status bar
-  ctx.fillStyle = '#00f2fe';
-  ctx.font = 'bold 26px monospace';
-  ctx.fillText('STASHER', 36, 56);
-  ctx.beginPath();
-  ctx.arc(w - 50, 48, 9, 0, Math.PI * 2);
-  ctx.fillStyle = '#3ee37a';
-  ctx.fill();
+const drawBitmapText = (
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  centerX: number,
+  top: number,
+) => {
+  const pixel = 8;
+  const glyphWidth = 5 * pixel;
+  const gap = pixel;
+  const width = text.length * glyphWidth + Math.max(0, text.length - 1) * gap;
+  let x = Math.round(centerX - width / 2);
 
-  // Total balance
-  ctx.fillStyle = 'rgba(255,255,255,0.55)';
-  ctx.font = '22px monospace';
-  ctx.fillText('TOTAL BALANCE', 36, 150);
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 58px monospace';
-  ctx.fillText('$24,580', 36, 210);
+  for (const character of text) {
+    const glyph = GLYPHS[character];
+    if (!glyph) continue;
 
-  // Coin rows
-  const coins: Array<[string, string, string]> = [
-    ['BTC', '0.382', '#f7931a'],
-    ['ETH', '4.21', '#7b9cff'],
-    ['SOL', '128.4', '#00ffa3'],
-  ];
-  let y = 320;
-  coins.forEach(([sym, amt, color]) => {
-    ctx.fillStyle = 'rgba(255,255,255,0.04)';
-    ctx.fillRect(28, y - 34, w - 56, 78);
-    ctx.beginPath();
-    ctx.arc(70, y + 4, 22, 0, Math.PI * 2);
-    ctx.fillStyle = color;
-    ctx.fill();
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 30px monospace';
-    ctx.fillText(sym, 110, y + 14);
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.font = '28px monospace';
-    ctx.textAlign = 'right';
-    ctx.fillText(amt, w - 40, y + 14);
-    ctx.textAlign = 'left';
-    y += 104;
-  });
+    glyph.forEach((row, rowIndex) => {
+      for (let column = 0; column < row.length; column += 1) {
+        if (row[column] === '1') {
+          ctx.fillRect(x + column * pixel, top + rowIndex * pixel, pixel, pixel);
+        }
+      }
+    });
+    x += glyphWidth + gap;
+  }
+};
 
-  // Bottom confirm hint
-  ctx.fillStyle = '#00f2fe';
-  ctx.fillRect(36, h - 76, w - 72, 4);
-  ctx.fillStyle = 'rgba(0,242,254,0.85)';
-  ctx.font = '22px monospace';
-  ctx.fillText('PRESS TO CONFIRM', 110, h - 30);
+const drawFirmwareFallback = (ctx: CanvasRenderingContext2D) => {
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '700 64px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('FIRMWARE UPDATE', SCREEN_WIDTH / 2, 260);
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(79, 311, 800, 48);
+  ctx.textAlign = 'left';
+};
 
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 8;
-  return tex;
+export interface BootScreenController {
+  texture: THREE.CanvasTexture;
+  update: (elapsedTime: number) => void;
+  dispose: () => void;
+}
+
+/**
+ * Builds the device display from the two supplied firmware screenshots.
+ *
+ * The project-local copies are the exact inner 958×538 rectangles from the
+ * supplied screenshots, so the red capture perimeter is removed without
+ * resampling the black-and-white pixel art.
+ */
+export const createBootScreenTexture = (): BootScreenController => {
+  const canvas = document.createElement('canvas');
+  canvas.width = SCREEN_WIDTH;
+  canvas.height = SCREEN_HEIGHT;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Unable to create the Stasher screen canvas.');
+
+  ctx.imageSmoothingEnabled = false;
+  drawFirmwareFallback(ctx);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.minFilter = THREE.NearestFilter;
+  texture.magFilter = THREE.NearestFilter;
+  texture.generateMipmaps = false;
+  texture.needsUpdate = true;
+
+  const base = import.meta.env.BASE_URL;
+  const firmwareImage = new Image();
+  const homeImage = new Image();
+  let firmwareReady = false;
+  let homeReady = false;
+  let startedAt: number | null = null;
+  let lastPercent = -1;
+  let lastFadeStep = -1;
+  let complete = false;
+  let disposed = false;
+
+  const drawSource = (image: HTMLImageElement) => {
+    ctx.drawImage(image, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+  };
+
+  const drawProgress = (percent: number) => {
+    if (firmwareReady) {
+      drawSource(firmwareImage);
+    } else {
+      drawFirmwareFallback(ctx);
+    }
+
+    // Remove the 65% fill and percentage baked into the reference frame.
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(83, 315, 792, 40);
+    ctx.fillRect(366, 389, 226, 78);
+
+    // Keep the same four-pixel inset and 32-pixel-high fill as the device UI.
+    const fillWidth = Math.round(784 * (percent / 100));
+    if (fillWidth > 0) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(87, 319, fillWidth, 32);
+    }
+
+    drawBitmapText(ctx, `${percent}%`, SCREEN_WIDTH / 2, 399);
+  };
+
+  const drawLogoFade = (alpha: number) => {
+    drawProgress(100);
+    if (!homeReady) return;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    drawSource(homeImage);
+    ctx.restore();
+  };
+
+  firmwareImage.onload = () => {
+    if (disposed) return;
+    firmwareReady = true;
+    drawProgress(Math.max(0, lastPercent));
+    texture.needsUpdate = true;
+  };
+  homeImage.onload = () => {
+    if (disposed) return;
+    homeReady = true;
+    if (complete) {
+      drawSource(homeImage);
+      texture.needsUpdate = true;
+    }
+  };
+  firmwareImage.src = `${base}screens/stasher-firmware-progress.png`;
+  homeImage.src = `${base}screens/stasher-home.png`;
+
+  return {
+    texture,
+    update: (elapsedTime: number) => {
+      if (complete) return;
+
+      // Start at a real, visible 0% only after both source frames are ready.
+      // Otherwise a cold network/cache load can consume the sequence off-screen.
+      if (!firmwareReady || !homeReady) {
+        if (lastPercent !== 0) {
+          lastPercent = 0;
+          drawProgress(0);
+          texture.needsUpdate = true;
+        }
+        return;
+      }
+
+      if (startedAt === null) startedAt = elapsedTime;
+      const time = elapsedTime - startedAt;
+      const percent = Math.min(100, Math.floor((time / BOOT_DURATION) * 100));
+
+      if (time <= BOOT_DURATION + BOOT_HOLD) {
+        if (percent !== lastPercent) {
+          lastPercent = percent;
+          drawProgress(percent);
+          texture.needsUpdate = true;
+        }
+        return;
+      }
+
+      const alpha = THREE.MathUtils.clamp(
+        (time - BOOT_DURATION - BOOT_HOLD) / LOGO_FADE_DURATION,
+        0,
+        1,
+      );
+
+      if (alpha >= 1 && homeReady) {
+        drawSource(homeImage);
+        texture.needsUpdate = true;
+        complete = true;
+        return;
+      }
+
+      const fadeStep = Math.round(alpha * 30);
+      if (fadeStep !== lastFadeStep) {
+        lastFadeStep = fadeStep;
+        drawLogoFade(alpha);
+        texture.needsUpdate = true;
+      }
+    },
+    dispose: () => {
+      disposed = true;
+      firmwareImage.onload = null;
+      homeImage.onload = null;
+      texture.dispose();
+    },
+  };
 };
