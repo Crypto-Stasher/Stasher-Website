@@ -64,7 +64,7 @@ pipeline {
     stage('Health check') {
       agent any
       steps {
-        sshagent(['stasher-deploy-key']) {
+        sshagent(['yuval-stasher-deploy-key']) {
           sh '''
             set -eu
             code=$(ssh $SSH_OPTS "$DEPLOY_USER@$DEPLOY_HOST" "curl -s -o /dev/null -w '%{http_code}' '$SITE_URL'")
