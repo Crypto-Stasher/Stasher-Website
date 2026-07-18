@@ -95,18 +95,30 @@ pipeline {
       }
       // Alert on any failure (build or deploy). Requires SMTP configured in
       // Manage Jenkins -> System -> E-mail Notification + a System Admin e-mail (the From).
-      mail to: env.NOTIFY_EMAIL,
-           subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-           body: """Deploy pipeline failed.
+      script {
+        try {
+          mail to: env.NOTIFY_EMAIL,
+               subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+               body: """Deploy pipeline failed.
 Job:     ${env.JOB_NAME} #${env.BUILD_NUMBER}
 Rollback: ${env.DEPLOYED == '1' ? 'attempted (prod was already swapped)' : 'not needed (build failed before deploy)'}
 Logs:    ${env.BUILD_URL}console"""
+        } catch (Exception err) {
+          echo "Failure email could not be sent: ${err.message}"
+        }
+      }
     }
     fixed {
       // First green build after a failure — let people know prod recovered.
-      mail to: env.NOTIFY_EMAIL,
-           subject: "RECOVERED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-           body: "Pipeline is green again. ${env.SITE_URL} deployed OK.\n${env.BUILD_URL}"
+      script {
+        try {
+          mail to: env.NOTIFY_EMAIL,
+               subject: "RECOVERED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+               body: "Pipeline is green again. ${env.SITE_URL} deployed OK.\n${env.BUILD_URL}"
+        } catch (Exception err) {
+          echo "Recovery email could not be sent: ${err.message}"
+        }
+      }
     }
   }
 }
