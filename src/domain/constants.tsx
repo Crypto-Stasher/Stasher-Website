@@ -14,7 +14,7 @@ export const SITE_CONTENT: SiteContent = {
       { label: "Air-Gapped", sub: "Keys never touch the internet" },
       { label: "JIL High", sub: "Certified secure element" },
       { label: "Quantum-Resilient", sub: "Post-quantum pairing & boot" },
-      { label: "56+ Coins", sub: "BTC, ETH, SOL & more" },
+      { label: "1,000s of Assets", sub: "Across 62 chains" },
       { label: "Self-Custody", sub: "Only you hold the keys" }
     ]
   },
@@ -22,7 +22,7 @@ export const SITE_CONTENT: SiteContent = {
   stats: {
     items: [
       { value: "100%", label: "Offline by design" },
-      { value: "56+", label: "Supported assets" },
+      { value: "1,000s", label: "Coins & tokens" },
       { value: "2", label: "Devices, one air gap" },
       { value: "JIL", label: "High-rated secure element" }
     ]
@@ -124,8 +124,8 @@ export const SITE_CONTENT: SiteContent = {
       {
         id: "04",
         label: "MANY COINS",
-        title: "56+ Coins on One Device",
-        description: "Bitcoin, Ethereum, Solana, and 50+ others — all held on one small device. Lose it? A simple 24-word backup phrase restores everything, on any compatible wallet."
+        title: "Thousands of Coins & Tokens",
+        description: "Bitcoin, Ethereum, Solana, Monero, XRP, Cardano and thousands of tokens across 62 blockchains — all held on one small device. Lose it? A simple 24-word backup phrase restores everything, on any compatible wallet."
       }
     ]
   },
@@ -143,7 +143,7 @@ export const SITE_CONTENT: SiteContent = {
           "Perfect for first-time buyers, long-term savers, traders, and families",
           "Certified secure element (JIL High) guards your keys",
           "Keeps your crypto offline where hackers cannot reach it",
-          "Works with 56+ popular coins: Bitcoin, Ethereum, Solana, and more",
+          "Works with thousands of coins and tokens across 62 blockchains",
           "Quantum-resilient pairing and secure boot",
           "Free app for iPhone and Android",
           "Simple 24-word backup — if you lose the device, you recover everything",
@@ -184,7 +184,7 @@ export const SITE_CONTENT: SiteContent = {
       { feature: "Truly random, one-of-a-kind keys", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
       { feature: "Backup locked behind your password", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
       { feature: "Free phone app", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Coins supported", stasher: "56+", competitor1: "5,500+", competitor2: "9,000+" },
+      { feature: "Coins & tokens supported", stasher: "1,000s", competitor1: "5,500+", competitor2: "9,000+" },
       { feature: "Certified secure element (JIL High)", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
       { feature: "Protects against password guessing", stasher: "Locks out longer each try", competitor1: "Wipes after 3", competitor2: "Wipes after 16" }
     ]
@@ -234,7 +234,7 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         question: "Which coins can I store on Stasher?",
-        answer: "Over 56 popular coins, including Bitcoin, Ethereum, Solana, XRP, Litecoin, Cardano, and Polkadot. We add new ones regularly."
+        answer: "Thousands, across 62 blockchains. That includes Bitcoin, Ethereum, Solana, Monero, XRP, Litecoin, Cardano, Polkadot and Tron, every EVM network like Arbitrum, Base, Optimism and Polygon, and the tokens on them — stablecoins such as USDT and USDC plus thousands of others. We add new ones regularly."
       },
       {
         question: "Can Stasher the company see or touch my money?",
@@ -253,7 +253,7 @@ export const SITE_CONTENT: SiteContent = {
 
   assets: {
     title: "Coins you can store",
-    items: ["BITCOIN", "ETHEREUM", "SOLANA", "XRP", "POLKADOT", "LITECOIN", "CARDANO", "50+ MORE"]
+    items: ["BITCOIN", "ETHEREUM", "SOLANA", "XRP", "POLKADOT", "LITECOIN", "CARDANO", "1000s MORE"]
   },
 
   newsletter: {
