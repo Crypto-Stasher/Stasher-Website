@@ -22,16 +22,20 @@ export const AppShowcase: React.FC<AppShowcaseProps> = ({ content }) => {
         ))}
       </div>
 
-      <div className="app-download reveal-scale">
-        <p className="app-download-label">AVAILABLE ON</p>
-        <div className="app-download-buttons">
-          {content.downloadLinks.map((link) => (
-            <a key={link.platform} href={link.url} className="app-download-btn">
-              {link.platform === 'iOS' ? 'App Store' : 'Google Play'}
-            </a>
-          ))}
+      {/* Only shown once there are real store links — an "AVAILABLE ON" label
+          with no buttons (or buttons going nowhere) reads as broken. */}
+      {content.downloadLinks.length > 0 && (
+        <div className="app-download reveal-scale">
+          <p className="app-download-label">AVAILABLE ON</p>
+          <div className="app-download-buttons">
+            {content.downloadLinks.map((link) => (
+              <a key={link.platform} href={link.url} className="app-download-btn">
+                {link.platform === 'iOS' ? 'App Store' : 'Google Play'}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

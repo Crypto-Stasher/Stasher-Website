@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import {
   ContactShadows,
@@ -42,6 +42,27 @@ const use3DEnabled = (): boolean | null => {
   return enabled;
 };
 
+/**
+ * True on touch devices (no mouse). Used to trim the scene's GPU cost, which
+ * is what caused the hero to flicker black on phones: shadow maps, per-frame
+ * contact shadows and a live environment cubemap are all desktop-only now.
+ */
+const useCoarsePointer = (): boolean => {
+  const [coarse, setCoarse] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(pointer: coarse)');
+    const updatePointer = () => setCoarse(mediaQuery.matches);
+
+    updatePointer();
+    mediaQuery.addEventListener('change', updatePointer);
+
+    return () => mediaQuery.removeEventListener('change', updatePointer);
+  }, []);
+
+  return coarse;
+};
+
 const useReducedMotion = (): boolean => {
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -73,10 +94,18 @@ const DevicePlaceholder = () => (
 export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) => {
   const enabled = use3DEnabled();
   const reducedMotion = useReducedMotion();
+  const coarsePointer = useCoarsePointer();
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
+  // A single pinned value (never a range), so the drawing buffer is allocated
+  // once and never reallocated mid-scroll — but at the screen's real density
+  // so the model stays sharp on high-DPI phones. Capped at 2 to bound cost.
+  const touchDpr = useMemo(
+    () => Math.min(typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1, 2),
+    [],
+  );
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -107,15 +136,32 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
   return (
     <div className="hero-canvas" role="img" aria-label={alt} ref={wrapperRef}>
       <Canvas
-        shadows
-        frameloop={isVisible ? 'always' : 'demand'}
+        // Shadow maps are an extra render target per shadow-casting light —
+        // dropped on phones, where GPU memory pressure was blacking out the
+        // canvas. Desktop is unchanged.
+        shadows={!coarsePointer}
+        // On touch devices the frameloop stays 'always'. Flipping to 'demand'
+        // stops the render loop, and the compositor can then present a cleared
+        // (black) buffer — one of the sources of the hero flicker on phones.
+        frameloop={coarsePointer || isVisible ? 'always' : 'demand'}
         // Leave enough room for the device's diagonal radius so every
         // orientation remains inside the viewport during a full 360° spin.
         camera={{ position: [0, 0.05, 9], fov: 29 }}
-        dpr={[1, 1.75]}
+        // A dpr *range* lets r3f recompute pixel ratio and reallocate the
+        // drawing buffer; while the mobile URL bar animates that reallocation
+        // lands mid-scroll and shows as a black flash. Pin it on touch.
+        dpr={coarsePointer ? touchDpr : [1, 1.75]}
+        // r3f measures the canvas via react-use-measure, which re-measures on
+        // scroll by default. Every mobile scroll frame could therefore resize
+        // the renderer. The element's size is CSS-driven and does not depend
+        // on scroll, so stop watching it and debounce genuine resizes.
+        resize={{ scroll: false, debounce: { scroll: 50, resize: 200 } }}
         gl={{
           antialias: true,
           alpha: true,
+          // Keeps buffer contents after compositing, so a frame that arrives
+          // late shows the previous image instead of clearing to black.
+          preserveDrawingBuffer: true,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
         }}
@@ -132,7 +178,7 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
           penumbra={0.85}
           intensity={6.4}
           color="#f7fff9"
-          castShadow
+          castShadow={!coarsePointer}
         />
         <spotLight
           position={[-1.4, 0.4, 7]}
@@ -148,15 +194,21 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
 
         <Suspense fallback={<DevicePlaceholder />}>
           <StasherModel reducedMotion={reducedMotion} />
-          <ContactShadows
-            position={[0, -1.7, 0]}
-            opacity={0.52}
-            scale={5}
-            blur={3}
-            far={3.5}
-            color="#000000"
-          />
-          <Environment resolution={256}>
+          {/* ContactShadows re-renders a depth target (plus blur passes) every
+              single frame by default — too costly for a phone GPU. */}
+          {!coarsePointer && (
+            <ContactShadows
+              position={[0, -1.7, 0]}
+              opacity={0.52}
+              scale={5}
+              blur={3}
+              far={3.5}
+              color="#000000"
+            />
+          )}
+          {/* `frames={1}` bakes the environment cubemap once instead of
+              keeping it live; halves the render targets held on mobile. */}
+          <Environment resolution={coarsePointer ? 128 : 256} frames={1}>
             <Lightformer
               intensity={5.5}
               position={[0, 3, 4]}
@@ -186,11 +238,14 @@ export const StasherScene: React.FC<StasherSceneProps> = ({ fallbackSrc, alt }) 
           </Environment>
         </Suspense>
 
+        {/* Drag-to-spin is available on touch too. The canvas carries
+            `touch-action: pan-y` on coarse pointers, so the browser keeps
+            vertical scrolling and only sideways drags reach the controls. */}
         <TrackballControls
           makeDefault
           noPan
           noZoom
-          rotateSpeed={3.1}
+          rotateSpeed={coarsePointer ? 2 : 3.1}
           staticMoving={reducedMotion}
           dynamicDampingFactor={0.12}
         />

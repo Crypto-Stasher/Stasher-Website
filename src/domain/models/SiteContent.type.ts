@@ -3,7 +3,6 @@ import type {
 	ArchitectureContent,
 	AssetsContent,
 	ComparisonContent,
-	ComplianceContent,
 	DifferentiatorsContent,
 	FaqContent,
 	FooterContent,
@@ -14,10 +13,12 @@ import type {
 	ProductsContent,
 	SecurityContent,
 	StatsContent,
+	TrustSignalsContent,
 } from './sections';
 
 export type SiteContent = {
   hero: HeroContent;
+  trustSignals: TrustSignalsContent;
   stats: StatsContent;
   architecture: ArchitectureContent;
   security: SecurityContent;
@@ -27,7 +28,6 @@ export type SiteContent = {
   appShowcase: AppShowcaseContent;
   comparison: ComparisonContent;
   openSource: OpenSourceContent;
-  compliance: ComplianceContent;
   faq: FaqContent;
   assets: AssetsContent;
   newsletter: NewsletterContent;

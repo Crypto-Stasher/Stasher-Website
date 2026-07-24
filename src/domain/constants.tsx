@@ -9,12 +9,22 @@ export const SITE_CONTENT: SiteContent = {
     networkLoad: "0.042 MS/S"
   },
 
+  trustSignals: {
+    items: [
+      { label: "Air-Gapped", sub: "Keys never touch the internet" },
+      { label: "JIL High", sub: "Certified secure element" },
+      { label: "Quantum-Resilient", sub: "Post-quantum pairing & boot" },
+      { label: "56+ Coins", sub: "BTC, ETH, SOL & more" },
+      { label: "Self-Custody", sub: "Only you hold the keys" }
+    ]
+  },
+
   stats: {
     items: [
       { value: "100%", label: "Offline by design" },
       { value: "56+", label: "Supported assets" },
       { value: "2", label: "Devices, one air gap" },
-      { value: "OPEN", label: "Auditable firmware" }
+      { value: "JIL", label: "High-rated secure element" }
     ]
   },
 
@@ -28,14 +38,14 @@ export const SITE_CONTENT: SiteContent = {
         color: "var(--accent-cyan)",
         machines: [
           { name: "THE VAULT", role: "Where Your Money Lives", detail: "Your crypto is created and kept here. Nothing ever leaves this device. It is completely offline — no WiFi, no Bluetooth, no internet." },
-          { name: "THE LOCK", role: "Future-Proof Protection", detail: "Locks your crypto with next-generation math that stays safe against today's hackers AND future super-computers that will break old-style locks." }
+          { name: "THE LOCK", role: "Certified Secure Element", detail: "Your keys sit inside a tamper-resistant secure element rated JIL High — the same class of chip trusted in bank cards and passports. Your secret can't be pulled out, even by someone holding the device." }
         ]
       },
       {
         zone: "BRIDGE DEVICE",
         color: "var(--accent-yellow)",
         machines: [
-          { name: "THE MESSENGER", role: "The Go-Between", detail: "This one talks to the internet. It sends your approved transactions and brings back balance updates. It never sees your secrets." }
+          { name: "THE MESSENGER", role: "The Go-Between", detail: "This one talks to the internet. It sends your approved transactions and brings back balance updates over a quantum-resilient paired link. It never sees your secrets." }
         ]
       },
       {
@@ -61,8 +71,8 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         id: "02",
-        title: "Your Backup Is Locked",
-        description: "Your 24-word backup phrase is locked inside the device with your password. Nobody can pull it out — not thieves, not strangers, not even us at Stasher.",
+        title: "Sealed in a Certified Chip",
+        description: "Your 24-word backup is sealed inside a certified secure element rated JIL High — a tamper-resistant chip built to resist physical attack. Nobody can pull it out — not thieves, not strangers, not even us at Stasher.",
         icon: "AES256"
       },
       {
@@ -102,8 +112,8 @@ export const SITE_CONTENT: SiteContent = {
       {
         id: "02",
         label: "FUTURE-PROOF",
-        title: "Quantum-Safe",
-        description: "Experts say powerful new computers (called quantum computers) will break old-style encryption within the next decade. Stasher is one of the first wallets built to survive them. Your crypto stays safe now AND later — no panic upgrade."
+        title: "Quantum-Resilient",
+        description: "Stasher already uses next-generation, post-quantum encryption to pair your devices and to verify its own firmware — the new standards built to survive future quantum computers. Future-proof from day one, no panic upgrade."
       },
       {
         id: "03",
@@ -121,8 +131,8 @@ export const SITE_CONTENT: SiteContent = {
   },
 
   products: {
-    title: "From your pocket to a company vault",
-    subtitle: "Two Versions",
+    title: "One device. Your crypto, truly yours.",
+    subtitle: "The Device",
     tiers: [
       {
         id: "consumer",
@@ -131,32 +141,16 @@ export const SITE_CONTENT: SiteContent = {
         highlight: true,
         features: [
           "Perfect for first-time buyers, long-term savers, traders, and families",
+          "Certified secure element (JIL High) guards your keys",
           "Keeps your crypto offline where hackers cannot reach it",
           "Works with 56+ popular coins: Bitcoin, Ethereum, Solana, and more",
-          "Built to stay safe against future super-computers",
+          "Quantum-resilient pairing and secure boot",
           "Free app for iPhone and Android",
           "Simple 24-word backup — if you lose the device, you recover everything",
           "Small screen and button so you see and approve every transaction",
           "Password-protected and locks itself against thieves",
           "You own your crypto — Stasher has no access to it, ever",
           "Works the same even if Stasher the company disappeared"
-        ]
-      },
-      {
-        id: "enterprise",
-        name: "STASHER ENTERPRISE",
-        tagline: "For Companies, Exchanges, and Wealthy Families",
-        features: [
-          "Six coordinated devices guard the crypto together",
-          "Future-proof, quantum-safe security",
-          "No single machine knows the whole secret — split in three parts",
-          "Offline signing with a secure bridge to the internet",
-          "Team approval: one person proposes, another confirms",
-          "Set rules like '3 of 5 people must approve'",
-          "Tamper-proof audit log of every action",
-          "Strong login with password + security key",
-          "Live dashboards and enterprise-ready deployment",
-          "Supports Bitcoin, Ethereum, Solana, XRP, Polkadot, and more"
         ]
       }
     ]
@@ -173,8 +167,6 @@ export const SITE_CONTENT: SiteContent = {
       { title: "Full History", description: "Every transaction you have ever made, with clear status and confirmations." }
     ],
     downloadLinks: [
-      { platform: "iOS", url: "#" },
-      { platform: "Android", url: "#" }
     ]
   },
 
@@ -184,7 +176,7 @@ export const SITE_CONTENT: SiteContent = {
     competitors: ["Ledger Nano X", "Trezor Safe 5"],
     rows: [
       { feature: "Always stays offline (never touches the internet)", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "Safe against future super-computers", stasher: "Yes", competitor1: "No", competitor2: "No" },
+      { feature: "Quantum-resilient pairing & secure boot", stasher: "Yes", competitor1: "No", competitor2: "No" },
       { feature: "Separate bridge device for the internet", stasher: "Yes", competitor1: "No", competitor2: "No" },
       { feature: "Shows every transaction on its own screen", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
       { feature: "Needs a button press to approve", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
@@ -193,32 +185,18 @@ export const SITE_CONTENT: SiteContent = {
       { feature: "Backup locked behind your password", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
       { feature: "Free phone app", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
       { feature: "Coins supported", stasher: "56+", competitor1: "5,500+", competitor2: "9,000+" },
-      { feature: "Version for companies", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
-      { feature: "Code anyone can inspect", stasher: "Yes", competitor1: "Partial", competitor2: "Yes" },
+      { feature: "Certified secure element (JIL High)", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
       { feature: "Protects against password guessing", stasher: "Locks out longer each try", competitor1: "Wipes after 3", competitor2: "Wipes after 16" }
     ]
   },
 
   openSource: {
-    title: "Nothing to hide",
-    subtitle: "Transparency",
-    description: "We believe you should be able to check for yourself that Stasher does what it promises. That is why the code inside Stasher is public — anyone can read it, inspect it, and even improve it.",
+    title: "Verified, not trusted",
+    subtitle: "Independent Assurance",
+    description: "You shouldn't have to take our word for it. Your keys live in a certified secure element, and the device is going through independent security review before launch.",
     points: [
-      { title: "Public Code", description: "The code that runs inside Stasher is on GitHub. Anyone can read every line that handles your money." },
-      { title: "Independent Experts Check It", description: "We pay outside security experts to inspect our code and hardware. Nothing is hidden." }
-    ]
-  },
-
-  compliance: {
-    title: "Ready for serious business",
-    description: "Stasher Enterprise meets the strict rules that banks, exchanges, and large investors need. Every action is logged. Every permission is set. Nothing happens without proof.",
-    points: [
-      "Ready for financial audits and regulator review",
-      "Certified-grade hardware security",
-      "Every action permanently logged — no deletions",
-      "Future-proof security for long-term holdings",
-      "Fine-grained permissions for teams and roles",
-      "Instantly revoke access if someone leaves"
+      { title: "Certified Secure Element", description: "Your keys are held in a secure element certified to JIL High attack-potential resistance — the same class of tamper-resistant chip trusted in bank cards and passports." },
+      { title: "Independent Audits", description: "Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results." }
     ]
   },
 
@@ -239,8 +217,8 @@ export const SITE_CONTENT: SiteContent = {
         answer: "Not at all. If you can use a banking app, you can use Stasher. The phone app walks you through every step. To send crypto: you pick what to send, check the details on the device screen, press the button, done. No commands, no code, no complicated words."
       },
       {
-        question: "What does 'quantum-safe' mean? Should I worry?",
-        answer: "Most crypto wallets today rely on math that a powerful new kind of computer — called a quantum computer — will be able to break. Experts say this could happen in the next decade. Stasher uses a new kind of math that stays safe even against those future computers. You don't need to upgrade later. Your crypto is safe now AND years from now."
+        question: "What does 'quantum-resilient' mean? Should I worry?",
+        answer: "A powerful new kind of computer — a quantum computer — may one day break some of today's encryption. Stasher already uses post-quantum cryptography everywhere it controls: the secure link between your two devices and the check that verifies its own firmware both run on next-generation, quantum-resistant standards. (Coin signatures themselves follow each blockchain's own rules — true for every wallet on earth — but everything Stasher owns end-to-end is built quantum-resilient today.)"
       },
       {
         question: "Who is Stasher for?",
@@ -252,7 +230,7 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         question: "How is Stasher different from Ledger or Trezor?",
-        answer: "Ledger and Trezor need to plug into your phone or computer when they approve a transaction — so for a moment, your crypto is close to the internet. Stasher splits this into two devices: one always stays offline with your crypto, another handles the internet. They never mix. Stasher is also built to survive future quantum computers, which Ledger and Trezor are not."
+        answer: "Ledger and Trezor need to plug into your phone or computer when they approve a transaction — so for a moment, your crypto is close to the internet. Stasher splits this into two devices: one always stays offline with your crypto, another handles the internet. They never mix. Stasher also uses post-quantum cryptography to pair its devices and verify its firmware, which Ledger and Trezor do not."
       },
       {
         question: "Which coins can I store on Stasher?",
@@ -268,11 +246,7 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         question: "How do I know the device is really trustworthy?",
-        answer: "You don't have to take our word for it. The code that runs inside Stasher is public — anyone can read it on GitHub and confirm it does exactly what we promise. Independent security experts also check it for us. Nothing is hidden."
-      },
-      {
-        question: "What is Stasher Enterprise?",
-        answer: "A bigger version of Stasher for companies, exchanges, and wealthy families that manage large amounts of crypto. It uses six coordinated devices, team approval rules (for example: 'any three people must agree'), and full audit history so every action is traceable."
+        answer: "You don't have to take our word for it. Your keys are held in a certified secure element rated JIL High — the same class of tamper-resistant chip used in bank cards and passports. Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results."
       }
     ]
   },
@@ -294,11 +268,6 @@ export const SITE_CONTENT: SiteContent = {
     copyright: "\u00A9 2026 Stasher \u00B7 Keep your crypto safe, offline \u00B7 All rights reserved",
     socials: [
       { name: "GitHub", url: "https://github.com/Crypto-Stasher", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg> },
-      { name: "X", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg> },
-      { name: "Discord", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" /></svg> },
-      { name: "Telegram", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg> },
-      { name: "Reddit", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" /></svg> },
-      { name: "YouTube", url: "#", icon: <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg> }
     ]
   }
 };

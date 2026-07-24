@@ -6,7 +6,7 @@
     <link rel="preload" as="image" href="/screens/stasher-firmware-progress.png" />
     <link rel="preload" as="image" href="/screens/stasher-home.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
+    <meta name="description" content="Self-custody hardware wallet for Bitcoin, Ethereum, Solana and 56+ coins. Certified secure element, air-gapped, quantum-resilient — your keys stay offline." />
     <meta name="theme-color" content="#050606" />
     <meta name="color-scheme" content="dark light" />
     <script>
@@ -31,15 +31,17 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Stasher — Your Crypto, Truly Yours." />
-    <meta property="og:description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
-    <meta property="og:image" content="https://stasherwallet.com/favicon.svg" />
+    <meta property="og:description" content="Self-custody hardware wallet for Bitcoin, Ethereum, Solana and 56+ coins. Certified secure element, air-gapped, quantum-resilient — your keys stay offline." />
+    <meta property="og:image" content="https://stasherwallet.com/stasher-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://stasherwallet.com/" />
     <meta property="og:site_name" content="Stasher" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Stasher — Your Crypto, Truly Yours." />
-    <meta name="twitter:description" content="An air-gapped hardware wallet that keeps your keys offline and every approval in your hands." />
-    <meta name="twitter:image" content="https://stasherwallet.com/favicon.svg" />
+    <meta name="twitter:description" content="Self-custody hardware wallet for Bitcoin, Ethereum, Solana and 56+ coins. Certified secure element, air-gapped, quantum-resilient — your keys stay offline." />
+    <meta name="twitter:image" content="https://stasherwallet.com/stasher-og.png" />
     <title>Stasher — Your Crypto, Truly Yours.</title>
     <link rel="canonical" href="https://stasherwallet.com/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -88,7 +90,7 @@
         {
           "@type": "Question",
           "name": "What happens if I lose my Stasher device?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Your funds are safe. During setup, Stasher generates a standard 24-word BIP39 recovery seed. You can restore your wallet on a new device or any BIP39-compatible wallet." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Your funds are safe. During setup, Stasher generates a standard 24-word recovery phrase. You can restore your wallet on a new Stasher or any compatible wallet." }
         },
         {
           "@type": "Question",
@@ -97,8 +99,8 @@
         },
         {
           "@type": "Question",
-          "name": "Is the firmware open source?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The cold wallet firmware and communication protocol are published on GitHub. You can audit the code yourself and build from source." }
+          "name": "How does Stasher protect my keys?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Your keys are held in a certified secure element rated JIL High, on a device that never touches the internet. Pairing and firmware verification use post-quantum cryptography, and the hardware is being independently audited ahead of launch." }
         }
       ]
     }

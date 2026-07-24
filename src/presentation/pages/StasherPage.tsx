@@ -13,7 +13,7 @@ import {
   OpenSource,
   Products,
   Security,
-  Stats,
+  TrustSignals,
 } from '@features/stasher/sections';
 import type { SiteContent } from '@models/SiteContent.type';
 import { useScrollReveal } from '@hooks';
@@ -27,14 +27,19 @@ export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
   useScrollReveal(true);
   return (
     <>
+      {/* ── Mainstream-first journey (WEB-6 P2) ────────────────────
+          hero → trust → simple 3-step → product → why → deep → app →
+          buy → compare → assurance → coins → faq → newsletter */}
       <Hero content={content.hero} />
-      <Stats content={content.stats} />
+      <TrustSignals content={content.trustSignals} />
+
+      <HowItWorks content={content.howItWorks} />
+
       <Exploded />
       <Differentiators title={content.differentiators.title} items={content.differentiators.items} />
       <SectionTransition variant="airgap" />
 
       <Architecture content={content.architecture} />
-      <HowItWorks content={content.howItWorks} />
       <SectionTransition variant="verify" />
 
       <Security content={content.security} />

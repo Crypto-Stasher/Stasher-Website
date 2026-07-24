@@ -4,6 +4,7 @@ import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { toCreasedNormals } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import * as THREE from 'three';
 import { createBootScreenTexture } from './screenTexture';
+import { getStableViewportHeight } from '../../../../shared/stableViewportHeight';
 
 const MODEL_URL = `${import.meta.env.BASE_URL}models/stasher-v0.8.stl`;
 
@@ -60,7 +61,7 @@ export const StasherModel: React.FC<StasherModelProps> = ({
     }
 
     const scrollTarget = THREE.MathUtils.clamp(
-      window.scrollY / Math.max(window.innerHeight * 0.9, 1),
+      window.scrollY / Math.max(getStableViewportHeight() * 0.9, 1),
       0,
       1,
     );

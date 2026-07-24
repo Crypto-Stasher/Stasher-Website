@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { getStableViewportHeight } from '../../../../shared/stableViewportHeight';
 
 const SCREEN_URL = `${import.meta.env.BASE_URL}screens/stasher-home.png`;
 
@@ -88,7 +89,7 @@ export const Exploded: React.FC = () => {
         targetProgress = 1;
       } else {
         const rect = section.getBoundingClientRect();
-        const viewport = window.innerHeight;
+        const viewport = getStableViewportHeight();
         const travel = Math.max(rect.height - viewport * 0.72, viewport * 0.7);
         targetProgress = clamp((viewport * 0.14 - rect.top) / travel);
       }

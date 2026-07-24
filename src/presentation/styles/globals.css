@@ -181,10 +181,10 @@ section {
 .layout-root::after {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  /* inset instead of 100vw/100vh: viewport units make this fixed box resize
+     every time the mobile URL bar animates, which re-rasterises a full-screen
+     SVG turbulence texture each scroll frame (visible jitter). */
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
   opacity: 0.04;
@@ -590,10 +590,17 @@ nav {
 .hero-scroll {
   position: relative;
   height: 200vh;
+  /* svh keeps the pinned track a fixed length while the mobile URL bar
+     animates; with vh the track resized mid-scroll and the sticky hero
+     visibly jittered. */
+  height: 200svh;
 }
 
 .hero {
   min-height: 100vh;
+  /* svh = small viewport height: stays fixed while the mobile URL bar
+     shows/hides, so the hero doesn't jump on scroll. */
+  min-height: 100svh;
   display: flex;
   align-items: center;
   position: sticky;

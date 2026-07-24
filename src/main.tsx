@@ -5,18 +5,15 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from './presentation/shared/components/ErrorBoundary';
-import { AuthProvider } from './application/context/AuthContext';
 import { ThemeProvider } from './application/context/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
       <BrowserRouter>
-        <AuthProvider>
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
-        </AuthProvider>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,
