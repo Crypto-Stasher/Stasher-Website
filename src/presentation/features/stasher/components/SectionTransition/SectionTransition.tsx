@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { StasherMark } from '../../../../shared/components/StasherBrand';
+import { getStableViewportHeight } from '../../../../shared/stableViewportHeight';
 
 export type SectionTransitionVariant = 'airgap' | 'verify' | 'pair';
 
@@ -93,8 +94,9 @@ export const SectionTransition: React.FC<SectionTransitionProps> = ({
         targetProgress = 0.5;
       } else {
         const rect = root.getBoundingClientRect();
+        const viewport = getStableViewportHeight();
         targetProgress = clamp(
-          (window.innerHeight - rect.top) / (window.innerHeight + rect.height),
+          (viewport - rect.top) / (viewport + rect.height),
         );
       }
       if (!animationFrame) {

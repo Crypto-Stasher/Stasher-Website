@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import type { Theme } from '../../../../../application/context/ThemeContext';
+import { getStableViewportHeight } from '../../../../shared/stableViewportHeight';
 
 interface HeroStageEffectsProps {
   /** Keeps the visual composition while disabling all ambient motion. */
@@ -107,7 +108,7 @@ export const HeroStageEffects: React.FC<HeroStageEffectsProps> = ({
     const elapsed = state.clock.elapsedTime;
     const dt = Math.min(delta, 1 / 30);
     const scrollTarget = THREE.MathUtils.clamp(
-      window.scrollY / Math.max(window.innerHeight * 0.95, 1),
+      window.scrollY / Math.max(getStableViewportHeight() * 0.95, 1),
       0,
       1,
     );

@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useActiveSection, useCursorGlow, useSmoothScroll } from '@hooks';
-import { useAuth } from '../../../application/context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
-import { Link } from 'react-router-dom';
 import type { FooterContent } from '@models/sections';
 import { StasherBrand } from './StasherBrand';
 
@@ -18,7 +17,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
   const sectionIds = useMemo(() => navLinks.map(l => l.href), [navLinks]);
   const activeSection = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isAuthenticated, userEmail, logout } = useAuth();
+
+  // Section anchors only exist on the homepage. On the standalone pages
+  // (/security, /privacy, /terms) they must route home to that anchor
+  // instead of trying to smooth-scroll to a section that isn't there.
+  const isHome = useLocation().pathname === '/';
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setMenuOpen(false);
@@ -33,9 +36,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
 
       <nav>
         <div className="container nav-content">
-          <a href="#overview" className="nav-brand" onClick={handleNavClick} aria-label="Stasher home">
-            <StasherBrand />
-          </a>
+          {isHome ? (
+            <a href="#overview" className="nav-brand" onClick={handleNavClick} aria-label="Stasher home">
+              <StasherBrand />
+            </a>
+          ) : (
+            <Link to="/" className="nav-brand" aria-label="Stasher home">
+              <StasherBrand />
+            </Link>
+          )}
           <button
             className={`nav-hamburger ${menuOpen ? 'nav-hamburger--open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -47,33 +56,24 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             <span />
           </button>
           <div className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={handleNavClick}
-                className={[
-                  'nav-link',
-                  activeSection === link.href ? 'nav-active' : '',
-                  link.href === '#products' ? 'nav-link--cta' : '',
-                ].filter(Boolean).join(' ')}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const className = [
+                'nav-link',
+                isHome && activeSection === link.href ? 'nav-active' : '',
+                link.href === '#products' ? 'nav-link--cta' : '',
+              ].filter(Boolean).join(' ');
 
-            {!isAuthenticated ? (
-              <Link to="/auth" className="nav-account-link">
-                Log in
-              </Link>
-            ) : (
-              <>
-                <span className="nav-user">{userEmail?.split('@')[0]}</span>
-                <a className="nav-account-link" href="#" onClick={(e) => { e.preventDefault(); logout(); }}>
-                  Log out
+              return isHome ? (
+                <a key={link.href} href={link.href} onClick={handleNavClick} className={className}>
+                  {link.label}
                 </a>
-              </>
-            )}
+              ) : (
+                <Link key={link.href} to={`/${link.href}`} className={className}>
+                  {link.label}
+                </Link>
+              );
+            })}
+
             <ThemeToggle />
           </div>
         </div>
@@ -90,9 +90,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             </div>
             <div className="footer-nav" aria-label="Footer navigation">
               {navLinks.slice(0, 4).map((link) => (
-                <a key={link.href} href={link.href} onClick={scrollTo}>
-                  {link.label}
-                </a>
+                isHome ? (
+                  <a key={link.href} href={link.href} onClick={scrollTo}>
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link key={link.href} to={`/${link.href}`}>
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
             <div className="footer-socials">
@@ -113,6 +119,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
           </div>
           <div className="footer-bottom">
             <p className="footer-copyright">{footer.copyright}</p>
+            {/* Deliberately a div, not <nav>: the global bare `nav` rule is
+                the fixed top navbar and would pin these to the viewport. */}
+            <div className="footer-legal">
+              <Link to="/security">Security</Link>
+              <Link to="/privacy">Privacy</Link>
+              <Link to="/terms">Terms</Link>
+            </div>
           </div>
         </div>
       </footer>

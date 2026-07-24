@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import type { SecurityContent } from '@models/sections';
 
 interface SecurityProps {
@@ -21,6 +22,13 @@ export const Security: React.FC<SecurityProps> = ({ content }) => {
             <p className="security-desc">{feature.description}</p>
           </div>
         ))}
+      </div>
+
+      <div className="security-deep-link reveal">
+        <Link to="/security" className="hero-text-link">
+          Read the full security architecture
+          <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );

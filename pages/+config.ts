@@ -5,5 +5,5 @@ export default {
   extends: vikeReact,
   prerender: true,
   title: 'Stasher — Your Crypto, Truly Yours.',
-  description: 'An air-gapped hardware wallet that keeps your keys offline and every approval in your hands.',
+  description: 'Self-custody hardware wallet for Bitcoin, Ethereum, Solana and 56+ coins. Certified secure element, air-gapped, quantum-resilient — your keys stay offline.',
 } satisfies Config
