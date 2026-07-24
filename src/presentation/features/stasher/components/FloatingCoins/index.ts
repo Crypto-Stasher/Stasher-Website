@@ -1,0 +1,1 @@
+export { FloatingCoins } from './FloatingCoins';

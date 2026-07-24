@@ -3238,3 +3238,39 @@ footer .container {
     gap: clamp(1.5rem, 6vw, 2rem);
   }
 }
+
+/* ── Floating 3D coins behind the supported-assets chips ──────────────
+   Decorative canvas layer. Sits behind the content and ignores pointer
+   input so it never interferes with reading or tapping the chips. */
+.assets-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.assets-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.floating-coins {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Decorative: stays subordinate to the heading and chips it sits behind. */
+  opacity: 0.6;
+}
+
+/* Extra vertical room so the coins have air above and below the content
+   rather than crowding it. */
+.assets-section {
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+
+/* Phones: the chips wrap into a tall stack and the coins would sit under
+   the text. Fade them back so the labels stay legible. */
+@media (max-width: 700px) {
+  .floating-coins {
+    opacity: 0.45;
+  }
+}
