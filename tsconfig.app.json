@@ -43,6 +43,9 @@
       ],
       "@features/*": [
         "./src/presentation/features/*"
+      ],
+      "@repositories/*": [
+        "./src/infrastructure/repositories/*"
       ]
     }
   },
