@@ -6,6 +6,8 @@ import xrp from 'cryptocurrency-icons/svg/color/xrp.svg';
 import dot from 'cryptocurrency-icons/svg/color/dot.svg';
 import ltc from 'cryptocurrency-icons/svg/color/ltc.svg';
 import ada from 'cryptocurrency-icons/svg/color/ada.svg';
+import xmr from 'cryptocurrency-icons/svg/color/xmr.svg';
+import trx from 'cryptocurrency-icons/svg/color/trx.svg';
 
 // Official coin logos from the `cryptocurrency-icons` package (local SVGs).
 const LOGOS: Record<string, string> = {
@@ -16,6 +18,8 @@ const LOGOS: Record<string, string> = {
   POLKADOT: dot,
   LITECOIN: ltc,
   CARDANO: ada,
+  MONERO: xmr,
+  TRON: trx,
 };
 
 interface CoinIconProps {

@@ -2,18 +2,11 @@ import React from 'react';
 import {
   AppShowcase,
   Architecture,
-  Assets,
-  Comparison,
   Differentiators,
-  Exploded,
   Faq,
   Hero,
-  HowItWorks,
   Newsletter,
   OpenSource,
-  Products,
-  Security,
-  TrustSignals,
 } from '@features/stasher/sections';
 import type { SiteContent } from '@models/SiteContent.type';
 import { useScrollReveal } from '@hooks';
@@ -27,32 +20,24 @@ export const StasherPage: React.FC<StasherPageProps> = ({ content }) => {
   useScrollReveal(true);
   return (
     <>
-      {/* ── Mainstream-first journey (WEB-6 P2) ────────────────────
-          hero → trust → simple 3-step → product → why → deep → app →
-          buy → compare → assurance → coins → faq → newsletter */}
+      {/* ── Home = the argument, /product = the device ──────────────
+          hero → why → how it works → app → assurance → faq →
+          newsletter. Anything describing the device itself (features,
+          coins, specs, box contents, the sending flow) lives only on
+          /product, so no claim is made twice on the site. */}
       <Hero content={content.hero} />
-      <TrustSignals content={content.trustSignals} />
 
-      <HowItWorks content={content.howItWorks} />
-
-      <Exploded />
       <Differentiators title={content.differentiators.title} items={content.differentiators.items} />
       <SectionTransition variant="airgap" />
 
       <Architecture content={content.architecture} />
       <SectionTransition variant="verify" />
 
-      <Security content={content.security} />
-
       <AppShowcase content={content.appShowcase} />
       <SectionTransition variant="pair" />
 
-      <Products content={content.products} />
-      <Comparison content={content.comparison} />
-
       <OpenSource content={content.openSource} />
 
-      <Assets content={content.assets} />
       <Faq content={content.faq} />
 
       <Newsletter content={content.newsletter} />

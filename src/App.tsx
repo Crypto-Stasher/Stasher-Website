@@ -1,9 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { DEVICE_IMAGE } from './presentation/shared/deviceImage';
+import type { NavLink } from '@models/sections';
 import { Layout } from './presentation/shared/components/Layout';
 import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { SecurityPage } from './presentation/pages/SecurityPage';
+import { ProductPage } from './presentation/pages/ProductPage';
+import { PreorderPage } from './presentation/pages/PreorderPage';
 import { LegalPage } from './presentation/pages/LegalPage';
 import { ErrorPage } from './presentation/pages/ErrorPage';
 
@@ -20,12 +24,24 @@ const TERMS_BODY = [
 const App: React.FC = () => {
   const content = ContentRepository.getContent();
 
-  const navLinks = [
-    { href: "#device", label: "Device" },
+  // `to` entries are real routes; `href` entries are homepage anchors.
+  const navLinks: NavLink[] = [
+    {
+      to: "/product",
+      label: "Product",
+      preview: {
+        image: DEVICE_IMAGE,
+        kicker: "The device",
+        title: "Stasher",
+        description: "The personal crypto safe. Keys sealed in a certified secure element, approved by your thumb.",
+        points: ["JIL High secure element", "Cold and warm, separated", "Thousands of coins"],
+        cta: "See the product",
+      },
+    },
     { href: "#architecture", label: "How it works" },
-    { href: "#security", label: "Security" },
     { href: "#app", label: "App" },
-    { href: "#products", label: "Get Stasher" },
+    { to: "/security", label: "Security" },
+    { to: "/preorder", label: "Get Stasher" },
   ];
 
   return (
@@ -39,10 +55,26 @@ const App: React.FC = () => {
         }
       />
       <Route
+        path="/product"
+        element={
+          <Layout footer={content.footer} navLinks={navLinks}>
+            <ProductPage />
+          </Layout>
+        }
+      />
+      <Route
         path="/security"
         element={
           <Layout footer={content.footer} navLinks={navLinks}>
             <SecurityPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/preorder"
+        element={
+          <Layout footer={content.footer} navLinks={navLinks}>
+            <PreorderPage />
           </Layout>
         }
       />

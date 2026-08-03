@@ -716,33 +716,8 @@ nav {
   border-bottom: 1px solid var(--border-neon);
 }
 
-.stats-grid {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;
-}
-
 .stat-item {
   text-align: center;
-}
-
-.stat-value {
-  font-family: var(--font-sans);
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--accent-cyan);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
 }
 
 /* ─── ARCHITECTURE ─── */
@@ -866,18 +841,6 @@ nav {
   box-shadow: 0 10px 40px rgba(var(--accent-rgb), 0.08);
 }
 
-.security-icon {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  color: var(--accent-cyan);
-  background: rgba(var(--accent-rgb), 0.08);
-  border: 1px solid rgba(var(--accent-rgb), 0.2);
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.25rem;
-}
-
 .security-id {
   font-family: var(--font-sans);
   font-size: 0.65rem;
@@ -898,66 +861,6 @@ nav {
   color: var(--text-dim);
   font-size: 0.9rem;
   line-height: 1.6;
-}
-
-/* ─── HOW IT WORKS / SIGNING CEREMONY ─── */
-.ceremony-flow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(2rem, 5vw, 4rem);
-  position: relative;
-}
-
-.ceremony-step {
-  position: relative;
-  text-align: center;
-}
-
-.ceremony-step-number {
-  width: 48px;
-  height: 48px;
-  border: 2px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.ceremony-step-content {
-  padding: 0 0.5rem;
-}
-
-.ceremony-step-label {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5rem;
-}
-
-.ceremony-zone-tag {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  border: 1px solid;
-  padding: 0.15rem 0.5rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.75rem;
-}
-
-.ceremony-step-desc {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
-
-.ceremony-connector {
-  display: none;
 }
 
 /* ─── FEATURES / DIFFERENTIATORS ─── */
@@ -1023,78 +926,6 @@ nav {
   color: #000;
   box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.6);
   transform: translateY(-2px);
-}
-
-/* ─── PRODUCTS ─── */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  margin-top: clamp(2rem, 5vw, 4rem);
-}
-
-.product-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(var(--accent-rgb), 0.2);
-  box-shadow: 0 15px 50px var(--overlay);
-}
-
-.product-card--highlight {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.08);
-}
-
-.product-card--highlight .product-header {
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08), rgba(79, 172, 254, 0.05));
-  border-bottom-color: var(--accent-cyan);
-}
-
-.product-header {
-  padding: 2.5rem 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: var(--overlay);
-}
-
-.product-name {
-  font-family: var(--font-sans);
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5rem;
-}
-
-.product-tagline {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-
-.product-features {
-  list-style: none;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.product-feature {
-  font-size: 0.88rem;
-  color: var(--text-dim);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  line-height: 1.4;
 }
 
 .product-check {
@@ -1183,61 +1014,6 @@ nav {
 .app-download-btn:hover {
   background: rgba(var(--accent-rgb), 0.08);
   border-color: var(--accent-cyan);
-}
-
-/* ─── COMPARISON TABLE ─── */
-.comparison-table-wrapper {
-  overflow-x: auto;
-  margin-top: 3rem;
-  border: 1px solid rgba(var(--accent-rgb), 0.15);
-  background: linear-gradient(to right, var(--bg-deep) 30%, rgba(255, 255, 255, 0)), linear-gradient(to right, rgba(255, 255, 255, 0), var(--bg-deep) 70%) 100% 0, radial-gradient(farthest-side at 0 50%, rgba(var(--accent-rgb), 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 100% 50%, rgba(var(--accent-rgb), 0.2), rgba(0, 0, 0, 0)) 100% 0;
-  background-repeat: no-repeat;
-  background-color: var(--bg-card);
-  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-  background-attachment: local, local, scroll, scroll;
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-}
-
-.comparison-table th {
-  padding: 1.25rem 1.5rem;
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.75rem;
-  background: var(--overlay);
-  border-bottom: 2px solid rgba(var(--accent-rgb), 0.2);
-  color: var(--text-dim);
-  white-space: nowrap;
-}
-
-.comparison-table th.comparison-highlight {
-  color: var(--accent-cyan);
-}
-
-.comparison-table td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--text-dim);
-}
-
-.comparison-table td.comparison-highlight {
-  color: var(--accent-cyan);
-  font-weight: 700;
-}
-
-.comparison-table td.comparison-feature {
-  color: var(--text-main);
-  font-weight: 500;
-}
-
-.comparison-table tbody tr:hover {
-  background: rgba(var(--accent-rgb), 0.03);
 }
 
 /* ─── TECH STACK ─── */
@@ -1550,9 +1326,6 @@ footer {
     flex-direction: column;
   }
 
-  .ceremony-flow {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   .nav-links {
     gap: 1rem;
@@ -1560,14 +1333,6 @@ footer {
 
   .nav-links a {
     font-size: 0.65rem;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-grid {
-    gap: 2rem;
   }
 
   .footer-top {
@@ -1607,9 +1372,6 @@ footer {
     margin-right: auto;
   }
 
-  .ceremony-flow {
-    grid-template-columns: 1fr;
-  }
 
   .security-grid {
     grid-template-columns: 1fr;
@@ -1634,15 +1396,6 @@ footer {
   .app-download-buttons {
     flex-direction: column;
     align-items: center;
-  }
-
-  .comparison-table {
-    font-size: 0.7rem;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    padding: 0.75rem 0.75rem;
   }
 
   .newsletter-box {

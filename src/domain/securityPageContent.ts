@@ -31,14 +31,20 @@ export const SECURITY_PAGE_CONTENT: SecurityPageContent = {
     {
       id: "air-gap",
       kicker: "Air-Gap Architecture",
-      title: "Two devices, one air gap",
-      body: "Stasher splits the job in two. An offline vault device holds your keys, generates addresses, and signs transactions — it never connects to anything. A separate bridge device talks to the internet and relays approved transactions and balance updates. The two exchange messages, never secrets: your keys and the network never share a wire.",
+      title: "Two domains, one air gap",
+      body: "Stasher splits the job in two. A cold domain holds your keys, generates addresses, and signs transactions — it has no radio and no network stack, and its only external contact is one narrow serial channel. A warm domain talks to the internet and relays approved transactions and balance updates. The two exchange authenticated messages, never secrets: your keys and the network never share a wire.",
     },
     {
       id: "post-quantum",
       kicker: "Post-Quantum Cryptography",
       title: "Quantum-resilient where it counts",
       body: "Stasher uses NIST post-quantum standards everywhere it controls the cryptography: device pairing runs a hybrid X25519 + ML-KEM-768 key exchange, and secure boot verifies firmware with a dual quorum of Ed25519 and SLH-DSA signatures plus a monotonic anti-rollback epoch. Coin transaction signatures still follow each blockchain's own rules (classical ECDSA / EdDSA) — true of every wallet on the market — but every channel Stasher owns end-to-end is built quantum-resilient today.",
+    },
+    {
+      id: "clear-signing",
+      kicker: "Clear Signing",
+      title: "The device decides what it shows you",
+      body: "Blind signing — approving a transaction you can't actually read — is how most wallet users get drained. When Stasher receives an EVM transaction it inspects the raw bytes itself: if the destination is a known token contract and the payload carries an ERC-20 transfer, it decodes the real recipient and amount and displays those. Without that step a token transfer looks deliberately misleading on screen, showing a zero-value transfer to the token contract rather than to the person actually being paid. The critical part is where this happens: entirely on the offline device, from the transaction bytes alone. Nothing in the protocol tells it \"this is a token transfer\", so a compromised computer that misrepresents what you're signing is caught rather than trusted. Tokens the firmware doesn't recognise are shown as raw data — we'd rather display less than display something we can't verify.",
     },
     {
       id: "defense-in-depth",

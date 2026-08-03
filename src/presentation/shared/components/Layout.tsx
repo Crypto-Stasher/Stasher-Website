@@ -2,19 +2,23 @@ import React, { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useActiveSection, useCursorGlow, useSmoothScroll } from '@hooks';
 import { ThemeToggle } from './ThemeToggle';
-import type { FooterContent } from '@models/sections';
+import type { FooterContent, NavLink } from '@models/sections';
 import { StasherBrand } from './StasherBrand';
+import { NavPreviewLink } from './NavPreviewLink';
 
 interface LayoutProps {
   children: React.ReactNode;
   footer: FooterContent;
-  navLinks: { href: string; label: string }[];
+  navLinks: NavLink[];
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) => {
   useCursorGlow();
   const scrollTo = useSmoothScroll();
-  const sectionIds = useMemo(() => navLinks.map(l => l.href), [navLinks]);
+  const sectionIds = useMemo(
+    () => navLinks.map(l => l.href).filter((href): href is string => Boolean(href)),
+    [navLinks],
+  );
   const activeSection = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -59,9 +63,26 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             {navLinks.map((link) => {
               const className = [
                 'nav-link',
-                isHome && activeSection === link.href ? 'nav-active' : '',
-                link.href === '#products' ? 'nav-link--cta' : '',
+                isHome && link.href && activeSection === link.href ? 'nav-active' : '',
+                link.to === '/preorder' ? 'nav-link--cta' : '',
               ].filter(Boolean).join(' ');
+
+              if (link.to) {
+                return link.preview ? (
+                  <NavPreviewLink
+                    key={link.to}
+                    to={link.to}
+                    label={link.label}
+                    className={className}
+                    preview={link.preview}
+                    onNavigate={() => setMenuOpen(false)}
+                  />
+                ) : (
+                  <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)} className={className}>
+                    {link.label}
+                  </Link>
+                );
+              }
 
               return isHome ? (
                 <a key={link.href} href={link.href} onClick={handleNavClick} className={className}>
@@ -90,7 +111,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, footer, navLinks }) =>
             </div>
             <div className="footer-nav" aria-label="Footer navigation">
               {navLinks.slice(0, 4).map((link) => (
-                isHome ? (
+                link.to ? (
+                  <Link key={link.to} to={link.to}>
+                    {link.label}
+                  </Link>
+                ) : isHome ? (
                   <a key={link.href} href={link.href} onClick={scrollTo}>
                     {link.label}
                   </a>

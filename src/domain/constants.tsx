@@ -2,50 +2,28 @@ import type { SiteContent } from '@models/SiteContent.type';
 
 export const SITE_CONTENT: SiteContent = {
   hero: {
-    tag: "THE AIR-GAPPED HARDWARE WALLET",
     title: "Your crypto, truly yours.",
     description: "Stasher keeps your keys on a device that never goes online. Check every transaction on its screen, approve it in your hand, and keep control for the long term.",
-    cta: "Get Stasher",
-    networkLoad: "0.042 MS/S"
-  },
-
-  trustSignals: {
-    items: [
-      { label: "Air-Gapped", sub: "Keys never touch the internet" },
-      { label: "JIL High", sub: "Certified secure element" },
-      { label: "Quantum-Resilient", sub: "Post-quantum pairing & boot" },
-      { label: "1,000s of Assets", sub: "Across 62 chains" },
-      { label: "Self-Custody", sub: "Only you hold the keys" }
-    ]
-  },
-
-  stats: {
-    items: [
-      { value: "100%", label: "Offline by design" },
-      { value: "1,000s", label: "Coins & tokens" },
-      { value: "2", label: "Devices, one air gap" },
-      { value: "JIL", label: "High-rated secure element" }
-    ]
+    cta: "Get Stasher"
   },
 
   architecture: {
     title: "How Stasher keeps your crypto safe",
     subtitle: "How It Works",
-    description: "Two small devices work together. One holds your money and stays offline. The other helps it talk to the internet, without ever seeing your secrets. Your money and the internet never share the same wire.",
+    description: "One device, two separate halves. The cold half holds your money and never touches a network. The warm half does the talking, without ever seeing your secrets. Your money and the internet never share the same wire.",
     zones: [
       {
-        zone: "OFFLINE DEVICE",
+        zone: "COLD DOMAIN",
         color: "var(--accent-cyan)",
         machines: [
-          { name: "THE VAULT", role: "Where Your Money Lives", detail: "Your crypto is created and kept here. Nothing ever leaves this device. It is completely offline — no WiFi, no Bluetooth, no internet." },
-          { name: "THE LOCK", role: "Certified Secure Element", detail: "Your keys sit inside a tamper-resistant secure element rated JIL High — the same class of chip trusted in bank cards and passports. Your secret can't be pulled out, even by someone holding the device." }
+          { name: "THE VAULT", role: "Where Your Money Lives", detail: "Your crypto is created and kept here. Nothing ever leaves it. This half has no WiFi, no Bluetooth, no internet — the only way in or out is one narrow, guarded channel." }
         ]
       },
       {
-        zone: "BRIDGE DEVICE",
+        zone: "WARM DOMAIN",
         color: "var(--accent-yellow)",
         machines: [
-          { name: "THE MESSENGER", role: "The Go-Between", detail: "This one talks to the internet. It sends your approved transactions and brings back balance updates over a quantum-resilient paired link. It never sees your secrets." }
+          { name: "THE MESSENGER", role: "The Go-Between", detail: "This half talks to the internet. It sends your approved transactions and brings back balance updates over a quantum-resilient paired link. It never sees your secrets." }
         ]
       },
       {
@@ -58,100 +36,32 @@ export const SITE_CONTENT: SiteContent = {
     ]
   },
 
-  security: {
-    title: "Built like a vault",
-    subtitle: "Why It's Safe",
-    description: "Every layer is designed so that even if something goes wrong, your crypto stays yours. Your secrets never leave the device. Even if your phone gets hacked, your crypto is fine.",
-    features: [
-      {
-        id: "01",
-        title: "Never Online",
-        description: "The part of Stasher that holds your money has no internet, no Bluetooth, no WiFi. Hackers on the other side of the world cannot reach it — because it is simply not connected to anything.",
-        icon: "AIRGAP"
-      },
-      {
-        id: "02",
-        title: "Sealed in a Certified Chip",
-        description: "Your 24-word backup is sealed inside a certified secure element rated JIL High — a tamper-resistant chip built to resist physical attack. Nobody can pull it out — not thieves, not strangers, not even us at Stasher.",
-        icon: "AES256"
-      },
-      {
-        id: "03",
-        title: "You See Every Move",
-        description: "Before anything sends, the Stasher screen shows you exactly what is about to happen. You press the button on the device to approve. No surprises, no tricks.",
-        icon: "VERIFY"
-      },
-      {
-        id: "04",
-        title: "Locks Out Thieves",
-        description: "If someone finds your Stasher, it locks them out after a few wrong tries — first seconds, then hours, then a full day. Plenty of time to rescue your crypto with your backup phrase.",
-        icon: "LOCK"
-      }
-    ]
-  },
-
-  howItWorks: {
-    title: "Sending crypto takes three steps",
-    subtitle: "How it works",
-    steps: [
-      { step: 1, label: "Choose", description: "Open the app, pick what to send and who gets it.", zone: "hot" },
-      { step: 2, label: "Confirm on your Stasher", description: "Check the details on the device screen and press the button to approve. Your secret never leaves the device.", zone: "cold" },
-      { step: 3, label: "Done", description: "Your Stasher signs it and the app sends it. Your crypto is on its way — safely.", zone: "hot" }
-    ]
-  },
-
   differentiators: {
     title: "Why Stasher",
     items: [
       {
         id: "01",
-        label: "OFFLINE",
-        title: "Always Offline",
-        description: "Other wallets plug into your phone or computer when they sign — for a moment, your crypto is close to the internet. The Stasher device holding your money never connects to anything. Hackers cannot reach what is not online. Not even Stasher can."
+        label: "CERTIFIED",
+        title: "JIL High Secure Element",
+        description: "Your keys live inside a secure element certified to JIL High attack-potential resistance — the toughest rating in common use, and the same class of tamper-resistant chip trusted in bank cards and passports. It resists laboratory-grade physical attack: fault injection, side-channel analysis, probing the silicon directly. The secret goes in and never comes back out — not for a thief, not for us."
       },
       {
         id: "02",
-        label: "FUTURE-PROOF",
-        title: "Quantum-Resilient",
-        description: "Stasher already uses next-generation, post-quantum encryption to pair your devices and to verify its own firmware — the new standards built to survive future quantum computers. Future-proof from day one, no panic upgrade."
+        label: "SEPARATION",
+        title: "Cold and Warm, Mathematically Separated",
+        description: "One platform, two domains. The cold domain holds your keys and speaks to nothing but a single serial line. The warm domain handles the internet. What divides them is not just a wire — it's mathematics: the cold side accepts only well-formed, authenticated requests over a post-quantum paired channel, and answers with a signed result and nothing else. There is no code path that carries a key across. Compromise the warm side completely and it still learns nothing it could sign with."
       },
       {
         id: "03",
-        label: "TWO-PART",
-        title: "Two Devices Working As One",
-        description: "One device guards your crypto. The other talks to the internet. They pass messages, never secrets. A setup other wallets don't have — your money and the web never share the same wire."
+        label: "FUTURE-PROOF",
+        title: "Quantum-Resilient",
+        description: "Stasher already uses next-generation, post-quantum encryption to pair its two halves and to verify its own firmware — the new standards built to survive future quantum computers. Future-proof from day one, no panic upgrade."
       },
       {
         id: "04",
         label: "MANY COINS",
         title: "Thousands of Coins & Tokens",
-        description: "Bitcoin, Ethereum, Solana, Monero, XRP, Cardano and thousands of tokens across 62 blockchains — all held on one small device. Lose it? A simple 24-word backup phrase restores everything, on any compatible wallet."
-      }
-    ]
-  },
-
-  products: {
-    title: "One device. Your crypto, truly yours.",
-    subtitle: "The Device",
-    tiers: [
-      {
-        id: "consumer",
-        name: "STASHER",
-        tagline: "The Personal Crypto Safe",
-        highlight: true,
-        features: [
-          "Perfect for first-time buyers, long-term savers, traders, and families",
-          "Certified secure element (JIL High) guards your keys",
-          "Keeps your crypto offline where hackers cannot reach it",
-          "Works with thousands of coins and tokens across 62 blockchains",
-          "Quantum-resilient pairing and secure boot",
-          "Free app for iPhone and Android",
-          "Simple 24-word backup — if you lose the device, you recover everything",
-          "Small screen and button so you see and approve every transaction",
-          "Password-protected and locks itself against thieves",
-          "You own your crypto — Stasher has no access to it, ever",
-          "Works the same even if Stasher the company disappeared"
-        ]
+        description: "Bitcoin, Ethereum, Solana, Monero, XRP, Cardano and thousands of tokens across 62 blockchains — all held on one small device, with new chains added regularly. One wallet for everything you own, instead of a scattering of apps you have to trust separately."
       }
     ]
   },
@@ -170,33 +80,13 @@ export const SITE_CONTENT: SiteContent = {
     ]
   },
 
-  comparison: {
-    title: "How Stasher compares",
-    subtitle: "Stasher vs. Others",
-    competitors: ["Ledger Nano X", "Trezor Safe 5"],
-    rows: [
-      { feature: "Always stays offline (never touches the internet)", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "Quantum-resilient pairing & secure boot", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "Separate bridge device for the internet", stasher: "Yes", competitor1: "No", competitor2: "No" },
-      { feature: "Shows every transaction on its own screen", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Needs a button press to approve", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Standard 24-word backup phrase", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Truly random, one-of-a-kind keys", stasher: "Yes", competitor1: "Yes", competitor2: "No" },
-      { feature: "Backup locked behind your password", stasher: "Yes", competitor1: "Partial", competitor2: "No" },
-      { feature: "Free phone app", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Coins & tokens supported", stasher: "1,000s", competitor1: "5,500+", competitor2: "9,000+" },
-      { feature: "Certified secure element (JIL High)", stasher: "Yes", competitor1: "Yes", competitor2: "Yes" },
-      { feature: "Protects against password guessing", stasher: "Locks out longer each try", competitor1: "Wipes after 3", competitor2: "Wipes after 16" }
-    ]
-  },
-
   openSource: {
     title: "Verified, not trusted",
     subtitle: "Independent Assurance",
-    description: "You shouldn't have to take our word for it. Your keys live in a certified secure element, and the device is going through independent security review before launch.",
+    description: "You shouldn't have to take our word for it. The device is going through independent security review before launch.",
     points: [
-      { title: "Certified Secure Element", description: "Your keys are held in a secure element certified to JIL High attack-potential resistance — the same class of tamper-resistant chip trusted in bank cards and passports." },
-      { title: "Independent Audits", description: "Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results." }
+      { title: "Independent Audits", description: "Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results." },
+      { title: "Published Results", description: "When the reviews are complete we publish what they found — including anything they asked us to fix — rather than a badge with nothing behind it." }
     ]
   },
 
@@ -218,7 +108,7 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         question: "What does 'quantum-resilient' mean? Should I worry?",
-        answer: "A powerful new kind of computer — a quantum computer — may one day break some of today's encryption. Stasher already uses post-quantum cryptography everywhere it controls: the secure link between your two devices and the check that verifies its own firmware both run on next-generation, quantum-resistant standards. (Coin signatures themselves follow each blockchain's own rules — true for every wallet on earth — but everything Stasher owns end-to-end is built quantum-resilient today.)"
+        answer: "A powerful new kind of computer — a quantum computer — may one day break some of today's encryption. Stasher already uses post-quantum cryptography everywhere it controls: the secure link between its cold and warm halves and the check that verifies its own firmware both run on next-generation, quantum-resistant standards. (Coin signatures themselves follow each blockchain's own rules — true for every wallet on earth — but everything Stasher owns end-to-end is built quantum-resilient today.)"
       },
       {
         question: "Who is Stasher for?",
@@ -229,8 +119,8 @@ export const SITE_CONTENT: SiteContent = {
         answer: "Your money is completely safe. When you first set up Stasher, you write down 24 special words (your 'backup phrase'). As long as you keep those 24 words somewhere safe — ideally on paper in a drawer or a safe, not on your computer — you can restore all your crypto onto a new Stasher in minutes."
       },
       {
-        question: "How is Stasher different from Ledger or Trezor?",
-        answer: "Ledger and Trezor need to plug into your phone or computer when they approve a transaction — so for a moment, your crypto is close to the internet. Stasher splits this into two devices: one always stays offline with your crypto, another handles the internet. They never mix. Stasher also uses post-quantum cryptography to pair its devices and verify its firmware, which Ledger and Trezor do not."
+        question: "What makes Stasher different?",
+        answer: "Stasher splits the job in two. A cold side holds your keys and never touches a network. A warm side handles the internet. They share one platform but are separated by cryptography, not just by wiring: the cold side only ever emits a signed result, and your secrets have no path out. On top of that, the device pairing and the firmware check both run on post-quantum standards, so the parts Stasher controls end to end are built for the long term."
       },
       {
         question: "Which coins can I store on Stasher?",
@@ -243,17 +133,8 @@ export const SITE_CONTENT: SiteContent = {
       {
         question: "What if my phone gets hacked or stolen?",
         answer: "Your crypto is still safe. The secret code that controls your money is only on the Stasher device — never on your phone. Your phone is just a screen that helps you use Stasher. A stolen or hacked phone cannot move a single coin, because nothing happens without you pressing the button on the Stasher itself."
-      },
-      {
-        question: "How do I know the device is really trustworthy?",
-        answer: "You don't have to take our word for it. Your keys are held in a certified secure element rated JIL High — the same class of tamper-resistant chip used in bank cards and passports. Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results."
       }
     ]
-  },
-
-  assets: {
-    title: "Coins you can store",
-    items: ["BITCOIN", "ETHEREUM", "SOLANA", "XRP", "POLKADOT", "LITECOIN", "CARDANO", "1000s MORE"]
   },
 
   newsletter: {

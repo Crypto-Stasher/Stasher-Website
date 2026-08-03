@@ -25,7 +25,9 @@ export const Assets: React.FC<AssetsProps> = ({ content }) => {
         <h2 className="section-heading reveal-blur">{content.title}</h2>
         <div className="stagger assets-grid">
           {content.items.map((asset, index) => (
-            <div key={index} className="stagger-item">
+            /* `coin-icon-item` draws the grid's right/bottom cell borders —
+               without it the section shows only a stray top-left corner. */
+            <div key={index} className="coin-icon-item stagger-item">
               <CoinIcon name={asset} />
             </div>
           ))}
