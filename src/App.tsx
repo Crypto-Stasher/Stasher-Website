@@ -7,6 +7,7 @@ import { StasherPage } from './presentation/pages/StasherPage';
 import { ContentRepository } from './infrastructure/repositories/ContentRepository';
 import { SecurityPage } from './presentation/pages/SecurityPage';
 import { ProductPage } from './presentation/pages/ProductPage';
+import { AppPage } from './presentation/pages/AppPage';
 import { PreorderPage } from './presentation/pages/PreorderPage';
 import { LegalPage } from './presentation/pages/LegalPage';
 import { ErrorPage } from './presentation/pages/ErrorPage';
@@ -32,14 +33,13 @@ const App: React.FC = () => {
       preview: {
         image: DEVICE_IMAGE,
         kicker: "The device",
-        title: "Stasher",
+        title: "Stasher X1",
         description: "The personal crypto safe. Keys sealed in a certified secure element, approved by your thumb.",
         points: ["JIL High secure element", "Cold and warm, separated", "Thousands of coins"],
         cta: "See the product",
       },
     },
-    { href: "#architecture", label: "How it works" },
-    { href: "#app", label: "App" },
+    { to: "/app", label: "App" },
     { to: "/security", label: "Security" },
     { to: "/preorder", label: "Get Stasher" },
   ];
@@ -59,6 +59,14 @@ const App: React.FC = () => {
         element={
           <Layout footer={content.footer} navLinks={navLinks}>
             <ProductPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/app"
+        element={
+          <Layout footer={content.footer} navLinks={navLinks}>
+            <AppPage />
           </Layout>
         }
       />
