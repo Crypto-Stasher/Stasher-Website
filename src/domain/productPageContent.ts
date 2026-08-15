@@ -9,7 +9,7 @@ import type { ProductPageContent } from './models/ProductPageContent.type';
 // production is labelled as preliminary rather than stated as final.
 export const PRODUCT_PAGE_CONTENT: ProductPageContent = {
   kicker: 'The Device',
-  name: 'Stasher',
+  name: 'Stasher X1',
   tagline: 'The personal crypto safe.',
   intro:
     'One small device holds your keys, shows you every transaction on its own screen, and waits for your finger before anything is signed. Cold and warm live on the same platform, separated by cryptography — so the side that touches the internet never touches your keys.',
@@ -40,12 +40,12 @@ export const PRODUCT_PAGE_CONTENT: ProductPageContent = {
       id: '04',
       title: 'Yours even if we disappear',
       description:
-        'Stasher generates a standard 24-word recovery phrase. It restores on any compatible wallet, from any vendor. There is no account, no server, no permission to ask for — we could vanish tomorrow and your crypto would be untouched.',
+        'Stasher X1 generates a standard 24-word recovery phrase. It restores on any compatible wallet, from any vendor. There is no account, no server, no permission to ask for — we could vanish tomorrow and your crypto would be untouched.',
     },
   ],
 
   inTheBox: [
-    'Stasher device',
+    'Stasher X1 device',
     'USB-C charging and update cable',
     'Two recovery-phrase cards',
     'Tamper-evident seal',
@@ -60,7 +60,7 @@ export const PRODUCT_PAGE_CONTENT: ProductPageContent = {
         { name: 'Display', value: 'Colour TFT, on-device transaction review' },
         { name: 'Input', value: 'Physical confirm button' },
         { name: 'Connector', value: 'USB-C (charging and firmware updates)' },
-        { name: 'Companion app', value: 'iPhone and Android, free' },
+        { name: 'Companion app', value: 'Windows and Linux desktop, free' },
       ],
     },
     {
