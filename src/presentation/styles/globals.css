@@ -721,86 +721,17 @@ nav {
 }
 
 /* ─── ARCHITECTURE ─── */
-.arch-zones {
-  display: flex;
-  gap: 2rem;
-  margin-top: 3rem;
-}
 
-.arch-zone {
-  flex: 1;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0;
-  overflow: hidden;
-}
 
-.arch-zone-header {
-  padding: 1.25rem 1.5rem;
-  border-bottom: 2px solid;
-  background: var(--overlay);
-}
 
-.arch-zone-label {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-}
 
-.arch-machines {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
 
-.arch-machine {
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-}
 
-.arch-machine-name {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.35rem;
-}
 
-.arch-machine-role {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.35rem;
-}
 
-.arch-machine-detail {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
 
-.arch-flow {
-  margin-top: 3rem;
-  text-align: center;
-}
 
-.arch-flow-line {
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-yellow) 50%, var(--accent-blue));
-  margin-bottom: 1rem;
-  border-radius: 2px;
-}
 
-.arch-flow-labels {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  opacity: 0.8;
-}
 
 /* ─── SECURITY ─── */
 .security-grid {
@@ -863,39 +794,6 @@ nav {
   line-height: 1.6;
 }
 
-/* ─── FEATURES / DIFFERENTIATORS ─── */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  margin-top: clamp(2rem, 5vw, 4rem);
-}
-
-.feature-card {
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: var(--bg-card);
-  border: 1px solid var(--border-neon);
-  position: relative;
-  transition: all 0.33s ease;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent-cyan);
-  background: var(--surface);
-  box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.1);
-}
-
-.feature-card h3 {
-  font-family: var(--font-sans);
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
 .node-label {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -936,85 +834,16 @@ nav {
 }
 
 /* ─── APP SHOWCASE ─── */
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(1.5rem, 4vw, 3rem);
-}
 
-.app-feature-card {
-  padding: 2rem;
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.3s;
-}
 
-.app-feature-card:hover {
-  border-color: rgba(var(--accent-rgb), 0.2);
-  transform: translateY(-3px);
-}
 
-.app-feature-number {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  color: var(--accent-cyan);
-  opacity: 0.5;
-  margin-bottom: 0.75rem;
-}
 
-.app-feature-title {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
 
-.app-feature-desc {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
 
-.app-download {
-  text-align: center;
-  margin-top: 3rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
 
-.app-download-label {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
 
-.app-download-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
 
-.app-download-btn {
-  display: inline-block;
-  padding: 0.9rem 2.5rem;
-  border: 1px solid var(--border-neon);
-  color: var(--accent-cyan);
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.3s;
-}
 
-.app-download-btn:hover {
-  background: rgba(var(--accent-rgb), 0.08);
-  border-color: var(--accent-cyan);
-}
 
 /* ─── TECH STACK ─── */
 .tech-grid {
@@ -1060,39 +889,10 @@ nav {
 }
 
 /* ─── OPEN SOURCE ─── */
-.opensource-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  margin-top: clamp(1.5rem, 4vw, 3rem);
-}
 
-.opensource-card {
-  padding: 2rem;
-  border-left: 2px solid var(--accent-cyan);
-  background: rgba(255, 255, 255, 0.02);
-}
 
-.opensource-number {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  color: var(--accent-cyan);
-  opacity: 0.5;
-  margin-bottom: 0.75rem;
-}
 
-.opensource-title {
-  font-family: var(--font-sans);
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
 
-.opensource-desc {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
 
 /* ─── COMPLIANCE ─── */
 .compliance-list {
@@ -1322,9 +1122,6 @@ footer {
     margin-right: auto;
   }
 
-  .arch-zones {
-    flex-direction: column;
-  }
 
 
   .nav-links {
@@ -1377,26 +1174,13 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
 
   .tech-grid {
     grid-template-columns: 1fr;
   }
 
-  .app-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .opensource-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .app-download-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
 
   .newsletter-box {
     padding: 2.5rem 1.5rem;
@@ -1543,11 +1327,6 @@ footer {
   margin-bottom: 4rem;
 }
 
-.diff-description {
-  color: var(--text-dim);
-  position: relative;
-  z-index: 1;
-}
 
 .assets-section {
   text-align: center;
@@ -1561,21 +1340,6 @@ footer {
 }
 
 /* ─── APP LOADING SCREEN (#23) ─── */
-.app-loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: var(--bg-deep);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  font-family: var(--font-sans);
-  color: var(--accent-cyan);
-}
 
 .loading-spinner {
   width: 40px;
@@ -1625,11 +1389,8 @@ footer {
 }
 
 /* ─── ROUNDED, FRIENDLIER SHAPES (overrides the old square corners) ─── */
-.arch-zone,
 .security-card,
-.feature-card,
 .product-card,
-.app-feature-card,
 .tech-item,
 .newsletter-box,
 .stat-item,

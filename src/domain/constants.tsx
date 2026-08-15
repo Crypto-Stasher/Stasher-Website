@@ -7,86 +7,45 @@ export const SITE_CONTENT: SiteContent = {
     cta: "Get Stasher"
   },
 
-  architecture: {
-    title: "How Stasher keeps your crypto safe",
-    subtitle: "How It Works",
-    description: "One device, two separate halves. The cold half holds your money and never touches a network. The warm half does the talking, without ever seeing your secrets. Your money and the internet never share the same wire.",
-    zones: [
-      {
-        zone: "COLD DOMAIN",
-        color: "var(--accent-cyan)",
-        machines: [
-          { name: "THE VAULT", role: "Where Your Money Lives", detail: "Your crypto is created and kept here. Nothing ever leaves it. This half has no WiFi, no Bluetooth, no internet — the only way in or out is one narrow, guarded channel." }
-        ]
-      },
-      {
-        zone: "WARM DOMAIN",
-        color: "var(--accent-yellow)",
-        machines: [
-          { name: "THE MESSENGER", role: "The Go-Between", detail: "This half talks to the internet. It sends your approved transactions and brings back balance updates over a quantum-resilient paired link. It never sees your secrets." }
-        ]
-      },
-      {
-        zone: "PHONE APP",
-        color: "var(--accent-blue)",
-        machines: [
-          { name: "STASHER APP", role: "Your Everyday Screen", detail: "A friendly app for iPhone and Android. See your coins, start transactions, and connect to your Stasher — all in one place." }
-        ]
-      }
-    ]
-  },
-
   differentiators: {
     title: "Why Stasher",
     items: [
       {
         id: "01",
-        label: "CERTIFIED",
-        title: "JIL High Secure Element",
-        description: "Your keys live inside a secure element certified to JIL High attack-potential resistance — the toughest rating in common use, and the same class of tamper-resistant chip trusted in bank cards and passports. It resists laboratory-grade physical attack: fault injection, side-channel analysis, probing the silicon directly. The secret goes in and never comes back out — not for a thief, not for us."
+        label: "FUTURE-PROOF",
+        title: "Quantum-resilient",
+        description: "Next-generation encryption, already built in. Infrastructure ready for the future."
       },
       {
         id: "02",
-        label: "SEPARATION",
-        title: "Cold and Warm, Mathematically Separated",
-        description: "One platform, two domains. The cold domain holds your keys and speaks to nothing but a single serial line. The warm domain handles the internet. What divides them is not just a wire — it's mathematics: the cold side accepts only well-formed, authenticated requests over a post-quantum paired channel, and answers with a signed result and nothing else. There is no code path that carries a key across. Compromise the warm side completely and it still learns nothing it could sign with."
+        label: "CERTIFIED",
+        title: "Certified secure element (JIL High)",
+        description: "Your keys live in a certified secure element rated JIL High — a dedicated chip that protects secrets, sealed off from the rest of the device."
       },
       {
         id: "03",
-        label: "FUTURE-PROOF",
-        title: "Quantum-Resilient",
-        description: "Stasher already uses next-generation, post-quantum encryption to pair its two halves and to verify its own firmware — the new standards built to survive future quantum computers. Future-proof from day one, no panic upgrade."
+        label: "TWO-IN-ONE",
+        title: "Cold and hot wallet in one",
+        description: "Most people need both a cold wallet and a hot wallet. Stasher is both — fully separated, in your pocket."
       },
       {
         id: "04",
+        label: "DO MORE",
+        title: "A full financial stack",
+        description: "Swap, stake, and grow your crypto right from your wallet — every move signed on hardware you're holding."
+      },
+      {
+        id: "05",
         label: "MANY COINS",
-        title: "Thousands of Coins & Tokens",
-        description: "Bitcoin, Ethereum, Solana, Monero, XRP, Cardano and thousands of tokens across 62 blockchains — all held on one small device, with new chains added regularly. One wallet for everything you own, instead of a scattering of apps you have to trust separately."
+        title: "5,000+ coins and tokens",
+        description: "Bitcoin, Ethereum, Solana, Monero, XRP, Cardano, every major L2, and thousands of tokens across 62 chains."
+      },
+      {
+        id: "06",
+        label: "FORM FACTOR",
+        title: "Pocket-sized",
+        description: "40 × 62 × 9 mm. Thicker than a credit card, smaller than your phone."
       }
-    ]
-  },
-
-  appShowcase: {
-    title: "The Stasher app",
-    subtitle: "Your Everyday Screen",
-    description: "A friendly phone app that shows all your crypto in one place. Send money to a friend, pay someone, or move funds around — a few taps and a press on the Stasher device, and you are done. Your crypto stays safe on the device. Your phone just helps you use it.",
-    features: [
-      { title: "All Your Coins in One Place", description: "See every coin you own in one clear dashboard with up-to-date balances." },
-      { title: "Send in a Few Taps", description: "Pick a coin, type how much, choose who receives it. Check on the device. Done." },
-      { title: "Pair Once, Use Forever", description: "Connect your phone to your Stasher the first time. From then on, they remember each other." },
-      { title: "Full History", description: "Every transaction you have ever made, with clear status and confirmations." }
-    ],
-    downloadLinks: [
-    ]
-  },
-
-  openSource: {
-    title: "Verified, not trusted",
-    subtitle: "Independent Assurance",
-    description: "You shouldn't have to take our word for it. The device is going through independent security review before launch.",
-    points: [
-      { title: "Independent Audits", description: "Independent security experts are reviewing Stasher's hardware and firmware ahead of launch, and we will publish the results." },
-      { title: "Published Results", description: "When the reviews are complete we publish what they found — including anything they asked us to fix — rather than a badge with nothing behind it." }
     ]
   },
 

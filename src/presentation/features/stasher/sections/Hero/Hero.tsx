@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
                 <span>{content.cta}</span>
                 <span aria-hidden="true">↗</span>
               </Link>
-              <a href="#architecture" className="hero-text-link" onClick={scrollTo}>
+              <a href="#differentiators" className="hero-text-link" onClick={scrollTo}>
                 See how it stays offline
                 <span aria-hidden="true">↓</span>
               </a>
