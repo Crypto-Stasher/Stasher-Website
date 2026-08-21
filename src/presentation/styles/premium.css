@@ -2505,6 +2505,8 @@ footer .container {
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
+  /* Fills the letterboxing left by `object-fit: contain`. Clips rendered on a
+     pale backdrop override it inline with their own shade. */
   background: linear-gradient(#14141c, #1d1d26);
   mask-image: linear-gradient(
     to bottom,

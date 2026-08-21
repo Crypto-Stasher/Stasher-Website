@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { useTheme } from '../../../../../application/context/ThemeContext';
 import { ChipModel } from './ChipModel';
 import { StackDevice } from './StackDevice';
-import { CoinsObject } from './whyObjects';
+import { CoinsObject, STAGE_OFFSET_X, STAGE_OFFSET_Y, STAGE_SCALE } from './whyObjects';
 
 interface WhySceneProps {
   /** Index of the slide currently on screen. */
@@ -18,13 +18,19 @@ interface WhySceneProps {
  * teleport an outgoing object across the stage the moment the index changed,
  * while it was still fading out.
  */
-const objectX = (index: number) => (index % 2 === 0 ? 2.3 : -2.3);
+const objectSide = (index: number) => (index % 2 === 0 ? 1 : -1);
 
 /**
  * Indexed to match the reasons in order. `null` marks one illustrated by a
  * video clip instead — the slot stays so the indices keep lining up.
  */
-const OBJECTS: (React.FC<{ accent: string; secondary: string; surface: string }> | null)[] = [
+const OBJECTS: (React.FC<{
+  accent: string;
+  secondary: string;
+  surface: string;
+  background: string;
+  side: number;
+}> | null)[] = [
   null,
   // Suspense sits inside the Canvas: without it the loading model would
   // suspend the whole scene and blank every other object.
@@ -47,12 +53,18 @@ const OBJECTS: (React.FC<{ accent: string; secondary: string; surface: string }>
  * Eases the active object in and the previous one out, so the swap matches the
  * copy's cross-fade instead of popping.
  */
-const Stage: React.FC<WhySceneProps & { accent: string; secondary: string; surface: string }> = ({
+const Stage: React.FC<WhySceneProps & {
+  accent: string;
+  secondary: string;
+  surface: string;
+  background: string;
+}> = ({
   active,
   reducedMotion,
   accent,
   secondary,
   surface,
+  background,
 }) => {
   const groups = useRef<(THREE.Group | null)[]>([]);
 
@@ -77,13 +89,23 @@ const Stage: React.FC<WhySceneProps & { accent: string; secondary: string; surfa
       {OBJECTS.map((ObjectComponent, index) => (
         ObjectComponent ? (
           // Centred in its own half, opposite that slide's copy.
-          <group key={index} position={[objectX(index), -0.15, 0]} scale={0.62}>
+          <group
+            key={index}
+            position={[STAGE_OFFSET_X * objectSide(index), STAGE_OFFSET_Y, 0]}
+            scale={STAGE_SCALE}
+          >
             <group
               ref={(node) => { groups.current[index] = node; }}
               scale={index === active ? 1 : 0}
               visible={index === active}
             >
-              <ObjectComponent accent={accent} secondary={secondary} surface={surface} />
+              <ObjectComponent
+                accent={accent}
+                secondary={secondary}
+                surface={surface}
+                background={background}
+                side={objectSide(index)}
+              />
             </group>
           </group>
         ) : null
@@ -120,6 +142,11 @@ export const WhyScene: React.FC<WhySceneProps> = ({ active, reducedMotion }) => 
   // Well clear of the page background in both themes: at near-black the solid
   // objects read as flat cut-outs rather than lit geometry.
   const surface = isLight ? '#c3ccc7' : '#39443f';
+  // What the far end of the coin field dissolves into. Instance colour can only
+  // darken a lit face, so the light theme recedes into a warm grey rather than
+  // its own cream background — fading toward the page colour there is a no-op
+  // and leaves the far coins as loud as the near ones.
+  const background = isLight ? '#b6b0a2' : '#050606';
 
   return (
     <Canvas
@@ -147,6 +174,7 @@ export const WhyScene: React.FC<WhySceneProps> = ({ active, reducedMotion }) => 
         accent={accent}
         secondary={secondary}
         surface={surface}
+        background={background}
       />
     </Canvas>
   );

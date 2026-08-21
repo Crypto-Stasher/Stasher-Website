@@ -1,13 +1,31 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import type { DifferentiatorItem } from '@models/sections';
+import type { Theme } from '../../../../../application/context/ThemeContext';
+import { useTheme } from '../../../../../application/context/ThemeContext';
 import { WhyVideo } from '@features/stasher/components';
 import { WhySlide } from './WhySlide';
+
+interface WhyClipSource {
+  src: string;
+  poster: string;
+  /**
+   * Fills the letterboxing around the clip. Light-theme clips are rendered on
+   * their own shade of cream, so each one carries its own rather than sharing
+   * a theme token that could only match one of them.
+   */
+  background?: string;
+}
+
+interface WhyClip extends WhyClipSource {
+  /** Used instead of the default pair while the light theme is on. */
+  light?: WhyClipSource;
+}
 
 /**
  * Reasons illustrated by a clip instead of a generated object, keyed by item id
  * so reordering the copy cannot silently mismatch them.
  */
-const WHY_VIDEOS: Record<string, { src: string; poster: string }> = {
+const WHY_VIDEOS: Record<string, WhyClip> = {
   '01': {
     src: `${import.meta.env.BASE_URL}video/quantum.mp4`,
     poster: `${import.meta.env.BASE_URL}video/quantum-poster.jpg`,
@@ -15,11 +33,31 @@ const WHY_VIDEOS: Record<string, { src: string; poster: string }> = {
   '03': {
     src: `${import.meta.env.BASE_URL}video/cold-hot.mp4`,
     poster: `${import.meta.env.BASE_URL}video/cold-hot-poster.jpg`,
+    light: {
+      src: `${import.meta.env.BASE_URL}video/cold-hot-light.mp4`,
+      poster: `${import.meta.env.BASE_URL}video/cold-hot-light-poster.jpg`,
+      background: '#eae5da',
+    },
   },
   '06': {
     src: `${import.meta.env.BASE_URL}video/pocket.mp4`,
     poster: `${import.meta.env.BASE_URL}video/pocket-poster.jpg`,
+    light: {
+      src: `${import.meta.env.BASE_URL}video/pocket-light.mp4`,
+      poster: `${import.meta.env.BASE_URL}video/pocket-light-poster.jpg`,
+      background: '#fcf2e8',
+    },
   },
+};
+
+/**
+ * The clip to show for a reason under the current theme. Clips without a light
+ * variant keep their single version on both themes.
+ */
+const clipFor = (id: string, theme: Theme): WhyClipSource | null => {
+  const clip = WHY_VIDEOS[id];
+  if (!clip) return null;
+  return theme === 'light' && clip.light ? clip.light : clip;
 };
 
 // three.js is the heaviest dependency on the page, so the stage's 3D layer is
@@ -54,6 +92,7 @@ const visualSide = (index: number): 'left' | 'right' => (index % 2 === 0 ? 'righ
  * edges, no seams, no sense of separate pages going by.
  */
 export const Differentiators: React.FC<DifferentiatorsProps> = ({ title, items }) => {
+  const { theme } = useTheme();
   const [active, setActive] = useState(0);
   // Tracked separately from `active` so the outgoing slide can animate away in
   // its own direction instead of sharing the incoming slide's resting state.
@@ -143,18 +182,22 @@ export const Differentiators: React.FC<DifferentiatorsProps> = ({ title, items }
               sells the page as standing still while the copy changes. */}
           <span className="why-stage-split" aria-hidden="true" />
 
-          {items.map((item, index) => (
-            WHY_VIDEOS[item.id] ? (
+          {items.map((item, index) => {
+            const clip = clipFor(item.id, theme);
+            if (!clip) return null;
+
+            return (
               <WhyVideo
                 key={item.id}
-                src={WHY_VIDEOS[item.id].src}
-                poster={WHY_VIDEOS[item.id].poster}
+                src={clip.src}
+                poster={clip.poster}
+                background={clip.background}
                 side={visualSide(index)}
                 active={index === active}
                 reducedMotion={reducedMotion}
               />
-            ) : null
-          ))}
+            );
+          })}
 
           {sceneReady && (
             <div className="why-scene" aria-hidden="true">
@@ -162,7 +205,7 @@ export const Differentiators: React.FC<DifferentiatorsProps> = ({ title, items }
                 {/* A clip-illustrated reason has no generated object, so the
                     canvas clears rather than showing both at once. */}
                 <WhyScene
-                  active={WHY_VIDEOS[items[active]?.id] ? -1 : active}
+                  active={items[active] && WHY_VIDEOS[items[active].id] ? -1 : active}
                   reducedMotion={reducedMotion}
                 />
               </Suspense>
